@@ -1,0 +1,852 @@
+# Chapter 3 highlighted the many ratios that could be explored to assess a company’s
+
+Chapter 3 highlighted the many ratios that could be explored to assess a company’s
+performance. All of these ratios are potential candidates for ML features. Besides the
+fundamentals and technical data, such as the stock price, numerous external factors,
+including the country’s overall economic situation, social media sentiments, news,
+weather, insider trades, and more, can also influence the stock price.
+45
+40
+35
+30
+25
+20
+15
+10
+5PriceATOM-USD
+2021-01 2021-04 2021-07 2021-10 2022-01 2022-04 2022-07 2022-10 2023-01
+DateClosing Price
+Figure 8.6 Price development of Cosmos (ATOM) between 2021 and 2023
+
+196 CHAPTER  8AI for financial research
+ If we select a minimal number of features, we risk underfitting, which occurs when
+a ML algorithm fails to identify strong correlations between the features and the label.
+Considering the vast number of possible features, we also risk failing due to the
+opposite by overfitting the models if we add too many features. Some statisticians
+often speak of the signal and the noise. Features that aren’t interesting—the noise—
+frequently prevent us from seeing the factors we would need to see to predict an out-
+come, the signal.
+EFFORT
+If we train and update multiple models regularly, we must find efficient practices to
+manage them well. Models need to be versioned, and it must be possible to redeploy
+every historical model if necessary. Changes in models also need to be transparent so
+that we can better understand how they have evolved in retrospect.
+ In addition, companies in various industries and sectors exhibit significant differ-
+ences, as illustrated in chapter 3. A model that works for one industry may not be
+effective in another. So, we would have to create specific models for separate indus-
+tries and sectors, making the process even more complicated, as we need to maintain
+many models in parallel.
+ Figure 8.7 shows the MLDevOps Cycle. This picture illustrates the entire lifecycle
+of model generation, encompassing data exploration and deployment options. We
+collect and prepare data, and then build and validate ML models. Once validated, the
+model is versioned, packaged, and deployed to a production environment. New results
+are continuously collected in this operational setting, enabling us to refine our under-
+standing of model performance. New data sources are identified and integrated as the
+process evolves, feeding the next model development cycle.
+ML
+Data
+Model
+DEV
+Extract,
+Transform,
+LoadValidate
+Identify
+New
+DataPackageOPS
+Deploy
+Monitor
+Figure 8.7 The MLDevOps Cycle, including preparation and deployment
+
+197 8.1 From code to machine learning
+In larger organizations, the efforts required to maintain models can become immense,
+slowing down overall progress within the company. It’s one task to create models, but
+another to maintain them to avoid chaos.
+8.1.5 Narrowing the scope
+A ML model that accurately forecasts all stock prices would be like the golden goose
+from the fairy tale, and the universal money-making formula, of course, doesn’t exist.
+Many companies successfully use ML use cases for more isolated scenarios. If you
+apply your skills wisely and focus on the right goals, there are plenty of chances to pre-
+dict future gains better than others. Let’s look at a narrowed use case.
+ A business model describes how a company generates revenue and achieves eco-
+nomic success. For example, Netflix and Spotify have subscription-based and adver-
+tisement-based revenue models. The goal is to maximize the number of users who pay
+a monthly subscription fee.
+ We can develop specific ML models to measure success, incorporating generic eco-
+nomic data, sentiments, and other data sources to predict industry outcomes. Such a
+model can’t eliminate all risks, such as mismanagement or geopolitical changes, but it
+can help assess possible results for a market niche.
+ M L  i s  p a r t  o f  d i s c r i m i n a t i v e  m o d e l s .  W e  e x p e c t  t h e m  t o  r e t u r n  q u a n t i t a t i v e
+results, such as a binary classification (e.g., “yes”, “no”, “up”, or “down”) or a num-
+ber based on a regression algorithm, which forecasts the likely future share price of
+an asset. Suppose a ML model recommends we sell company shares of a company
+that we believe has the brightest future imaginable. The output format will always
+be the same; the results won’t contain any creative analysis but will indicate buy,
+sell, or hold. Traditional ML won’t explain its reasoning. The adage “Every use case
+has its best-suited tool, but not every tool is suitable for every use case” applies. Dis-
+criminative ML frameworks can be beneficial for use cases where no creativity is
+required. If you, for instance, plan to build a robo trader to automate transactions
+to trigger orders based on the data on the market, traditional ML use cases will pro-
+vide the value you need. Now, it’s time to investigate a different form of AI that gen-
+erates new results, which we could also call creative in some cases, addressing different
+use cases.
+RenTech and automated trading
+If you’re interested in quantitative trading, study RenTech’s history and learn how this
+company became one of the most successful hedge fund management firms. One
+special lesson, which can’t be fully captured in depth in a book focused on teaching
+programmers the basics of investment, is the challenges Jim Simons and his col-
+leagues had to overcome to succeed.
+It’s easy to imagine yourself looking at a screen and cheering that your model trades
+better than the market. But you also must see the periods in which a model that just
+
+198 CHAPTER  8AI for financial research
+8.2 From machine learning to generative AI
+ML has a specific use case. Models trained for forecasting stock prices, as a representa-
+tive of discriminative AI, can’t be used in other scenarios. In contrast to the discrimi-
+native models we’ve seen, GenAI targets universal applications. It’s self-evident that an
+ML model trained for different use cases, such as medical applications, can’t predict
+stock prices. However, if we asked a public LLM, such as OpenAI GPT or Google Gem-
+ini, any question, whether it’s about finance or other topics, in most cases, we get
+results that at least sound right.
+ So, what makes GenAI so different? The obvious answer is that, when examining
+chat use cases, using an LLM to generate answers is an advanced natural language
+processing (NLP) use case, and its purpose, techniques, and applications fundamen-
+tally differ from those of a linear regression use case, which aims to predict trends in a
+stock price. Traditional NLP applications can be compared with house cats, whereas
+LLMs could be seen as big cats. But in that context, comparing GenAI using LLMs
+and ML is like comparing cats with mice. Both are mammals; they share a commonal-
+ity, just as LLMs and ML are part of analytics, but they are still distinct species.
+ Conversely, we still explored the possible limitations of computer-generated mod-
+els in a chaotic domain, which gives an excellent idea of what to look for when
+researching a different analytical domain. GenAI, although “a different species,” is
+another form of computer-generated model, and it makes sense to examine whether
+the same limitations apply.
+ We won’t go into the details in this book, but here’s two books that describe how
+the transformer model and attention algorithms have become game changers: Genera-
+tive AI in Action  by Amit Bahree (Manning, 2024; www.manning.com/books/generative -
+ai-in-action ) and Introduction to Generative AI  by Numa Dhamani and Maggie Engler
+(Manning, 2024; www.manning.com/books/introduction-to-generative-ai ). To sum-
+marize the evolution, a paper called “Attention Is All You Need” ( https:/ /mng.bz/
+Pw55 ) suggested an improvement when building text-based models. Instead of explor-
+ing the relationship between every word in a sentence, the idea is to focus on the rela-
+tionship between the essential words in sentences. This led to the transformer model.
+This new approach allowed us to collect vast amounts of data and provides the basis
+for LLMs, which are trained by millions of parameters.(continued)
+made profits the weeks before suddenly makes losses. Everyone around you asks
+the same question: Why? And, as can often be the case with ML, you may not have
+an immediate answer.
+
+199 8.2 From machine learning to generative AI
+8.2.1 Comparing LLMs
+Let’s start with an experiment. We’ll ask GPT-4o, Gemini, and Finance Chat about
+investment strategies. We’ll provide the following three prompts related to investment
+and compare the differences in the answers provided by the LLMs:
+What is the current trend in the stock market?
+Provide me with three reference examples that Warren Buffett would invest in
+based on his strategy that aren’t currently in his portfolio.
+Provide me with three reference examples of investments that Peter Lynch
+would make based on his strategy that aren’t currently in his portfolio.
+This chapter summarizes the results, highlighting that LLMs aren’t infallible. This test
+run was executed in June 2024, before the market experienced some losses in August
+2024, from which it largely recovered. Note that one challenge using LLMs is nonde-
+terminism. Different users may receive different answers depending on the LLM they
+use and the parameters they specify.
+SUMMARIZING  THE ANSWERS
+Although Gemini and GPT also raised concerns, all LLMs painted a positive picture of
+the market. They advertised to investors to diversify their portfolios, which is standard
+advice most financial advisors give. No LLM provided a strategy that would have pre-
+vented us from experiencing the hiccups in August 2024. There are some investment
+recommendations, such as using passive investment methods, but this advice is one of
+the most common recommendations investment experts give to new investors.
+ The answers to specific questions about Warren Buffett’s and Peter Lynch’s invest-
+ment strategies are more conclusive. Both are investors who follow a particular
+approach. Peter Lynch was a growth investor until he retired, and Warren Buffett is
+known for his value investment style. Table 8.1 shows the results.
+INTERPRETATION  OF RESULTS
+Some magazines, such as The Economist , warned investors about a possible stock mar-
+ket overvaluation in July 2024. Although we can acknowledge that LLMs can generally
+detect volatility, they aren’t yet capable of providing a conclusive or detailed view of
+the stock market, as a reader might expect when reading articles in the Financial
+Times , Wall Street Journal , or any other newspaper, making it more sensible to consult a
+professional rather than an LLM.Table 8.1 Results of prompts related to stocks
+Investor GPT-4o Gemini Finance Chat
+Buffett Microsoft, Costco, Visa Costco, Microsoft, Procter & 
+Gamble Allegion, Danaher, Coca-Cola
+Lynch Etsy, Zoom, Square Trade Desk, Etsy, Shopify Tesla, Allegion, DCP
+
+200 CHAPTER  8AI for financial research
+ Regarding the investor’s comparison, GPT-4o and Finance Chat returned stocks
+already in the Berkshire Hathaway portfolio ( www.cnbc.com/berkshire-hathaway-
+portfolio/ ): Visa and Coca-Cola. GPT-4o and Gemini came up with the same picks for
+Warren Buffett (Microsoft, Costco) twice, and had one match with Peter Lynch (Etsy).
+GPT-4o picked a company, Square, that was renamed in 2021. Additionally, it chose a
+company (Zoom) strongly associated with the COVID-19 pandemic. Finance Chat
+picked a company called Allegion twice.
+ These tests highlight the risks associated with seeking investment advice. Did GPT-
+4o and Gemini choose the same stock because they use the same data sources? How
+old are the data sources? Why did Finance Chat pick an Irish company (Allegion)
+twice? On which data were all three models trained?
+8.2.2 Complementing ML with GenAI
+It’s challenging to compare GenAI with traditional ML as, to some extent, they fulfill
+different purposes. ML is more concise, whereas GenAI can be seen as a Swiss army
+knife for creative problem-solving tasks. One way they can be used together is by using
+GenAI as a research tool for ML models. The idea behind ML is to train a model that
+receives data, examines specific parameters, and predicts an outcome based on histor-
+ical data. One challenge is selecting the proper parameter to maintain the model.
+ GenAI, a tool that provides more generic answers, can help accelerate the research
+process to identify suitable features for an ML model. In short, don’t think of old-
+school ML or GenAI; instead, consider using both in tandem in your explorations.
+8.2.3 Challenges
+Based on our small experiment and existing knowledge, we can identify the chal-
+l e n g e s  w e  f a c e  w h e n  u s i n g  L L M s  f o r  i n v e s t m e n t  a d v i c e .  S o m e  a r e  c r u c i a l  t o  m a k e
+informed investment decisions, determining whether we achieve gains or losses.
+Hardly anyone wants to lose money because of some risky speculation that an LLM
+might be right.
+DATED INFORMATION
+Imagine you’re seeking investment advice, and the model was trained on outdated
+data. You’ll find a recent article on the internet about potential risks uncovered about
+a specific asset. The LLM might not have learned about it yet.
+HALLUCINATIONS
+Ultimately, an LLM is a model with billions of parameters. The maintainers of LLMs
+generate them by training these models on vast amounts of data sources, primarily
+from the internet. While LLMs might return astute advice that could help you make
+decent returns, they could also return questionable answers.
+8.2.4 Final judgement on ML and GenAI
+T r a d i t i o n a l  M L  i s  a l s o  r e f e r r e d  t o  a s  d i s c r i m i n a t i v e  A I .  Discriminative  means distin-
+guishing or separating from others, whereas generative  aims for creative output. ML
+
+201 8.3 Practical use of GenAI
+focuses more on specific use cases to extract results from data, whereas GenAI’s appli-
+cations are broader and lead to unexpected outcomes. The approach of both meth-
+ods may differ, but the outcome is the same if the scope of an investment analysis is
+too broad. Trusting forecasts in a highly volatile environment is a risk. Remember,
+past performance isn’t indicative of future results.
+ As we’ve demonstrated, both methods offer value within a narrow scope; there-
+fore, let’s explore how we can use GenAI in our financial research. We’ll indicate that
+GenAI can provide value in economic research when applied correctly.
+8.3 Practical use of GenAI
+GenAI offers various methods for searching for assets with high returns. In this sec-
+tion, we list some of them. Be aware that GenAI is an evolving technology; we con-
+tinue to see unexpected innovations that introduce new possibilities for investors.
+Continue to explore new ways to optimize results using LLMs. We’ll introduce some
+advanced use cases in chapter 9.
+8.3.1 Using LLMs as research assistants
+LLMs reduce the time required to perform time-intensive tasks, particularly research-
+related work that necessitates exploring numerous resources to achieve results.
+Instead of asking in general what the best stocks are to invest in, we can ask questions
+that require an LLM to look for explicit details. One exemplary detail for a decision-
+making scorecard for a purchase decision is the management performance of a com-
+pany’s executive board. Using LLMs, we can generate an initial summary of a com-
+pany’s leaders more quickly than if we queried each manager on LinkedIn. The same
+applies to pending lawsuits, insider trades, business models, or customer segmenta-
+tion. What could have taken hours to research by traditional web research, an LLM
+can often provide within a few seconds. Let’s dive deeper into two use cases.
+SUMMARIZING  DOCUMENTS
+Investing requires extensive research and thinking. Many professional investors, such
+as Warren Buffett, devote significant time to reading and gathering information about
+a company. Many companies publish lengthy documents, and we can obtain tran-
+scripts of various calls and presentations. Reading all of them from start to finish takes
+a lot of time.
+ One specific use case of LLMs is passing these documents to an LLM and asking it
+to summarize them, focusing on the topics that are specifically interesting to you. For
+example, a 60-page document can be summarized into a one-pager with the most
+essential facts.
+CODE GENERATION
+This book presents a substantial amount of code for analyzing stocks. At the same
+time, every interested programmer can get a lot of algorithms themselves from an
+LLM. An LLM can generate substantial, meaningful code that makes programming
+easier and faster, from collecting data to calculating ratios or using ML.
+
+202 CHAPTER  8AI for financial research
+HIGH-LEVEL ANALYSES  OF NONFINANCIAL  RISKS
+In chapter 7, we highlighted that using algorithms to assess multiple nonfinancial
+risks can lead to significant efforts, as the term nonfinancial risk  can encompass a broad
+range of factors that aren’t financial and therefore lack a clear definition. We can use
+data to predict the impact of pandemics, wars, and natural catastrophes on individual
+companies, and we’ll learn that some might be affected by others. However, detailed
+assessments can lead to significant efforts. Let’s ask ourselves how accurate our analy-
+sis must be. Perhaps for a private investor, a high-level overall evaluation is sufficient,
+allowing us to validate the output of LLMs.
+ You can submit a prompt such as “Assuming that risks can have a rating from 10
+(maximum) to 0 (minimum), I would like to assess the risk of pandemics, global trade
+wars, and climate change to each asset in my portfolio. Provide at least one sentence
+why. If there is no way to associate the risk, a statement that you don’t have enough
+data is also fine.”
+ Table 8.2 is a reference result provided by GPT-4o to the author. It was transcribed
+to this table; you can offer a similar portfolio analysis with a similar prompt.
+Table 8.2 A reference risk assessment provided by GPT-4o (0 minimum, 10 maximum)
+Company Pandemic ReasonTrade 
+warReasonClimate 
+changeReason
+Google 2 Digital services 
+thrive in pandemics.6 Global ad spend is 
+exposed to geopo-
+litical frictions.3 Low direct cli-
+mate exposure
+Pfizer 4 High initial benefit 
+from COVID, less 
+future upside3 Limited export vul-
+nerability2 Low environmen-
+tal risk overall
+Ali Baba 5 Chinese consump-
+tion dropped in early 
+pandemics.9 Central figure in 
+US-China tech 
+decoupling6 Some exposure 
+to carbon-inten-
+sive logistics
+Orsted 1 Renewable energy 
+demand steady or 
+rising2 Localized wind/
+green projects 
+limit exposure.9 Renewable 
+energy play 
+depends on cli-
+mate policy.
+CCJ 1 Uranium demand 
+steady4 Export-oriented but 
+essential material6 Positive expo-
+sure as nuclear 
+gains from cli-
+mate urgency
+Lyft 8 Transportation 
+demand falls in 
+lockdowns.3 Mainly domestic 
+US service4 Some regulatory 
+risk for emissions
+MNMD 3 Biotech trials 
+delayed during 
+pandemics.1 Low global export 
+relevance2 No meaningful 
+climate exposure
+
+203 8.3 Practical use of GenAI
+Professional risk analysts will highlight that these assessments are vague and that orga-
+nizations focusing on risk will likely achieve better results that have also been peer-
+reviewed. Still, an assessment of an LLM may provide enough information for a pri-
+vate investor to review their strategy. In the previous evaluation, we’ve allocated 33
+points to the pandemic, 43 to the trade war, and 41 to climate change. Although these
+ratings estimate an LLM, investors can discover that they may be exposed to specific
+risks and act accordingly. For instance, knowing that one’s portfolio is more exposed
+to, let’s say, the risks of a pandemic might lead to more cautious behavior when there
+are reports that a new pandemic might come.
+8.3.2 Integrating LLMs into code
+LLM providers compete in the market to gain more user visibility. Some LLMs are
+available in different product versions, with more limited or powerful features.
+Even if the latest version of an LLM might be more dominant than others for a
+while, providers regularly release new versions with new features, so any dominance
+is broken soon.
+ Public LLMs, such as OpenAI (GPT), Google (Gemini), or Meta (Llama), allow
+prompting through an API, and we can integrate API calls to them into Python code.
+We can submit a prompt and receive an answer that we can then further process. We’ll
+also demonstrate how models from Hugging Face differ when downloaded to a local
+machine for execution.
+OPENAI
+As programmers, we want to submit a prompt to an engine through an API and
+retrieve the results into variables, rather than pasting requests into a chat box. List-
+ing 8.8 is a sample code that allows us to do that for OpenAI GPT models. You need
+an OpenAI account and an API key to run this source code. The variable system_
+content  is a generic parameter of how you want GPT to answer; you can fill out here
+that GPT should be concise or instruct the LLM otherwise on how to behave. Using
+this simple code, we submit a prompt and evaluate the response that the LLM
+returns.
+ 
+ Uber 6 Rides fell and Eats 
+rose in pandemic.5 Operates globally, 
+exposed to 
+trade/friction4 Transition risks 
+from electrifica-
+tion targets
+TSM 3 Demand dropped in 
+the first wave but 
+rebounded fast.10 Key battleground 
+in US-China chip 
+conflict 5 Some energy/
+water footprint 
+issuesTable 8.2 A reference risk assessment provided by GPT-4o (0 minimum, 10 maximum)  (continued)
+Company Pandemic ReasonTrade 
+warReasonClimate 
+changeReason
+
+204 CHAPTER  8AI for financial research
+from openai import OpenAI
+client = OpenAI(
+  api_key=api_key
+)
+completion = client.chat.completions.create(
+  model="gpt-4o",
+  messages=[
+    {"role": "system", "content": system_content},
+    {"role": "user", "content": question}
+  ]
+)
+Generally, the latest models yield the best results. However, in some cases, it’s more
+effective to use a smaller model that generates less latency and incurs lower costs per
+token. We could, therefore, use GPT-4o mini instead of GPT-4o if costs or latency are
+essential for us.
+ The method for the chat completions has multiple parameters ( https:/ /mng.bz/
+rZDj ). As the API is being extended, exploring whether new options are available
+makes sense.
+ One parameter to try out is the temperature  parameter, which defines how much
+less likely tokens the answer should include. The higher the temperature, the more
+random the output. We can use temperature as a measure of risk and stick to 0 if we’re
+risk-averse and don’t want GPT to speculate.
+ Having an interface with OpenAI means we can now use Jupyter Notebooks to ask
+a wide range of questions. However, as with human advisors, it often helps to seek
+advice from different experts and compare their recommendations. Therefore, let’s
+look at integrating Google Gemini into Python code.
+GEMINI
+Integrating basic Gemini API calls into Python code is relatively easier than integrat-
+ing with GPT. The snippet in listing 8.9 shows how to prompt using Gemini. Again,
+we can pick different model versions; we only need to send a question and evaluate
+the results.
+model = genai.GenerativeModel('gemini-1.5-pro-latest')
+response = model.generate_content("Perform Porter 5 Forces Framework "
+.                                 "analysis on NVIDIA")
+print(response.candidates[0].content.parts[0])
+In the code sample, we used gemini-1.5-pro-latest . Ranked by their complexity,
+there are also the Ultra, Pro, Flash, and Nano models. Nano models are designed toListing 8.8 Submit a prompt via the OpenAI API
+Listing 8.9 Submit a prompt via the Gemini API
+
+205 8.3 Practical use of GenAI
+be executed in environments with low computing power, such as mobile devices.
+When writing this book, only a 1.5 version of Pro and Flash is available, making the
+Pro model the strongest model until a new ultra version is released.
+ We can also add configuration options. In listing 8.10, we limit the token of our
+response and add a configuration option for temperature that defines how creative
+the LLM can be.
+response = model_flash.generate_content(f"Perform Porter 5 Forces"
+.                                        "Framework analysis on NVIDIA",
+                                        generation_config = 
+genai.GenerationConfig(
+                                        max_output_tokens=max_token,
+                                        temperature=temperature,
+                                    ))
+Integrating GPT and Gemini is easy. We can explore whether integrating other LLMs
+is comparable and easy. Let’s look at two more models before we explore open source
+models as alternatives.
+OTHER LLM S
+Listing 8.11 shows the API for Claude, which hosts a series of LLMs provided by
+Anthropic. In this snippet, the parameters max_tokens  and temperature  have already
+been integrated. A Python programmer can incorporate and run the code into any
+Python script, provided they also have a valid API Key. Observe that the parameters
+are similar to those of other APIs.
+client = anthropic.Anthropic(api_key=key)
+message = client.messages.create(
+      model="claude-3-opus-20240229",
+      max_tokens=1000,
+      temperature=0,
+      system="You are Claude, an AI assistant.",
+      messages=[
+          {"role": "user", "content": question}
+      ]
+ print("Claude's response:", answer.content)
+As shown in listing 8.12, the integration of Mistral, another LLM created by a French
+company, demonstrates that integrating API calls is straightforward. It seems trivial to
+integrate the code. There might be some minor differences in how the methods are
+named, but essentially, for all LLMs, it’s all about selecting a model, configuring some
+parameters, and sending a query with a question to the LLM
+ .Listing 8.10 Submitting prompts via Gemini with parameters
+Listing 8.11 Submitting prompts via the Anthropic API
+
+206 CHAPTER  8AI for financial research
+model = "mistral-large-latest"
+client = Mistral(api_key=api_key)
+chat_response = client.chat.complete(
+  model = model,
+  messages = [
+    {
+      "role": "user",
+      "content": question,
+    },
+  ]
+)
+print(chat_response.choices[0].message.content)
+But all of these LLMs, even if we just provided simple snippets, have one thing in com-
+mon: a developer needs to get an API key to work with it. The companies behind
+these LLMs use their models to generate revenue. This means some of these LLMs are
+only accessible if the entity that provides the API key pays a subscription fee.
+ Additionally, all of these LLMs are hosted within the company’s infrastructure.
+Suppose someone aims to create a fintech start-up that develops sophisticated invest-
+ment strategies. In that case, the programmers might not like the idea that a separate
+company might investigate requests on their LLMs. They would prefer to host their
+LLMs in-house.
+ We’ve seen that all of these providers have their API. Programmers will want one
+API and use models as parameters instead. In chapter 9, we’ll explore the use of Lang-
+Chain, which provides this feature to us.
+FINANCE  CHAT
+After demonstrating how to integrate proprietary LLMs into code, we’ll now explore
+how to incorporate open source LLMs trained on finance-related use cases. Hugging
+Face has become the go-to platform for hosting open source LLMs.
+NOTE For engineers who have experienced the late 1990s and the battle
+between open source and closed source products, the current discussion on
+open source and AI often feels like a continuation of the past. Some names
+have changed. It’s no longer Windows versus Linux or Bill Gates versus Linus
+Torvalds. The battle is between commercial products and Hugging Face, or
+Sam Altman and a group of engineers who wanted to remove him when his
+authority within OpenAI was questioned.
+Open source LLMs face the same opportunities and challenges as open source soft-
+ware systems. While they might have less revenue than companies that license soft-
+ware, they often have the support of the academic world. Advocates of open source
+also claim that their ethical approach is favorable. The source code and the architec-
+ture are publicly accessible, and providers of open source LLMs offer more insights
+into the training process.Listing 8.12 Submitting prompts via Mistral API
+
+207 8.3 Practical use of GenAI
+From a programmer’s point of view, the most significant difference in using open
+source models is that we, in the standard case, load a model onto our infrastructure
+and execute inference there instead of calling an LLM hosted on a remote server. In
+listing 8.13, we use the AdaptLLM/finance-chat  model, which is available on Hugging
+Face ( https:/ /huggingface.co/AdaptLLM/finance-chat ). Running the source code
+given here will trigger the model download onto the computer if it’s not already pres-
+ent and then execute inference on the model locally. If you try out this code, be aware
+that it might take some time to download the model when you call this code for the
+first time.
+from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
+def ask_huggingface(model_name, query):
+    model = AutoModelForCausalLM.from_pretrained(model_name)
+    tokenizer = AutoTokenizer.from_pretrained(model_name)
+    
+    our_system_prompt = """\nYou are a helpful, respectful and honest 
+assistant. Always answer as helpfully as possible, while being safe.  Your 
+answers should not include any harmful, unethical, racist, sexist, toxic, 
+dangerous, or illegal content. Please ensure that your responses are 
+socially unbiased and positive in nature.\n\nIf a question does not make 
+any sense, or is not factually coherent, explain why instead of answering 
+something not correct. If you don't know the answer to a question, please 
+don't share false information.\n"""
+    prompt = f"<s>[INST] <<SYS>>{our_system_prompt}<</SYS>>"
+             f"\n\n{query} [/INST]"
+    inputs = tokenizer(prompt, return_tensors="pt", 
+                       add_special_tokens=False).input_ids.to(model.device)
+    outputs = model.generate(input_ids=inputs, max_length=4096)[0]
+    
+    answer_start = int(inputs.shape[-1])
+    pred = tokenizer.decode(outputs[answer_start:], skip_special_tokens=True)
+    return pred  Finance-related LLMs
+Some LLMs are explicitly trained for specific domains. Bloomberg GPT is a known ref-
+erence for an LLM trained with finance data. As Bloomberg GPT is a commercial LLM,
+it’s not included in this investigation.
+Another option to enhance financial knowledge in data is fine-tuning pretrained mod-
+els using financial data. For example, a ML engineer could collect transcripts of earn-
+ings calls, where executives discuss a company’s financial results and train existing
+LLMs with them. As a result, the model would keep what it already knows and add
+new knowledge. We’ll explore that in chapter 9.
+Listing 8.13 Executing prompt with open source models
+
+208 CHAPTER  8AI for financial research
+question = "What is the current trend in the stock market?"
+model = "AdaptLLM/finance-chat"
+response = ask_huggingface(model,  question)
+Using Hugging Face, we can avoid the cost of commercial LLMs. But there is a down-
+side to this. If we run a model locally, we first need the necessary hardware to support
+it. This includes the required disk space and the processors to execute the model.
+ Inference may take some time, depending on the local machine’s hardware.
+Expect a few minutes, depending on the number of GPUs you provide to the model.
+Remember that you may need to allocate time to install additional Python libraries.
+8.4 Prompt engineering
+Many YouTube videos teach interested followers how to optimize prompts. What
+sounds like a complex discipline, especially the term engineering , may make it sound
+sophisticated. Still, it has a simple problem statement: don’t just ponder what to ask,
+but also how. The better you can explain what you want and the more context you can
+provide, the better answers you’ll get. Nobody needs an engineering degree to apply
+prompt engineering, but it’s perhaps one of the biggest low-hanging fruits for achiev-
+ing better results using AI. Let’s kick off prompts by defining an investor’s profile.
+8.4.1 An investor’s profile
+Imagine a random person approaches a human financial advisor with a generic ques-
+tion, such as “Please provide me with a good portfolio.” A professional investment
+expert wouldn’t recommend anything without knowing more about their client.
+Using well-prepared questions, good advisors guide their clients to share more about
+their risk tolerance or investment goals.
+ Like a human financial advisor, an LLM will provide more sophisticated answers if
+given more context. The following question is a first improvement of the previous ref-
+erence question: 
+I am a risk-averse investor who wants to invest in stocks. I currently have $100,000
+available for investment. My goal is to maximize my passive income. I want to invest
+exclusively in companies in the Information Technology sector. Can you provide me
+with a reference portfolio with maximized returns and minimized risks?
+Once the input is sent to an LLM, it will be tokenized. The LLM will identify specific
+tokens as keywords. In our example, these terms will include risk-averse  investor , stocks ,
+the information technology sector , maximizing returns , and minimizing risks . The more we
+integrate domain-specific language, the better answers we might receive, as the high-
+quality sources of an LLM upon which it was trained were provided by domain experts
+who used their domain-specific language.
+TIP Reading the investment sections of newspapers, such as The Financial
+Times  or The Wall Street Journal , and learning the meaning of specific terms can
+
+209 8.4 Prompt engineering
+be a simple yet powerful way to improve query results. The next time, don’t
+wonder why the stock market went down or up; ask why it “plummeted” or
+“soared.”
+If you start investing, you’ll have many research questions about companies or invest-
+ment opportunities. Likely, you don’t want to repeat yourself by adding all the context
+to each question you have.
+ A good human advisor will collect notes about you. However, as time passes, they
+may forget the details. One day, they become excited about a fantastic high-growth
+start-up, only to realize too late that this opportunity doesn’t align with a client’s risk
+profile. Another time, they suggest an international exchange-traded fund (ETF), for-
+getting it triggers withholding tax issues based on the client’s residency. Mistakes like
+these can cost you money.
+ This is where LLMs have a clear edge: they don’t forget. Once you provide a con-
+text, it remains consistent across all interactions—unless you explicitly remove or
+modify it. Unlike human advisors, who might overlook details, an AI will continuously
+apply your parameters, ensuring that every recommendation strictly adheres to your
+preferences.
+ Establishing context is the first and most crucial step in using AI for financial
+guidance. This context defines the rules your AI assistant will follow when analyzing
+investments. Let’s examine some parameters and explore how we can adjust our
+conversation. The following can be viewed as a template, combined into a large
+chunk of text, and provided to an LLM as general knowledge about you.
+GOALS
+Provide goals that are as precise as possible. What are you in for? Most likely, it’s not
+just because a friend told you to explore stocks. Do you aim to become a brilliant out-
+lier in the investment world—the one person who is smarter than everyone else and
+who will beat the market? Or, do you have a more modest goal to grow patiently and
+earn enough money to live off a reasonable passive income each year?
+ Many financial advisors argue that you should quantify your goals. How much
+money do you aim for? Do you have a number in your head? This brings us to our
+next question: What are you willing to risk to fulfill your goals?
+RISK PREFERENCE
+Imagine you’ve made a risky deal. If all goes well, you might be up 30%. If all goes
+bad, you might lose a lot of money. Some people go to bed and sleep like babies. Oth-
+ers toss and turn, worrying about possible losses.
+ You don’t gain anything by claiming to be bolder than you are. After all, many
+investors in the past were successful because they were cautious.
+ Knowing your risk preference requires a lot of self-awareness. The more you
+understand yourself, the more precise you can be in your persona.
+
+210 CHAPTER  8AI for financial research
+EXPERIENCE
+Warren Buffett mentioned one golden rule: invest only in what you understand—add-
+ing details about what you know can be low-hanging fruit in your investment portfolio.
+Sentences such as “I am a programmer, and I work in the financial services industry”
+can help. You can even mention your former and current employers or clients with
+whom you have a strong relationship.
+ Additionally, specify which assets you have experience with. You can also exclude
+certain assets if you prefer. Cryptocurrency is a good example of a polarizing asset. If
+you want or don’t want crypto in your portfolio, mention it.
+TAX CONSIDERATIONS
+If you tell an LLM your citizenship and residency, it can provide advice on details that
+tax consultants typically charge for. Don’t hesitate to add a sentence like this: “I am a
+citizen of Country X, and my tax residency is in Country Y, so I need a portfolio that
+minimizes tax-related expenses.” Remember that LLMs can hallucinate, and cross-
+checking tax advice from an LLM with a human advisor is always a good idea.
+ETHICAL  OR PERSONAL  PREFERENCES
+Some investors keep their religious, ethical, and political views out of investing. For
+others, it might be one of the most critical aspects in their strategy. Would you feel
+uncomfortable investing in companies that don’t align with your values? No matter
+what you care for—climate change, politics, abortion laws, animal rights, or some-
+thing else—mention it; after all, it’s your money.
+ You can also engineer your prompts to adjust the style of the answer. Some prefer a
+detailed explanation, while others appreciate a concise yet direct response. Let’s craft
+a reference persona:
+“I have a computer science background. I have 
+worked on various digital transformation projects 
+for multiple companies. I understand well how AI 
+can change companies' businesses. I am looking 
+for companies' stocks that might be transformed 
+through AI but have not yet been overrun by 
+investors.                                           
+I aim to achieve financial independence within the 
+next five years. I have approximately 500,000 USD 
+available for investment. I want to be able to 
+calculate the money I make passively, considering 
+the average yield of my assets (interest, staking 
+rewards, and dividends).                             
+I mainly hold stocks and ETFs. I also have bonds 
+and crypto. I want to keep some amount in index 
+funds.                                             
+I am interested in the future of autonomous 
+driving and the monetization of climate change Background
+Experience
+
+211 8.4 Prompt engineering
+mitigation. I also believe in the increasing demand 
+for reliable, nonvolatile energy sources, such as 
+nuclear energy, driven by the growing need for 
+sustainable energy solutions. I am also open to 
+alternative sources of energy, including atomic 
+energy.                                            
+I use Interactive Broker and Alpaca as brokers. 
+I use cold wallets to store cryptocurrency.        
+I have uploaded a text file with all the stocks 
+I hold. It is called stocks.txt and shall be 
+included in the research if needed.                
+I can take risks if decisions have been thoroughly 
+researched. If the valuation of the asset is 
+temporarily lower, I have no problem as long as 
+I see long-term potential. I am okay with shorting 
+some positions, but I prefer long-term quality 
+investing. I do not do day trading.                    
+I want to diversify. Diversification also includes 
+assets worldwide, as I see political risks in the US. 
+Otherwise, I am fine with holding most assets in the 
+US market.                                             
+I am a US American citizen. My tax residency is in 
+the UK. I want to minimize the taxes I have to pay.  
+I do not like to invest in the tobacco industry 
+and companies that ignore animal rights.  
+8.4.2 Using prompts to find companies to invest in
+Growth investors often seek small-cap companies with a high probability of experienc-
+ing a substantial revenue increase over the years. So, can we find these companies
+using prompts to an LLM? We need to define in detail what we’re looking for. Let’s do
+this with a reference example. Netflix’s business model is quite simple, as shown in
+Figure 8.8: the more viewers subscribe to Netflix monthly, the more earnings the com-
+pany will make. If we predict that the revenues from subscriptions will exceed their
+expenses, Netflix will be profitable. If these profits continue to increase, the share
+price will likely rise.
+ Predicting Netflix’s costs will likely be challenging, as it requires a deep under-
+standing of internal filming projects and licensing negotiations, to which we don’t
+have access (unless we work for Netflix). However, we can estimate subscriber growth
+using LLMs.
+ What can influence subscriber numbers? We must determine what attracts custom-
+ers to Netflix and keeps them engaged. For instance, customers sometimes feel locked
+in. Many shows in the program are on a customer’s to-do list, or the kids in the family
+account become so accustomed to this service that a parent can’t simply cancel theExperience
+Risk
+Taxes
+Ethics
+
+212 CHAPTER  8AI for financial research
+subscription without risking a family crisis. And often, because you get a report on
+what your kid watches, some parents don’t want to miss unique features to monitor
+their kids’ TV habits. Such a business with a constant growth scenario and a vendor
+lock, or economic moat to use a term more frequently used among investments,
+sounds like a paradise for investors. Examining the development of stock prices, par-
+ticularly after the transition from mailing DVDs to streaming services, is compelling.
+Python or chatbots
+Some users experimenting with LLM chatbots may notice they are invaluable when
+investigating assets. Some chatbots offer additional research options after users
+submit prompts. It’s fair to ask if we still need Python to get results. Chapter 9 will
+provide more details on this topic. For now, let’s sum up what standalone chatbots
+don’t resolve.
+In most cases, the chatbot provider won’t provide Retrieval-Augmented Generations
+(RAGs) with vectorized data specific to finance use cases. Additionally, as LLMs may
+overlook data from smaller and less well-known companies, they may occasionally
+miss crucial details. Lastly, regardless of which provider you choose, the results will
+always be stored on the provider’s side, and you’ll face challenges in keeping track
+of resources across different platforms.
+Therefore, using chatbots can help us answer questions. If we want to work with more
+LLMs and add specific additional data, though, we might still need to use some code
+to accomplish this. In chapter 9, we’ll demonstrate how to use AI agents.
+Costs Revenues
+Subscription payments
+Movie production costsLicensing costs
+Figure 8.8 A highly simplified model reduced to the most central figures that Netflix is 
+profitable if revenues from paying subscribers exceed production and licensing costs. 
+While, of course, many more numbers exist that influence accounting sheets, such 
+illustrations help us to extract these numbers that can be most decisive about a specific 
+company’s long-term success.
+
+213 Summary
+Although the business model may be compelling, Netflix may no longer be in a signif-
+icant growth phase. But what if we described what made Netflix successful in a prompt
+and see if we could find a similar company?
+ The more context and details we provide about how we want an LLM to answer,
+the more specific responses we can get. Let’s review a checklist to see if our prompt
+can be improved.
+Are we specific enough?  We can define what we want in detail. We can also ask
+about register in answers (from more formal to less formal). Have we listed the
+details that matter to us?
+Do we express ourselves succinctly?  Imprecise and unnecessarily long phrases might
+reduce efficiency.
+Can we supply examples in the input?  One way to improve answers is by providing
+examples of what we seek. We might look for companies like ones we know well
+and where we believe they will be successful.
+L e t ’ s  f o r m u l a t e  a  p r o m p t  t o  f i n d  c o m p a n i e s  l i k e  N e t f l i x .  W e  c a n  i n v o k e  d i f f e r e n t
+LLMs to compare results:
+I want to find companies with a similar outlook to Netflix’s in the early years. I want
+to buy low and sell at a high price in some years. These companies will be able to
+scale globally, offer a B2C subscription model, and possess a strong economic moat.
+These companies will have room to grow and already be listed on the stock exchange.
+Please give me three examples and the reasons why you chose them.
+ChatGPT returned Duolingo and Bumble as results, which some investors on Seeking
+Alpha saw as a risky investment. Be aware that an LLM’s recommendations are just an
+entry point for further research. Investing in them without your due diligence is risky.
+You must determine whether the answers provided by the LLMs are sensible. 
+Summary
+We can integrate ML algorithms as code snippets into web notebooks to aid us
+in financial research, such as forecasting stock price developments, including
+uptrends.
+Unsupervised learning may help us identify outliers, which, in the investment
+scenario, could be companies that perform differently from the rest and pres-
+ent an investment opportunity.
+We can use unsupervised learning to find potential labels for supervised learn-
+ing algorithms.
+Supervised learning can help us forecast a company’s future success by analyz-
+ing its historical data.
+Successfully applying supervised learning algorithms can require a high level of
+technical expertise, encompassing everything from collecting data from multi-
+ple sources to processing algorithms at scale.
+
+214 CHAPTER  8AI for financial research
+As the market is affected by many factors (fundamental data, technical data, or
+other data unrelated to a specific company), most models risk being either
+overfitted or underfitted.
+The efficient market theory suggests that for most assets, the market price accu-
+rately reflects the asset’s intrinsic value.
+The random market theory and the allegory of Mr. Market suggest that a mar-
+ket is unpredictable. This makes ML models challenging.
+Technological and social changes affect investment strategies. For example, ESG
+regulations are more important to investors today than they were in the past.
+Seasonal and economic trends impact the performance of stocks and must be
+considered in ML models.
+Different accounting practices within companies make it more difficult to com-
+pare companies.
+To integrate ML, we must invest considerable effort in identifying specific
+industry patterns and retraining models. Only a fraction of hedge funds run
+largely successful ML use cases.
+LLMs are game-changers in natural language processing (NLP). They employ
+a new paradigm called the attention mechanism, which focuses solely on the
+relationship between keywords. This makes it possible to create models
+trained on billions of parameters and serve as chatbots for users to address
+generic topics.
+LLMs can be trained to answer specific questions related to topics, including
+finance and investment.
+LLMs are also excellent for providing an overview of how specific nonfinancial
+risks can impact individual companies. Just be aware that you might have to
+review the output due to possible hallucinations.
+Users can choose from various LLMs, and an API for sending queries to an
+LLM is easy to integrate into Python code. In most cases, all users require an
+API key to authenticate against the provider and obtain authorization to pro-
+cess LLM inference on the LLM provider’s infrastructure.
+Many LLMs come in versions that differ in complexity. Some may require a paid
+subscription, while others are designed for environments with fewer computing
+resources, such as mobile phones.
+We can classify LLMs as open source or proprietary. We can download models
+of open source LLMs to a compute node or local workstation to run the infer-
+ence there. Proprietary LLMs are executed on the provider’s infrastructure.
+AI ethics professionals are concerned about proprietary LLMs, as providers
+could misuse the information provided to them through users’ questions. Addi-
+tionally, the transparency of how these providers collect information is a signifi-
+cant ethical concern.
+
+215 Summary
+Whether an LLM is open source or proprietary, it can provide us with invest-
+ment ideas. Betting on LLM investment advice without further investigation is
+highly speculative.
+LLMs are great for tasks that require them to act like research assistants. When
+investors require less time for research, they can devote more attention to deci-
+sion-making processes.
+The code generation capabilities of LLMs enable programmers to write more
+efficient code and analyze investments in various scenarios using programming
+languages such as Python.
+Although we can use LLMs to generate investment ideas, their core asset is
+helping us with due diligence on existing ideas, specifically when we need to
+find details on possible investments to create a personal scorecard for informed
+purchase decisions.
+Although LLMs help us speed up finance research tasks, they occasionally make
+mistakes and provide false information, often called hallucinations.
+The question isn’t whether to use discriminative AI (traditional ML) or GenAI;
+it’s rather how to pragmatically use what’s there for specific scenarios and com-
+bine the possibilities of each technology.
+Prompt engineering is a discipline that enhances the output of LLMs by
+enabling users to ask more effective questions. It provides ways to pass more
+details, reference examples, and additional context for a request to an LLM.
+Prompt engineering can’t replace common wisdom, as it depends on us to clar-
+ify what we want to know to avoid generic questions in an LLM.
+Creating an investor profile that includes information such as goals, risk toler-
+ance, and tax residency can help an LLM provide more refined answers.
+Be as specific as possible and give as much context as possible when submitting
+prompts. It helps to provide reference examples.
+
+216AI agents

@@ -1,0 +1,108 @@
+# Chapter 5 discusses how to build dependable passive income, offering a way to cover
+
+Chapter 5 discusses how to build dependable passive income, offering a way to cover
+everyday expenses and boost your financial independence. It emphasizes practical
+methods, including a detailed comparison of bonds and dividend stocks as primary
+sources of income.
+1.2.3 Exchange-traded funds
+Savvy investors diversify their risk by not putting all their eggs in one basket. Investment
+companies help with this by bundling multiple securities into a single fund. Exchange-
+traded funds (ETFs) are a popular type of investment that trades on an exchange, mak-
+ing them easily accessible for purchase and sale through any online broker.
+ Buying an ETF is a simple way to diversify your investments. Instead of analyzing
+and purchasing hundreds of individual stocks, you can hold a small stake in carefully
+chosen assets with just one transaction. Most ETFs are passively managed , meaning they
+track a market index automatically, such as the S&P 500. Algorithms are used to rebal-
+ance the fund’s holdings, keeping it aligned with its index. In actively managed  ETFs, a
+portfolio manager selects specific investments to buy.
+
+5 1.2 Assets
+ ETFs aren’t free, and ETF issuers charge a small annual management fee (expense
+ratio). Still, they are highly cost-effective. For an individual, buying all the underlying
+stocks directly in separate transactions would cost more due to transaction fees.
+Because ETFs are collections of assets, all sections that discuss the underlying assets
+also include ETFs.
+1.2.4 Other funds
+Other common pooled funds are mutual funds and hedge funds. These funds are
+described here:
+Mutual funds —These funds are similar to ETFs in that they provide diversifica-
+tion and are highly regulated. The primary operational difference is that mutual
+funds only trade once a day at a price determined after the market closes, known
+as the net asset value (NAV).
+Hedge funds —These funds are typically less regulated, require a substantial min-
+imum investment, and are generally accessible only to wealthy investors.
+While ETFs and mutual funds target retail investors, hedge funds operate at a differ-
+ent level. They use more aggressive and complex strategies and are only available to
+accredited investors , which include high-net-worth individuals and institutions that meet
+specific wealth requirements.
+ Other funds are outside the scope of this book; however, we explore hedging tech-
+niques used by professional hedge funds in chapter 7. Investors can use these tech-
+niques to optimize their portfolios.
+1.2.5 Foreign exchange market
+Beyond owning equity or lending money, investors can also speculate on currency
+exchange rates in the foreign exchange  (forex) market . Every country has its currency,
+and the value of these currencies fluctuates against each other in pairs (e.g., the
+EUR/USD). For example, one day, the euro might strengthen against the US dollar,
+and the next day it might weaken. Forex traders analyze economic indicators and mar-
+ket trends to predict these movements, aiming to make a profit by buying a currency
+before it appreciates or selling it before it depreciates.
+ Currency risk is discussed in chapter 7. Additionally, all aspects of technical analy-
+sis, as outlined in chapter 10, apply to all assets, including forex.
+1.2.6 Crypto
+For many, cryptocurrency is a complex asset class that can be hard to understand. To
+clarify, it’s essential first to separate the underlying technology from its most well-
+known application:
+Blockchain —This is the core technology. Think of it as a secure, decentralized
+digital ledger—a growing list of records (blocks) linked and protected by
+
+6 CHAPTER  1The analytical investor
+cryptography. Although it’s best known for digital currency, blockchain tech-
+nology has uses in many other areas.
+Cryptocurrency —This refers to a digital asset built on blockchain technology.
+The primary value of cryptocurrency lies in its ability to facilitate peer-to-peer transac-
+tions without requiring a trusted third party. Unlike traditional financial systems,
+which rely on intermediaries such as banks, cryptocurrency networks enable direct
+transfers between individuals.
+ The technology that secures these networks also presents unique investment oppor-
+tunities. Chapter 5 explores one such method— staking —which allows you to earn
+rewards by helping validate transactions. It also offers a vital overview of the common
+risks and criticisms associated with this volatile asset class.
+1.2.7 Derivatives
+Think of a derivative as a contract whose value is derived  f r o m  a n  u n d e r l y i n g  a s s e t ,
+such as a stock or a commodity. It establishes rules for future transactions, helping you
+manage risk or speculate on price movements.
+ For most investors, options are the most useful derivatives. An  option  grants you the
+right, but not the obligation , to buy or sell an asset at a set price before a certain expira-
+tion date.
+ Think of it this way: you pay a small fee (the premium ) to get an API key. This key
+grants you access to a function—either buy()  or sell() —that you can execute under
+specific conditions. If the conditions aren’t met, you let the key expire. Your only loss
+is the premium you paid.
+A put option  gives the buyer the right, but not the obligation, to sell an asset at a
+set price (the strike price ). It’s a type of insurance.
+A call option  gives the buyer the right, but not the obligation, to buy an asset at a
+specified strike price. It’s a way to bet on a price increase with limited risk.
+You can also be on the other side of the transaction and sell (or, as it’s also called,
+write) options. You receive the premium as income, but you assume an obligation .
+ Selling a put option means you’re obligated to buy the stock at the strike price if
+the buyer chooses to exercise it. If the stock drops to zero, you’re still required to buy
+it at the high strike price, which could lead to a potentially disastrous outcome.
+ Options are powerful tools, but they’re complex instruments with significant risk.
+That’s why they are covered in chapter 7, which focuses on risk.
+1.2.8 Private equity
+After purchasing shares on an exchange, you become a shareholder of a publicly
+traded company. One advantage of being publicly traded is that it makes buying shares
+easy. Investors worldwide can become shareholders within seconds if they are logged
+in to their brokerage account and decide to buy shares.
+
+7 1.2 Assets
+ Start-ups present the most significant profit potential. They are ideal for investors
+willing to accept more risk in exchange for the opportunity to achieve wealth more
+quickly. Because private companies aren’t traded on public stock exchanges, you need
+to take a different approach:
+Direct investment —You can invest directly in companies. Start-ups that seek single
+private investors are usually in their earliest stages, typically pre-seed or seed stage.
+Angel or venture capital investments —These involve funds created to invest in start-
+ups. As a private investor, you can become a limited partner in such a fund. If
+the start-up achieves a successful exit, you can expect high multiple returns on
+your investment.

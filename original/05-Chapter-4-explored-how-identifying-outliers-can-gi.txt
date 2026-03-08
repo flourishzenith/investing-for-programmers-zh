@@ -1,0 +1,362 @@
+# Chapter 4 explored how identifying outliers can give you an edge in beating the
+
+Chapter 4 explored how identifying outliers can give you an edge in beating the
+market. We use these techniques to identify undervalued stocks ( value investing ) or
+look for companies with new technologies or business models that will outperform
+others ( growth investing ). This approach, however, also means settling for delayed
+gratification. We might have to wait years until our shares have gained enough cap-
+ital appreciation to sell them again for enough profit.
+ For many who have experienced challenging jobs or projects, just seeing the
+rewards of investment portfolios on a cash account and mapping them with exist-
+ing recurring expenses triggers a strong feeling of freedom and assurance. The
+more you rely on your salary, the more permanent your job feels. The moment you
+stop needing it, every job feels temporary.This chapter covers
+Strategies to create passive income
+Finding stocks that pay solid dividends
+When to choose bonds over stocks for income 
+portfolios
+Using cryptocurrency staking to generate 
+passive income
+
+106 CHAPTER  5Income portfolios
+ This chapter will focus on passive income—investments with recurring payouts.
+While the previous chapter focused exclusively on stocks, this chapter will also explore
+two other asset types: bonds and cryptocurrency. Let’s begin by examining how to
+maximize recurring payments through stock dividends.
+NOTE Fixed income  refers to an investment that pays the investor a fixed amount
+on a fixed schedule. However, many typical fixed-income investments have
+variants where we get varying payments on a fixed schedule (e.g., bonds with
+a floating rate or crypto staking rewards). For that reason, the term passive
+income is broader as it considers these fluctuations.
+5.1 Dividends
+A dividend  is a portion of a company’s profit that is paid to its shareholders. To under-
+stand the purpose of dividends, let’s consider how companies evolve after they are
+incorporated.
+ In their early stages, companies focus on growth and establishing a foothold in
+their markets. Revenue is reinvested into expansion, whether by hiring new employ-
+ees, developing improved products or services, or increasing operational capacity.
+During this phase, companies typically don’t pay dividends. Instead, shareholders of
+startups benefit primarily from the potential for exponential growth—the transforma-
+tion of a small garage-based enterprise into a thriving, steady business. Investing in
+these evolving companies often follows the high-risk, high-reward principle.
+ As a company matures and establishes itself
+in the market, its growth rate slows. At this stage,
+companies generate consistent profits, and
+investing all of their earnings in an even more
+aggressive campaign to grow further would no
+longer pay off, as they have already established
+themselves as leaders in the most profitable
+markets. Instead, this stability allows them to
+pay a portion of their profits to shareholders as
+dividends, making them attractive to investors
+seeking passive income. Mature companies pay-
+ing regular dividends often represent lower-
+risk investment opportunities.
+ This lifecycle of company evolution aligns
+with the Boston Consulting Group (BCG)
+Growth-Share Matrix. As illustrated in figure 5.1,
+the ideal dividend-paying stock is a “cash cow”—
+a business that generates stable profits with mini-
+mal reinvestment requirements, allowing surplus
+funds to be distributed to shareholders.Star
+DogQuestion Mark
+Cash CowLow High
+High
+LowMarket Share
+Growth
+Figure 5.1 The BCG Growth-Share 
+Matrix as a reference for picking 
+dividend-paying companies that are 
+likely cash cows (© https:/ /productfolio
+.com/growth-share-matrix/ )
+
+107 5.1 Dividends
+ We must first clarify our criteria for using data to identify dividend stocks. It’s not
+just larger companies with higher market capitalizations that are more likely to pay
+dividends; the type of industry also plays a crucial role. For example, companies in the
+utilities sector tend to pay higher dividends than those in the technology industry.
+Consider a utility company that supplies water or electricity to homes. Their business
+model is stable and supported by extensive infrastructure, such as pipelines and
+cables. This infrastructure acts as an economic moat—a competitive advantage that
+makes it difficult for rivals to encroach on their market share. At the same time, these
+companies face challenges in driving competitors out of other regions, as those rivals
+possess similar infrastructure elsewhere.
+ While the risks of losses are minimized in such industries, the growth potential is
+also limited. Figure 5.2 outlines examples of economic moats, highlighting how a long
+profit history in a saturated market and minimal competitive threats create the per-
+fect conditions for a stable, dividend-paying company.
+Conversely, most tech companies must continuously invest in R&D to stay in business
+and find the next big thing in the market. Apple, Microsoft, NVIDIA, and other major
+tech firms would cease to thrive if they stopped investing in research or acquiring
+innovative startups that bring new products and ideas to them. For these companies, it
+makes sense to keep dividend payments small to allocate more funds toward innova-
+tion and research initiatives.
+Proprietary Information
+Innovation
+Network Effect
+Locked-Up
+SupplyRegional
+OligopoliesIntellectual
+PropertyScaleBrand Loyalty
+Figure 5.2 Examples of economic moats
+
+108 CHAPTER  5Income portfolios
+One reference example of a dividend stock is the Coca-Cola Company. Its economic
+moat is its brand recognition. Supermarkets and restaurants are unlikely to remove
+Coca-Cola from their shelves or menus, making it hard to imagine the company’s cash
+flow running dry.
+ However, detecting long-term cash flow risks is essential. Take the tobacco industry
+as an example. Many tobacco companies pay excellent dividends, but as an investor,
+you must decide what future you foresee for them. Some argue that tobacco products
+are in decline and that the industry will face severe challenges when the percentage of
+smokers in the population becomes negligible. Others believe these companies will
+successfully transform to provide alternative products with better prospects than tradi-
+tional cigarettes. Regardless of your belief, investing in companies within an industry
+without confidence in their long-term success is unwise. 
+ In chapter 2, we partially covered dividend metrics and ratios, but now we need to
+go deeper. Applying the algorithm becomes trivial if we know what to look for. The
+following parameters can be essential for finding suitable dividend investments:
+Annual payout —The total amount paid out per share per year.
+Dividend payout frequency —How often dividends are paid out per year, which is
+usually monthly, quarterly, semi-annually, annually, or irregularly. In most cases,
+yearly payouts are distributed equally. For example, a $1 annual payout per
+share results in $0.25 per quarter if paid quarterly.
+Dividend yield —Calculated by dividing the annual payout per share by the share
+price. A high dividend yield isn’t always a positive indicator; it can also signal a
+falling share price, which increases the risk of a reduced annual payout.Examples of economic moats
+Here are some examples of economic moats per category:
+Proprietary information —Coca-Cola’s secret formula gives it a competitive
+advantage by making its product difficult to replicate.
+Brand loyalty —Apple customers are highly loyal and willing to pay premium
+prices for iPhones despite alternatives with similar or better specs.
+Innovation —Tesla disrupted the auto industry by pioneering electric vehicle
+technology, battery efficiency, and self-driving capabilities.
+Scale —Amazon benefits from economies of scale, offering lower prices and
+faster shipping than smaller competitors.
+Network effect —Facebook (Meta) becomes more valuable as more people
+join, making it difficult for competitors to attract users.
+Locked-up supply —De Beers historically controlled the diamond supply,
+restricting access and maintaining high prices.
+Intellectual property —Pfizer’s patents on drugs such as Viagra and COVID-19
+vaccines prevent competitors from replicating their products.
+Regional oligopolies —Utilities such as electricity providers in many regions
+operate as regulated monopolies or oligopolies, facing little to no competition.
+
+109 5.1 Dividends
+Dividend growth —This metric tracks how many years a company has consistently
+increased its dividends. Companies with long histories of raising dividends,
+such as Coca-Cola with 62 years of increases, are considered reliable long-term
+income stocks.
+Dividend growth rate —The rate at which a company grows its dividends. Some
+companies grow their dividends faster than others, but larger companies may
+take a slower approach to increases.
+Payout ratio —The fraction of a company’s net income paid to shareholders. A
+smaller payout ratio suggests more room for growth and reinvestment.
+Residence of the company —Your residency can affect taxation. For example, non-
+US investors may face additional taxes when investing in US-based companies
+compared to those headquartered elsewhere.
+The script in listing 5.1 calculates the dividend growth per year. To do this, we calcu-
+late the sum of dividends paid in the first and last year, and then we can determine the
+average yearly increase. Next, we calculate the payouts per year by counting the fre-
+quency of dividend payments and deducting the payment frequency.
+def calc_div_growth_rate (stock):
+    try:
+        dividends = stock.dividends
+        if dividends.empty:
+            return None, None
+        dividends_by_year = dividends.resample('YE').sum()  
+        if len(dividends_by_year) > 1:                      
+            first_year = dividends_by_year.index[0].year    
+            last_year = dividends_by_year.index[-1].year    
+            first_dividend = dividends_by_year.iloc[0]      
+            last_dividend = dividends_by_year.iloc[-1]      
+            num_years = last_year - first_year              
+            cagr = ((last_dividend / first_dividend) 
+                ** (1 / num_years)) - 1                     
+        else:
+            cagr = None
+        payouts_per_year = dividends.resample('YE').
+                count().mean()                         
+        if payouts_per_year > 3.5:                     
+            payout_frequency = "Quarterly"             
+        elif payouts_per_year > 1.5:                   
+            payout_frequency = "Semi-Annual"           
+        elif payouts_per_year > 0.5:                   
+            payout_frequency = "Annual"                
+        else:
+            payout_frequency = "Irregular"Listing 5.1 Calculating dividend growth
+Gets the 
+dividend sum 
+by years
+Calculates 
+growth rate 
+(CAGR)
+Determines 
+payout 
+frequency
+
+110 CHAPTER  5Income portfolios
+        return cagr, payout_frequency
+    except Exception as e:
+        print(f"Error processing {stock}: {e}")
+        return None, None
+Executing listing 5.2 loads companies from the S&P 500 index and extracts their divi-
+dend metrics. As the results of executing the code will vary depending on the execution
+time, we’ll look at some results we got during the execution while writing this book. 
+ In the second method, we collect ticker data through the tickers and filter by divi-
+dend-paying companies and those whose market cap exceeds a minimum threshold.
+This threshold is passed to the function as a parameter.
+import requests
+import pandas as pd
+import yfinance as yf
+from io import StringIO
+def get_sp500_tickers():
+    url = "https://en.wikipedia.org/wiki/"
+        "List_of_S%26P_500_companies"               
+    response = requests.get(url)                    
+    tables = pd.read_html(StringIO(response.text))  
+    sp500_table = tables[0]                         
+    return sp500_table["Symbol"].tolist()           
+def get_stocks_with_dividends_and_high_market_cap\
+    (tickers, market_cap_threshold):
+    data = []
+    for ticker in tickers:                
+        try:
+            stock = yf.Ticker(ticker)     
+            info = stock.info             
+            if info.get("dividendYield") and 
+                   info.get("marketCap") >= market_cap_threshold:
+                cagr, payout_frequency = (
+                    calc_div_growth_rate(stock))          
+                data.append({
+                    "Ticker": ticker,                     
+                    "Name": info.get("longName", "N/A"),  
+                    "Market Cap": info.get("marketCap"),  
+                    "Dividend Yield": info.
+                    get("dividendYield"),                 
+                    "Sector": info.get("sector", "N/A"),  
+                    "payoutRatio": info.
+                    get("payoutRatio", "N/A"),            
+                    "dividendRate": info.
+                    get("dividendRate", "N/A"),           
+                    "cagr": cagr,                         
+                    "payout_frequency": payout_frequency, 
+                })Listing 5.2 Executing code
+Collects all 
+tickers from S&P 
+500 companies
+Collects company 
+data from all tickers
+Gets dividend data
+
+111 5.1 Dividends
+        except Exception as e:
+            print(f"Error processing {ticker}: {e}")
+    return pd.DataFrame(data)
+Running this code, we can review various companies in the DataFrame and form
+investment theses. Let’s look at some outliers. Thermo Fisher Scientific (TMO) has a
+low payout ratio—at the time of writing, it’s 7.09%. At the same time, dividend payments
+have grown for some years. Therefore, an investor could assess this company now based
+on the theory that TMO has a lot of room to grow if we compare the payout ratios to
+those of other companies. An investor who believes in the long-term business model of
+TMO could see an investment in this company as a long-term investment.
+Real estate investment trusts
+Real estate investment trusts (REITs) can be viewed as a distinct category among div-
+idend-paying stocks. If you’re seeking steady cash flow and diversification in your
+income portfolio, REITs are a compelling option. They offer several advantages for
+building an income portfolio:
+High dividend yields —REITs are required by law to distribute at least 90% of
+their taxable income to shareholders as dividends, resulting in consistent
+and often higher-than-average yields compared to traditional dividend stocks.
+Portfolio diversification —Adding REITs introduces real estate exposure to your
+portfolio, diversifying away from equities and bonds. Real estate tends to
+have low correlation with other asset classes, providing stability.
+Hedge against inflation —Real estate assets typically appreciate over time, and
+rental income often rises with inflation, making REITs a good inflation hedge.
+Liquidity —Unlike directly owning property, publicly traded REITs can be bought
+and sold on stock exchanges, offering liquidity without the complexities of
+managing real estate.
+Professional management —Professionals manage REITs, meaning you bene-
+fit from their expertise in property acquisition, development, and leasing with-
+out needing to handle them yourself.
+Accessibility —REITs allow small investors to gain exposure to real estate with-
+out requiring significant capital investments. You can invest in a wide range of
+property types (e.g., residential, commercial, industrial) with minimal cost.
+Tax benefits —While dividends from REITs are typically taxed as ordinary
+income, some REIT dividends may qualify for the 20% pass-through deduction
+under US tax laws, reducing your effective tax rate.
+A variety of options —REITs span different sectors, including health care, retail,
+residential, and data centers, allowing you to tailor your portfolio to specific
+real estate trends or needs.
+Steady income streams —Many REITs generate predictable cash flows from long-
+term leases or stable tenant relationships, making them a reliable source of
+income.
+
+112 CHAPTER  5Income portfolios
+We can also examine another company from our DataFrame, Exxon Mobil (XOM). At
+the time of writing, Exxon has a high dividend yield (3.70%), and its dividend pay-
+ments have grown over the years. A dividend investor might consider buying Exxon
+with the idea that this company will keep growing, and, at the same time, the investors
+will harvest solid dividend payments from the start that can grow above bond yields,
+which we’ll look at next.
+5.2 Bonds
+If you own a share of a company, you can brag at parties that it’s partly yours. However,
+those who are literate about investing won’t be impressed with your ownership of
+Apple, NVIDIA, or any other company unless your portfolio has beaten the market
+and you can be considered a master of capital appreciation.
+ While dealing with stocks involves equity, the bond business model relates to debt.
+In other words, bonds follow an IOU model: you lend money to someone, and the
+borrower pays interest until they return the borrowed money in full. The basic princi-
+ple of bonds is outlined in figure 5.3.
+City wants to
+build a bridge.City sells a 10-year
+bond to raise money.
+A private investor
+purchases a bond.
+The investor receives interest
+payments until the principal is
+repaid.
+Figure 5.3 A plain vanilla bond
+
+113 5.2 Bonds
+Many attributes define a bond’s details, also called the indenture . Let’s look at the par-
+ticulars affecting how you can lend money and benefit from that:
+Borrower —The borrower refers to the party who receives the money. You can lend
+money, for instance, to the federal government, municipalities, or companies.
+Maturation date —This parameter defines the day the borrower must repay the
+principal  (the total amount of borrowed money) to the lender. The time to
+maturity of a bond at its emission can vary from months to decades.
+Coupon payments —Eventually, a coupon rate is an investor’s annual payment
+while holding a particular bond. Rates can also be floating or fixed, meaning
+coupon rates may change over time for some bonds. 
+Risk rating —A bond’s interest rate depends strongly on the borrower’s default
+risk. The higher the risk, the higher the rate. Therefore, a third party needs to
+evaluate the default risk. Figure 5.4 outlines the rating structure of Moody’s and
+Standard & Poor (S&P), two rating agencies in the United States.
+Payment modalities —For cash flow planning, investors must also know when they
+get their payments. The payment modalities define, among other things, how
+often and when the lender receives money. In many cases, coupon payments
+are made quarterly.
+In its simplest form, a vanilla bond  is an IOU with fixed coupon payment intervals and a
+set maturation date. However, there are many variations. For instance, some bonds allow
+borrowers to repay the principal in intervals alongside coupon payments, similar to how
+mortgage payments work. Bonds can also be collateralized, meaning that if the bor-
+rower defaults, an asset can be liquidated to repay the lender. This is akin to real estate
+foreclosures, where a property is seized if the owner can’t keep up with payments. 
+ While this book focuses on basic scenarios, it’s worth noting that more complex
+variations of bonds are the subject of advanced certifications, such as the Chartered
+Financial Analyst (CFA). The job of a rating agency is to evaluate bonds offered on the
+bond market and to rate them. The higher the risk, the higher the returns an issuer
+offers to attract possible lenders. Table 5.1 shows the rating categories of the three big
+rating agencies in the United States.
+Table 5.1 Rating of bonds
+Rating tier Moody’s S&P Fitch Meaning
+Investment Grade
+Highest quality Aaa AAA AAA Prime credit quality, lowest 
+risk
+High quality Aa1, Aa2, Aa3 AA+, AA, AA- AA+, AA, AA- Very high credit quality
+Upper medium 
+gradeA1, A2, A3 A+, A, A- A+, A, A- Strong capacity to meet 
+financial commitments
+
+114 CHAPTER  5Income portfolios

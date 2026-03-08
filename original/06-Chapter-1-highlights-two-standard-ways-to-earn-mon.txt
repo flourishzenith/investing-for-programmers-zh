@@ -1,0 +1,229 @@
+# Chapter 1 highlights two standard ways to earn money through investment: passive
+
+Chapter 1 highlights two standard ways to earn money through investment: passive
+income and capital appreciation. As shown with bonds, coupon payments generate pas-
+sive income. Bonds also offer the potential for capital appreciation. When issued, inves-
+tors buy them on the primary market, where financial institutions act as intermediaries
+between the borrower and lender, setting an initial price (known as the face value  or par
+value ). Before the maturation date, bonds can be traded on the secondary market,
+where their price fluctuates. If the price rises above the face value, the bond trades above
+par; if it falls below, it trades below par. Buying a bond at a 5% discount to its face value
+means that 5% contributes to your yield upon maturity when the principal is repaid.
+Let’s explore fixed-income assets from the US Treasury as a reference example.
+Depending on their durations, they are categorized as Treasury bills (maturing in up
+to one year), Treasury notes (maturing in up to 10 years), or Treasury bonds (matur-
+ing in more than 10 years). For further details, see https:/ /mng.bz/lZPR .
+ Data can help identify bonds with projected yields higher than alternative invest-
+ments. The Federal Reserve’s interest rate policies directly influence bond prices andLower medium 
+gradeBaa1, Baa2, 
+Baa3BBB+, BBB, 
+BBB-BBB+, BBB, 
+BBB-Adequate capacity, some 
+susceptibility to conditions
+Speculative grade
+Upper 
+speculativeBa, Ba, Ba3 BB+, BB, BB- BB+, BB, BB- Higher risk of default, but 
+financial commitment met
+Highly 
+speculativeB1, B2, B3 B+, B, B- B+, B, B- Material default risk, but 
+financial obligations still met
+Substantial risk Caa1, Caa2, 
+Caa3CCC+, CCC, 
+CCC-CCC+, CCC, 
+CCC-Very high risk, substantial 
+vulnerability to default
+Near default Ca CC, C CC, C Highly vulnerable to default
+Default C D RD, D In default
+Why selling bonds before the maturation date may not always be unwise
+Common sense tells us that if we lend $10,000 to someone, selling the debt to a
+third party for a smaller amount would be unwise. If we get our regular interest pay-
+ments and principal back in full at maturity, why should we sell something for a loss?
+Contemplating such scenarios brings us closer to thinking like economists and fore-
+casting. Investors might sell bonds as the market changes, and the possible capital
+appreciation of investing the money received by selling the bond below $10,000
+might be higher than $10,000 plus all the coupon payments until then. Chapter 11
+goes into detail about forecasting and making decisions based on forecasts.Table 5.1 Rating of bonds  (continued)
+Rating tier Moody’s S&P Fitch Meaning
+
+115 5.2 Bonds
+yields. When the Fed raises rates, new bonds are issued with higher yields to match
+prevailing rates, making existing bonds with lower yields less attractive and causing
+their prices to drop. Conversely, when the Fed lowers rates, existing bonds with higher
+yields become more appealing. Additionally, high interest rates increase default risks
+for weaker borrowers. Understanding interest rate trends is crucial when deciding
+between investing in stocks or bonds. The following code demonstrates how to collect
+bond interest rates using the EODHD platform introduced in chapter 3:
+import requests
+def fetch(country_code):
+    url = 
+f’https://eodhd.com/api/eod/{country_code}.GBOND?api_token={eod_api_key}
+&fmt=json’
+    return requests.get(url).json()
+import pandas as pd
+us = pd.DataFrame(data=fetch("US10Y"))
+We can now plot the results and explore the outcome. Looking at the rates when plot-
+ting the graph, we can reason that investing in a bond would have been a better deci-
+sion than in previous times, as shown in figure 5.4:
+import matplotlib.pyplot as plt
+p = us[["date", "adjusted_close"]]
+p.set_index("date", inplace=True)
+p.plot(figsize = (12,8), fontsize = 12)
+plt.ylabel("Price (USD)")
+plt.title("yield Price Chart", fontsize = 15)
+plt.show()
+Alternatively, we can analyze high-risk bonds, often referred to as junk bonds, and use
+data to determine if some are undervalued relative to their ratings. Unfortunately, the
+free EODHD version is limited and doesn’t provide corporate data. The following
+code uses an alternative open platform to load data from an International Securities
+Identification Number (ISIN), a bond identifier. The REST API returns the metadata
+for the bond based on the input:
+import requests
+headers = {
+    “Content-Type”: “application/json”,
+    “X-OPENFIGI-APIKEY”: OPEN_FIGI_KEY
+}
+isin = "US36166NAJ28"  # Example ISIN
+data = [{"idType": "ID_ISIN", "idValue": isin}]
+response = requests.post("https://api.openfigi.com/v3/mapping",
+                          headers=headers, json=data)
+print(response.json())
+
+116 CHAPTER  5Income portfolios
+This approach is highly speculative and may require insider knowledge. Another
+speculative tool is the credit default swap  (CDS), which some readers may recognize from
+the movie The Big Short.  A CDS acts as an insurance contract against bond default: you
+pay an ongoing premium, and if the debtor defaults, the insurer compensates you for
+the bond’s full value. Interestingly, CDS can be detached from the original lender. For
+example, if A borrows money from B, C can purchase an insurance from D that is paid
+to C when B defaults.
+ Michael Burry famously used data to predict the 2007 financial crisis, betting on
+the defaults of various collateralized debt obligations (CDOs)—packages of bundled
+bonds. His foresight proved correct, showcasing how deep data analysis can uncover
+opportunities and risks.
+ While these advanced strategies offer potential, they are complex and risky. For
+simplicity, bonds can still provide steady yields with lower risk than stocks. Data can
+help determine whether dividend-paying stocks or bonds are better suited for passive
+income. Next, we explore a third passive income option: cryptocurrency.
+Figure 5.4 Return of US Treasury bonds
+
+117 5.3 Crypto staking
+5.3 Crypto staking
+Most individuals who accumulated significant wealth through cryptocurrency did so
+via capital appreciation. They invested in cryptocurrency at low prices during its
+nascent stages or after one of its crashes and reaped substantial gains as its value
+soared. Crypto enthusiasts argue that cryptocurrencies, with a few exceptions, have a
+constant capital appreciation as a scarce resource. As there can never be more than 21
+million BTC, the idea is that the value of Bitcoin will always increase. Consequently, if
+you believe in the long-term value of crypto, there isn’t much more to say, as all you
+need to do is wait for the right time to sell.
+ This chapter focuses on strategies to generate passive income with cryptocurrency,
+as there is still much to learn. But before that, we need to recap some crypto basics to
+be able to invest.
+5.3.1 Ledgers and exchanges
+One thing enthusiasts and critics may agree on is the number of scams and the poten-
+tial risks of losing money with crypto if you don’t know what you’re doing. Even if we
+don’t go into speculative actions in this book, exploring some risk management basics
+is necessary.
+WARNING Knowledge of cryptocurrency reduces your risk of being a victim of
+fraud or scam. However, the cryptocurrency industry is highly unregulated,
+and even experienced crypto traders have lost considerable amounts of
+money. Cryptocurrency is likely to remain a risky investment.
+The term “lost cryptocurrencies,” as used by the media, can lead to misconceptions
+because cryptocurrencies can’t be lost. However, crypto holders can lose their keys,
+confirming their cryptocurrency ownership. We’ll explain this in detail by illustrating
+how cryptocurrency works, as depicted in figure 5.5.
+Exchange LedgerAccount Account
+Figure 5.5 If you hold cryptocurrency on an exchange, the exchange owns the keys signing the 
+transactions on the blockchain. Ledgers, such as cold wallets, provide ways to store the keys that 
+signed the last transaction in a safe place. Be aware that cryptocurrency, a distributed transaction 
+log, is a public blockchain and therefore never stored on your device or account.
+
+118 CHAPTER  5Income portfolios
+In its simplest technical terms, blockchain is all about private keys that sign blocks of
+an immutable, distributed transaction log during a transaction. Cryptocurrency mon-
+etizes this principle. The more blocks are signed with your key, the more ownership
+you have.
+ We can use accounts on exchanges, such as Binance or OKX. For investors work-
+ing with brokers, using an exchange seems like having a brokerage account from a
+bird’s-eye view. Exchanges invest to ensure that your account on their platform is as
+safe as possible from attacks by hackers. They will encourage—or even enforce—all
+kinds of account protection mechanisms, such as multifactor authentication. Their
+user interfaces are user-friendly, aiming to make it easy to buy and sell cryptocurrency.
+ However, we need to go into more detail to understand the problems many inves-
+tors see with an exchange. Exchanges enable you to trigger transactions using your
+user account; however, the exchanges sign the transaction with their keys, which is the
+source of the slogan “Not your keys, not your coins.” Most cryptocurrency exchanges
+reside in countries where it’s difficult to regulate them. The risks of this lack of regula-
+tion have become apparent with the FTX scandal, in which the company misused the
+investments of private investors, and its principal founder, Sam Bankman-Fried,
+became a symbol of crypto fraud.
+ To completely control your crypto investments, you need to be in control of the
+keys that are used for transactions. You can store your keys on your physical devices (a
+hardware ledger or cold wallet) or on software service providers who provide you with
+the keys (a software ledger or warm wallet). The concept is the same: crypto transac-
+tions are signed, but in the case of a ledger, transactions are signed with your key. You
+still need to protect your keys, but you’ve vastly reduced your exposure to market risks
+(namely, that the value of your cryptocurrency might go down) and cyberattacks on
+the blockchain.
+5.3.2 Mining and staking
+Crypto user forums are flooded with offers on how to get rich with crypto, and many
+scams lure people into highly speculative and risky ways to make money. Mining and
+staking are two forms of passive income that can also appeal to risk-aware investors.
+Let’s explore these two options.
+ Mining  involves using computational power to validate transactions on a block-
+chain network. This approach is also called a Proof-of-Work (PoW) consensus mecha-
+nism. If the machines in your mining farms solve a complex mathematical problem,
+you receive some cryptocurrency. While it can be lucrative, mining requires significant
+up-front investment in hardware and incurs ongoing electricity costs. The profitability
+depends on factors such as the cryptocurrency mined, mining difficulty, and local
+electricity rates.
+ Staking  allows crypto holders to lock up their assets in a blockchain network to sup-
+port its operations, such as validating transactions. In return, stakers earn rewards, often
+as additional tokens. This method, also called the Proof-of-Stake (PoS) consensus
+
+119 5.3 Crypto staking
+mechanism, is energy-efficient compared to mining using the previously mentioned
+PoW mechanism. However, it requires holding a certain minimum amount of crypto-
+currency. It involves the risk of token devaluation, which can be roughly compared
+with inflation: the more tokens are created, the more the worth of existing tokens will
+be reduced.
+ Becoming a crypto entrepreneur may sound appealing to engineers. After all, they
+can use their core strengths to build a moneymaking business. However, in many
+cases, a substantial up-front investment is needed. Without investment in strong hard-
+ware, there’s no mining, and mining is still expensive if your hardware is in a region
+with high electricity prices. Staking can also be costly, but there are still some forms in
+which you can create revenue while you hold your cryptocurrency for the long term.
+Let’s look at these options.
+5.3.3 Affordable staking options
+Staking and validation mean your cryptocurrency is used to validate network transac-
+tions with a PoS consensus mechanism. A validator node is a computer on the internet
+representing existing cryptocurrency stakeholders. During a transaction, validators
+are chosen randomly, based on stake size or other factors. Validators confirm transac-
+tions, propose blocks, and add them to the blockchain. For this service, validators
+earn rewards in the form of a minimal share of the transaction.
+ In this process, individual investors can generate passive income with cryptocur-
+rency. They can set up a validator node to validate transactions. Being in control of a
+validator often means a significant investment. To provide a validator for Ethereum,
+you need to stake at least 32 ETH ( https:/ /ethereum.org/en/staking/ ). This is a sub-
+stantial up-front investment. If ETH is priced above $3,000, the initial investment
+exceeds $100,000. 
+ The easier alternative is to delegate your cryptocurrency to a third-party validator.
+The validator will provide you with rewards but will take a commission, reducing your
+rewards compared to running your node; this approach avoids the substantial time
+and financial commitments of setting up and maintaining validator hardware and
+software. Hardware ledgers typically offer software to manage positions, such as Led-
+ger Live or Trezor Suite. To stake your cryptocurrency on a hardware ledger, simply
+follow the instructions as shown in the supplier’s software to manage your crypto
+investments. Please be aware that cryptocurrency is largely unregulated, and there are
+fraud risks when you stake coins. 
+Are stable coins the safest way to passive income using cryptocurrency?
+When considering staking rewards, some cryptocurrencies offer exceptionally high
+returns. For example, networks such as Cosmos (ATOM) and Polkadot (DOT), which
+act as bridges between blockchains, can provide staking rewards of up to 20%. How-
+ever, calling this a guaranteed income is misleading. Tokens that provide high-stakes
+
+120 CHAPTER  5Income portfolios
+So, how much can you earn through staking? One challenge is that staking rewards
+vary significantly depending on transaction value. It differs from interest payments of
+bonds, where there are constant interest payments. Table 5.2. shows average staking
+rewards over time.

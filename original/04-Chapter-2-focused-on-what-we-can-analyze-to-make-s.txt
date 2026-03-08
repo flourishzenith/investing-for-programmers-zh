@@ -1,0 +1,1817 @@
+# Chapter 2 focused on what we can analyze to make sound investment decisions.
+
+Chapter 2 focused on what we can analyze to make sound investment decisions.
+With that knowledge, it’s time to show how to collect and explore data. Some data
+analysts claim that financial data is cleaner than data from other domains. Still,
+even with superb data, we need to invest time in preparing it for analytical algo-
+rithms and determining how to extract insights most efficiently.
+ This chapter teaches you how to gather financial data using Python. We’ll focus
+on yfinance, a powerful open source library for scraping data from sources such as
+Yahoo Finance, Google Finance, and Finviz.
+ While yfinance is excellent for our initial data exploration, we’ll also discuss its
+limitations and explore more robust, production-ready alternatives. All the libraries
+we cover are either free or offer a freemium model.This chapter covers
+Data collection from financial platforms
+The types of data used for financial assessments
+Selecting Python libraries for financial analysis
+Comparing free Python libraries and commercial 
+libraries
+Fundamental and technical analysis using Python
+
+53 3.1 Financial data
+ We’ll start by examining the unique characteristics of financial data. Then, you’ll
+learn to use these Python libraries to collect it. With this knowledge, you’ll be ready
+for the first use case in chapter 4.
+3.1 Financial data
+Many data projects, independent of a specific domain, often raise data quality issues,
+making it difficult to predict whether the provided facts and numbers lead to insights
+that enable better investment decisions. One advantage of financial data is that it’s
+regularly audited, and financial statements are required to meet predefined account-
+ing standards. Whether data analysts receive data from free or paid sources, the infor-
+mation in the data represents the information that a company’s accountants have
+officially reported.
+ This high-quality data is unavailable to analysts working with data in other fields.
+Data scientists working with machine data from factories are more likely to face issues
+where defective sensors can mismeasure data or multiple unforeseen environmental
+conditions might affect results.
+ Still, people working with financial data may face different challenges in interpret-
+ing data. The purpose of the obligatory accounting statements is to provide insights
+about a company’s economic situation. However, different accounting strategies may
+conceal corporate problems or exaggerate profits. How accountants present numbers
+in detail can lead to varying interpretations of a company’s results. 
+ But before we collect the data, let’s try to classify it first. To analyze financial assets,
+we can divide the data into three categories:
+Fundamental data —Fundamental data doesn’t change regularly within short
+time frames. Consider regularly published quarterly financial documents, such
+as income statements, balance sheets, or cash flow statements. They are updated
+in intervals, such as with quarterly reports. We expect public companies to fol-
+low accounting standards, as their reports may be subject to audit. However, the
+reported data may still contain accounting tricks that make a company’s bal-
+ance sheet appear more favorable.
+Technical data —As a prominent example of technical data, share prices of com-
+pany stocks change continuously during the open hours of stock exchanges.
+Many traders try to predict trends from these price movements. As many people
+depend on this data to earn money as day traders, we can also assume that the
+data is usually reported correctly. While data delivery speed isn’t crucial for fun-
+damental data, traders who focus on making decisions based on technical data
+may benefit from receiving data more quickly and executing orders faster.
+Besides historical share prices of companies, examples of other technical data
+are trading volume and short interest rates.
+Nonfinancial data —In the 2010s, big data became a buzzword for all data sources—
+primarily in unstructured form—that store information that can be mined to
+find hidden insights. We can analyze data from social media to determine the
+
+54 CHAPTER  3Collecting data
+frequency of mentions of a stock ticker and to identify whether the conversa-
+tions tend to be positive or negative. Machine learning (ML) engineers may use
+algorithms to analyze executives’ emotions when presenting their company’s
+earnings reports to detect potential discrepancies in their statements.
+NOTE AI algorithms that analyze human emotions in video and audio streams
+demonstrate a potential future for investment analysis. For instance, by pro-
+cessing footage of a company’s general assembly, these AI tools could detect
+whether employee morale is more positive or negative than anticipated. Most
+people will likely agree that this also raises ethical questions.
+Fundamental, technical, and nonfinancial data differ fundamentally (no pun intended).
+While fundamental analysis is primarily based on comparing financial data between
+companies within an industry to identify good investment opportunities, technical
+analysis is used to make quick trading decisions that benefit from bullish or bearish
+market trends. The next step is to look at the origins of the data.
+Before we process data with Python, let’s explore some financial platforms that pro-
+vide data through a user interface (UI). Although we could load everything into
+Python data structures right away, it often helps to use these platforms to preselect
+what to explore in depth.
+3.2 Financial analysis platforms
+Many financial analysis platforms help investors make better decisions by providing
+insights into various assets. The scope of these platforms can differ significantly: some
+focus on a single asset class, such as stocks or cryptocurrencies, while others limit their
+coverage to specific geographic regions.
+NOTE We’ll focus on stocks in this chapter and address bonds and crypto in
+later chapters.
+According to various sources, globally, there are between 47,000 and 58,000 publicly
+listed companies. Given this vast universe, one of the primary functions of financialAll roads lead to Rome
+This chapter introduces many platforms and libraries, although they solve the same
+generic problems (providing financial information and interpretations to allow clients
+to make better investment decisions). It’s fair to ask whether focusing only on one
+library is sufficient.
+Different open source and commercial platforms may offer varying quality standards
+and perspectives on financial data. One framework might meet the demands of one
+group of users, but another framework better suits the needs of others. Investment
+decisions can significantly affect our lives; the more diverse sources we have backing
+our decision-making, the lower the risk we face.
+
+55 3.2 Financial analysis platforms
+platforms is to help users narrow down choices efficiently. This is where stock screen-
+ers come in. A stock screener  is a tool that allows investors to filter listed stocks based on
+customizable criteria and displays relevant information onscreen to support informed
+decision-making.
+ Imagine you’re an investor with a strong understanding of software companies.
+While you already hold many US stocks, you’re considering diversifying internationally.
+To reduce risk, you focus on companies that are “too big to fail”—industry giants with
+massive market capitalizations. Your strategy is to identify potential candidates and then
+conduct a more in-depth analysis of their software offerings and market opportunities.
+ Many financial analysis platforms offer screeners that allow investors to filter stocks
+based on specific criteria. While these tools often share similar features, investors typi-
+cally choose based on personal preferences. In this book, we demonstrate how to cre-
+ate a preselection using the Finviz platform ( https:/ /finviz.com ).
+ In the example shown in figure 3.1, we screen for technology companies outside
+the United States with a market capitalization of more than $200 billion, matching the
+“mega-cap” category. You can access this filter directly at https:/ /mng.bz/0zJW . The
+results may vary slightly from those captured in the screenshot on June 16, 2025.
+As shown in the figure, stock screeners allow users to filter by various criteria, func-
+tioning like data mining tools. Investors can drill down into individual companies to
+explore detailed information. For example, clicking on the link for SAP provides
+access to the company’s key financials and other relevant data. Figure 3.2 shows SAP’s
+fundamentals, illustrating just one example of what can be uncovered during the
+screening process. Of course, the level of detail and presentation varies across differ-
+ent financial platforms.
+ A stock screener is like a landing zone or home base for investors. When individual
+investors seek specific information about stocks, the platform might offer advisory
+services or a more refined analysis as a paid subscription feature. Table 3.1 categorizes
+financial platforms.
+Figure 3.1 Finviz ( https:/ /finviz.com ) is one of many financial services platforms that offer a stock screener to 
+help users find companies through various filters. In this screenshot, we selected non-US technology companies 
+with a market capitalization of more than $200 billion and received three results. 
+
+56 CHAPTER  3Collecting data
+We could use libraries for web scraping and collect financial information from these
+platforms if they don’t offer an API. However, using a web scraper means cleaning
+data and facing the risk of unpredictable errors, so we want to load the data into our
+environment using an API. Before doing that, we should address some basics about
+how we want to process financial data.Table 3.1 Categorization of financial platforms for developers 
+Platform category Examples Summary
+Finance pages of 
+a search engine 
+providerYahoo Finance, Google 
+Finance, or MSN 
+MoneyThey provide financial data and insights without ask-
+ing users to pay for a subscription (except for Yahoo 
+Finance, which offers a premium subscription).
+In many cases, open source developers create librar-
+ies to scrape data from the platforms to provide that 
+data to programmers. The yfinance library is a good 
+example of such a library.
+Financial advisory 
+platform for private 
+investorsSeeking Alpha, The 
+Motley Fool, Morning-
+star, Ziggma, Zacks, 
+Koyfin, Stock Rover, 
+Empower, Simply Wall 
+St, TipRanksThey provide insights about financial assets on a 
+tiered subscription model.
+With yearly subscription packages, typically ranging 
+from $10 to $350 for standard plans, you gain 
+access to more in-depth insights.
+Only a few advisory platforms provide an API to 
+programmers.
+Financial data 
+providers for fintech 
+start-upsEODHD, Alpha Van-
+tage, OpenBBThey provide financial data through APIs. Most of 
+them also offer a freemium version, providing limited 
+access to economic data.
+Prices for commercial packages, which include more 
+data, more requests, and faster access, vary but are 
+often in the range of $240 to $1,200 per year.
+Commercial products 
+for large investment 
+firmsBloomberg Terminal, 
+Refinitiv, MSCIThese products normally exceed the budget of individ-
+ual investors. They provide an immense amount of 
+data and insights for analysts and fund managers.
+Figure 3.2 Looking at the fundamental data of SAP on Finviz
+
+57 3.4 yfinance
+3.3 Data science notebooks
+Pythonistas and data scientists have worked with Jupyter, Databricks, and similar plat-
+forms that provide notebooks to users. A notebook  is an environment where you can
+run code in single cells and use the results from those cells in other cells, providing an
+interactive environment for engineers.
+ The appendix includes a section explaining how to install the relevant tools neces-
+sary for working with data, including Python libraries. However, addressing “applica-
+tion versus notebook” in advance makes sense. Many software engineers may consider
+themselves app-centric. If they know they can collect and process data, they might also
+be tempted to build a UI to display everything to users. In a later chapter, we demon-
+strate how to do this using Streamlit; however, this is often not the primary approach
+to exploring financial data for personal investment decisions.
+ For personal financial research, creating frontends might be an unnecessary over-
+head. Each investment assessment is a unique research project that may require
+research in different data sources. As the goal of a personal investment decision is to
+buy, sell, or hold based on data, numbers in a console are good enough. All pro-
+grammers might need are data science notebooks, in which they can write down an
+investment hypothesis and start exploring data to prove or disprove their theses.
+Occasionally, they might rerun some cells with different data, or they might copy and
+adjust them for alternative analyses.
+ In this chapter, we’ll introduce libraries and code snippets to analyze some core
+investment aspects of companies. In chapter 4, we’ll continue to apply this knowledge
+to identify concrete investment opportunities. Until then, become familiar with the
+development environment of your choice and become accustomed to working with
+data science notebooks. The code presented in this chapter can also be found in the
+book’s downloads and the Git repository.
+3.4 yfinance
+Pick a random book covering financial data exploration with Python or look for rele-
+vant code snippets online, and, most likely, you’ll find code that collects data through
+the yfinance library. This library is the perfect starting point for exploring financial
+data by experimentation.
+ The yfinance library enables developers to load a wide range of data from the
+Yahoo Finance platform into Python data structures, making yfinance the best choice
+for programmers getting started with exploring financial data. We can use yfinance
+for technical and fundamental analysis.
+NOTE As you know, a stock ticker is a unique company identifier on a stock
+exchange. In chapter 2, for example, you saw NVDA for Nvidia, AAPL for
+Apple, and so on. For international exchanges, platforms add an acronym for
+the stock exchange. So, if we use Yahoo Finance, we find Rolls-Royce listed as
+RR.L on the London Stock Exchange (LSE), or Allianz SE as ALV.DE on the
+
+58 CHAPTER  3Collecting data
+Frankfurt Stock Exchange. We need to watch out for mismatches, as there is,
+for instance, a ticker ALV registered on the New York Stock Exchange (NYSE).
+Unfortunately, the acronyms to identify stock exchanges may differ between
+APIs. We’ll show in a later example that another library, EODHD, uses the
+logical LSE as an identifier for the London Stock Exchange.
+3.4.1 Fundamental analysis
+Programmers can retrieve a company’s accounting data, introduced in chapter 2,
+using yfinance and the code snippets shown here. This DataFrame contains all the
+information a company provides when reporting this data, such as aggregated sales
+figures over time. In this example, we used Microsoft (MSFT is Microsoft’s stock ticker,
+a unique identifier for the company on the NASDAQ stock exchange, where Micro-
+soft is listed):
+import yfinance as yf
+microsoft = yf.Ticker('MSFT')
+microsoft.income_stmt
+microsoft.balance_sheet
+microsoft.cash_flow
+For each of the fetched properties of the microsoft  object, the returned object is a
+DataFrame representing an accounting statement with the reporting dates as columns
+and the metric for each report as a row. Table 3.2 shows the output of the DataFrame
+returned by the property income_stmt . The properties balance_sheet  and cash_flow
+would return data in the same data structure, but with different values representing
+the accounting statements.
+Table 3.2 Microsoft’s income statement in a DataFrame
+2024-06-30 2023-06-30 2022-06-30 2021-06-30
+Tax effect of 
+unusual items-99918000.0 -2850000.0 43754000.0 180160797.164637
+Tax rate for calcs 0.182 0.19 0.131 0.138266
+Normalized 
+EBITDA133558000000.0 105155000000.0 99905000000.0 83031000000.0
+Total unusual 
+item-549000000.0 -15000000.0 334000000.0 1303000000.0
+Total unusual 
+item excluding 
+goodwill-549000000.0 -15000000.0 334000000.0 1303000000.0
+Net income 
+from continuing 
+operational net88136000000.0 72361000000.0 72738000000.0 61271000000.0
+
+59 3.4 yfinance
+We can access the specific information in financial account statements by referring to
+the data and the specific identifier of the information we’re looking for, as shown in
+the following:
+microsoft.income_stmt["2024-06-30"]["EBITDA"]
+Users who explore the content of an object’s attribute can iterate through columns
+representing report filing dates. Programmers interested in the quarterly results of
+the three account statements can also use the same approach by calling an attribute
+with the identifier quarterly_  followed by the identifier of the accounting statement,
+as shown here:
+microsoft.quarterly_income_stmt
+microsoft.quarterly_balance_sheet
+microsoft.quarterly_cash_flow
+In chapter 2, we introduced several financial ratios. Collecting financial ratios of com-
+panies with Python is easy, as most ratios can be obtained through attributes from sim-
+ple objects populated using the yfinance functionality. We continue with the object
+microsoft . The microsoft.info  property is an object of the type dictionary. Convert-
+ing it into a Pandas Series allows us to access the information referenced by the dictio-
+nary’s keys as attributes of the newly generated object:
+import pandas as pd
+info = pd.Series(microsoft.info)
+This info  object contains numerous attributes related to corporate information,
+including headquarters address and financial ratios, such as the P/E value. When writ-
+ing this book, the library offered 132 attributes to explore. The following code returns
+the details of what can be queried:
+print(', '.join(info.keys()))Reconciled 
+depreciation22287000000.0 13861000000.0 14461000000.0 11686000000.0
+Reconciled cost 
+of revenue74114000000.0 65863000000.0 62650000000.0 52232000000.0
+EBITDA 133009000000.0 105140000000.0 100239000000.0 85134000000.0
+EBIT 110722000000.0 91279000000.0 85779000000.0 73448000000.0
+Source: yfinanceTable 3.2 Microsoft’s income statement in a DataFrame  (continued)
+2024-06-30 2023-06-30 2022-06-30 2021-06-30
+
+60 CHAPTER  3Collecting data
+Accessing that one attribute is a one-liner. Next, we collect Microsoft’s current share
+price:
+info.currentPrice
+We define a small helper function to collect the company’s ratios. The following snip-
+pet returns a DataFrame containing a list of ratios we pass as identifiers: 
+import pandas as pd
+import yfinance as yf
+def collect_ratios(tickers: list, ratios: list):
+    rows = []
+    
+    for ticker in tickers:
+        info = yf.Ticker(ticker).info
+        row = [ticker] + [info.get(ratio, None) for ratio in ratios]
+        rows.append(row)
+    return pd.DataFrame(rows, columns=["Ticker"] + ratios)
+In chapter 2, we presented various query results in tables. The collect_ratios
+method makes it easy to get multiple ratios . In the following code, we collect the cur-
+rent and quick ratios of four companies: Walmart ( WMT), Altria ( MO), NVIDIA ( NVDA ),
+and Salesforce ( CRM). We also add the sector and industry to the output: 
+collect_ratios(["WMT", "MO", "NVDA", "CRM"], ["sector", "industry",
+"currentRatio", "quickRatio"])
+The output of these methods can be reviewed in chapter 2, as we’ve used this method
+to collect all the data for the ratios that have been introduced there. Using this
+method, we can collect more ratios and analysis using attributes, such as debtTo-
+Equity , forwardPE , trailingPE , pegRatio , priceToSalesTrailing12Months , priceTo-
+Book , beta , or recommendations_summary . The book contains a data science notebook
+called Ratios, which includes a set of reference commands to generate the results for
+the ratios shown in chapter 2. Feel free to explore them and choose companies that
+interest you.
+ It’s time to discuss some ratios we introduced in chapter 2 that aren’t provided as
+attributes. First, we need to collect a ticker. We’ll also collect references to the latest
+accounting statements as they are returned to us, in a DataFrame where columns rep-
+resent the reporting dates:
+import yfinance as yf
+company = yf.Ticker("MSFT")
+col_latest_inc_stmt = company.income_stmt.columns[0]
+col_latest_bs = company.balance_sheet.columns[0]
+
+61 3.4 yfinance
+As shown in table 3.3, we can use code to collect the information. Note that we refer-
+ence specific financial accounting documents at a particular date, and you may need
+to adjust the dates accordingly.
+Another interesting fact is the development of ratios over time. Apple has a higher
+debt-to-equity (D/E) ratio than its peers, which is likely related to accounting prac-
+tices. However, it could be a bad sign if the last value suddenly rises significantly. The
+following code indicates that this ratio fluctuates within years (in 2021, 2.16; in 2022,
+2.61; in 2023, 1.78; and in 2024, 1.87), and we can conclude that this D/E ratio won’t
+prevent us from making an investment decision:
+company = yf.Ticker("AAPL")
+for i in range(0,4):
+    print(f"{company.balance_sheet.iloc[:,i].name}: 
+{company.balance_sheet.iloc[:,i]['Total 
+Debt']/company.balance_sheet.iloc[:,i]['Stockholders Equity']}")
+3.4.2 Technical analysis
+We can use yfinance to examine time series data. In the following example, we load
+Microsoft’s historical stock data into a DataFrame for one year, as shown in table 3.4.
+In the following code, we load the data for one year by executing this query:
+import yfinance as yf
+historical_data = yf.Ticker("MSFT").history(start="2024-05-08", 
+end="2025-05-08 
+historical_dataTable 3.3 How to collect specific ratios using the collected object and helper functions
+Ratio Code
+Return on assets company.income_stmt[col_latest_inc_stmt]["Net 
+Income"]/company.balance_sheet[col_latest_bs]["Total 
+Assets"] * 100
+Return on equity company.income_stmt[col_latest_inc_stmt]["Net 
+Income"]/company.balance_sheet[col_latest_bs]["Stockholders 
+Equity"] * 100
+Profit margin company.income_stmt[col_latest_inc_stmt]["Net 
+Income"]/company.income_stmt[col_latest_inc_stmt]["Total 
+Revenue"] * 100
+Asset turnover ratio company.income_stmt[col_latest_inc_stmt]["Total 
+Revenue"]/company.balance_sheet[col_latest_bs]["Total 
+Assets"]
+Debt-to-equity company.balance_sheet[col_latest_bs]['Total 
+Debt']/company.balance_sheet[col_latest_bs] ['Stockholders 
+Equity']
+
+62 CHAPTER  3Collecting data
+Occasionally, we prefer to have exact time intervals; in the following code, we show
+how to collect data for 2023. The source code output here would return the same data
+structure as in table 3.4, with different dates and values:
+import yfinance as yf
+hd_msft_2023 = yf.Ticker("MSFT").history(start="2023-01-01", 
+end="2023-12-31")
+hd_msft_2023
+The everyday use case uses technical data to explore how stock prices evolve: What is
+the spread between highs and lows, and how volatile is the stock? The more volatile
+the share price has been in the past, the higher the likelihood that it will continue to
+be erratic.
+NOTE Past performance doesn’t guarantee future results. However, if you
+take several stocks with stable past performance and put them in a portfolio,
+you can absorb single stocks performing below expectations. Providing risk-
+optimized portfolios is often the domain of exchange-traded funds (ETFs).
+In chapter 2, we concluded that the share prices of companies from the consumer sta-
+ples sector, such as Coca-Cola, are likely more stable. This sector represents goods for
+everyday needs, but consumers will also purchase during crises. If we compare Coca-
+Cola with a start-up, we can see this difference in the numbers. Let’s load the required
+data and compare Coca-Cola with NuScale ( SMR), a company focusing on building
+small modular reactors. We also add Apple ( AAPL ) to the portfolio to diversify our
+baseline with a third company:
+import yfinance as yf
+hist_prices_2023 = yf.Tickers(["AAPL", "SMR", "KO"]).history
+(start= "2023-01-01", end= "2023-12-31")
+The share prices of different stocks don’t give us a basis for comparing stocks. Com-
+pany A might be traded at $1,000 per share, and Company B at $10. The price is just aTable 3.4 Microsoft’s historical price data showing open, high, low, and close prices, as well as trading
+volume
+DateOpen price 
+($)High price 
+($)Low price 
+($)Close price 
+($)Volume
+2025-05-07 00:00:00-04:00 433.05 437.32 430.32 432.56 23,295,300
+2025-05-06 00:00:00-04:00 431.41 436.93 430.38 432.52 15,104,200
+2025-05-05 00:00:00-04:00 432.08 438.69 431.32 435.37 20,136,100
+2025-05-02 00:00:00-04:00 430.95 438.63 429.20 434.48 30,757,400
+2025-05-01 00:00:00-04:00 430.32 436.19 424.12 424.62 58,938,100
+Source: yfinance data from June 8, 2025
+
+63 3.4 yfinance
+number without the number of shares outstanding. Companies with high share prices
+often consider a share split to reduce the cost of purchasing a single share. If Com-
+pany A decided to split the shares in a 1:10 ratio, and you held 1 share, after the split,
+you would have 10 shares of stock with a share price of $100. Therefore, we need to set
+a starting date for our comparison and assume the price of each company starts at
+100%, from which we track the price changes in percentage terms.
+ NuScale’s share price could have been better in 2023. We’ll plot the share prices as
+a percentage over time to illustrate this. The following code extracts the closing prices
+and creates a DataFrame with the percentage changes for each ticker at the beginning
+of the period (you may need to install the Matplotlib library):
+def plot_closing_prices(data):
+    import matplotlib.pyplot as plt
+    close_prices = data["Close"]
+    price_change_in_percentage = (close_prices / close_prices.iloc[0] * 100)
+    price_change_in_percentage.plot(figsize = (12,8), fontsize = 12)
+    plt.ylabel("Percentage")
+    plt.title(f"Price Chart", fontsize = 15)
+    plt.show()
+By calling this method with the DataFrame as a parameter, such as by plot_closing_
+prices(hist_prices) , we can generate a plot, as shown in figure 3.3.
+Figure 3.3 The share price development of Apple (AAPL), Coca-Cola (KO), and NuScale (SMR)
+
+64 CHAPTER  3Collecting data
+If you looked purely at 2023, you might be tempted to say that it would be wise to
+invest in Apple and short sell NuScale. However, if you look at the results of 2024, in
+which the share price of NuScale soared, this would have been a disastrous decision.
+Figure 3.4 shows the results if we picked the stock starting from November 22 and one
+year back. We collect the data using the stock tickers as identifiers and then call the
+method to plot the graph:
+import yfinance as yf
+hd_nvda_smr_aapl_1yr = yf.Tickers(["AAPL", "SMR", "KO"]).history
+(start= "2023-11-22", end= "2024-11-22")
+plot_closing_prices(hd_nvda_smr_aapl_1yr)
+In chapter 4, we’ll explore more details on how to identify other companies, such as
+NuScale, that can grow stronger than the market. Let’s begin by exploring the market
+returns. We have the closing price of a share and can compare it with the previous
+day’s price. With that, we can calculate daily returns:
+simple_returns = hist_prices_24 ["Close"].pct_change
+(fill_method=None).dropna()
+simple_returns
+Figure 3.4 The share price development of Apple (AAPL), Coca-Cola (KO) and NuScale (SMR) in 2024
+
+65 3.4 yfinance
+Returns calculated this way are called simple returns . A second method for calculating
+returns is using logarithmic returns . Instead of subtracting the end price from the start-
+ing price, we use log functions:
+import numpy as np
+log_rets = hist_prices_24["Close"].apply(lambda x: np.log(x / 
+x.shift())).dropna()
+log_rets
+Logarithmic returns have found broad application in calculating returns compared to
+simple returns, which we would obtain if we simply subtracted the previous day’s clos-
+ing price from the current day’s closing price. Logarithmic returns differ in that they
+measure the continuous compounded rate of returns, which is more beneficial for sta-
+tistical analysis. We can also plot the returns in a histogram to discover how often we
+had outliers (see figure 3.5 for the results):
+log_rets_2023 = hist_prices_2023["Close"].apply(lambda x: np.log(x / 
+x.shift())).dropna()
+log_rets_2023.hist(bins=35, figsize=(10, 6))
+Figure 3.5 The histogram of the returns for Apple (AAPL), Coca-Cola (KO), and NuScale (SMR)
+
+66 CHAPTER  3Collecting data
+To finalize our primer on technical analysis, let’s look at three standard metrics:
+mean, standard deviation, and variance. Again, we use a snippet here to visualize the
+differences between these statistical methods (see the results in table 3.5):
+summary = log_rets_2023.agg(["mean", "std", "var"]).T
+summary.columns = ["Mean", "Std", "Var"]
+summary
+The mean  is the average stock price over the given period, representing the “central”
+value of the dataset. Variance  measures how far each price deviates from the mean in
+squared units. The standard deviation  is the square root of the variance, bringing the
+measure back to the same units as the prices. 
+ The data shows that NuScale exhibits significant fluctuations. However, someone
+who in 2023 made a short-term bet on Coca-Cola would have been disappointed as
+well. These metrics already give us an idea about the performance of stocks. In later
+chapters, we’ll delve into more detail and demonstrate how to determine if stocks in a
+portfolio correlate. 
+3.4.3 Limitations of yfinance
+Digging into the source code of the yfinance code on GitHub, we see that it uses web
+scraping frameworks, such as Beautiful Soup. On the landing page, the author intro-
+duces this library as a wrapper for Yahoo’s internal API, highlighting that Yahoo
+doesn’t maintain the yfinance library. For developers who rely on getting valid results,
+this scenario poses a risk. Yahoo is unlikely to inform the maintainers of an open
+source product that scrapes its data about upcoming changes. In the worst case, Yahoo
+might even decide, at some point, to implement anti-scraping methods to restrict
+access to its financial data at any time.
+ As shown in figure 3.6, sustainability data wasn’t supported with a version of yfin-
+ance in the middle of 2024. Programmers who wanted to incorporate sustainability
+data into their analysis would have to use a different library.
+ The good news is that with the latest version of yfinance, this problem disap-
+peared. Still, yfinance depends on Yahoo’s benevolence, so it’s essential to know alter-
+native products.Table 3.5 Statistics for Apple, Coca-Cola, and NuScale
+Company mean std var
+Coca-Cola -0.035349 0.134959 0.018214
+Apple 0.442217 0.199222 0.039690
+NuScale -1.149094 0.799615 0.639385
+Source: yfinance 2023 data
+
+67 3.5 Commercial libraries
+3.5 Commercial libraries
+For many personal investment assessments, yfinance is just fine. While commercial
+libraries primarily target companies seeking to develop their financial products, there
+are still compelling reasons for private investors to collaborate with these libraries.
+ The freemium model of commercial libraries encompasses certain aspects of anal-
+ysis for personal use. If, for instance, the limitation of a free plan is that some data
+arrives delayed or you have a limited quota of API calls, you might still run some algo-
+rithms on stocks in your portfolio. In this book, we primarily use yfinance, but in some
+examples later, we’ll use some of these commercial libraries in their freemium ver-
+sions, where it makes sense.
+NOTE Commercial libraries require you to create API keys. In the appendix,
+we show a general approach to working with API keys.
+Before we explore commercial libraries, let’s see how the ideal data provision works.
+Scraping data from a UI, as in yfinance, adds risks and overhead. The moment the UI
+structure changes, we may need to adjust our code to scrape the platform. One risk
+that users of yfinance face is that Yahoo could change its policy to allow an open
+source library to scrape its data. While we can transition as private investors to a differ-
+ent library, some of us prefer not to make that effort and are ready to pay a small sum
+for a commercial product, especially if it helps us generate better returns.
+ The root for technical data is the exchange that lists the stocks we’re interested in.
+As we have many exchanges, various entities provide data from different sources.
+Don’t forget that we also have international exchanges, in addition to US exchanges,
+and collect data from all over the world. Each of these exchanges may provide differ-
+ent APIs and standards. We need to dedicate some effort to maintaining the data col-
+lection process if we aim to build a commercial library that provides data from all
+exchanges.
+ 
+Figure 3.6 Initial limitations of yfinance with sustainability data. Note that this problem is gone with newer 
+versions.
+
+
+68 CHAPTER  3Collecting data
+Fundamental data is extracted from accounting statements; the best source is to load
+data from those entities where the data is filed. This information should be available
+to the public anyway. Let’s examine figure 3.7, which illustrates a reference process.
+Data providers collect data from exchanges and government agencies. While account-
+ing statements are filed quarterly, share prices change frequently during an exchange’s
+opening times, so data from exchanges is likely a streaming source.
+NOTE We can integrate generative AI (GenAI) platforms into our source code,
+submit prompts, and interpret results using frameworks such as LangChain.
+Large language models (LLMs) and AI agents will eventually transform the way
+we analyze investments. For now, being able to collect data to obtain reproduc-
+ible results deterministically is a use case that GenAI hasn’t yet replaced.Financial providers and their data providers
+Yahoo Finance statistics ( https:/ /mng.bz/z2Dg ) confirm that Yahoo Finance uses
+data providers such as Refinitiv, Edgar Online, and Morningstar to collect information.
+The provider EODHD ( https://eodhd.com/ ) claims in its FAQ that it collects data through
+direct contracts with various exchanges. They also collect fundamental data from finan-
+cial news providers, corporate websites, and annual reports, with direct extraction from
+www.sec.gov  for the US and www.sedarplus.ca/landingpage/  for Canada.
+UserAPI Financial Data
+ProviderRegulator
+Exchange 1
+Exchange 2Fundamentals
+Technicals
+Technicals
+... more exchangesAPIAPI
+API
+Figure 3.7 In a slightly simplified way, users can collect data from financial data providers, who 
+collect technical data from one or more exchanges per country and one regulator per country.
+
+69 3.5 Commercial libraries
+Many companies provide financial data to consumers. Some, such as Refinitiv and
+Morgan Stanley, are focused on business-to-business (B2B) companies. In this book,
+we focus on four providers that may be of interest to start-ups, as listed in table 3.6.
+3.5.1 Finviz
+Finviz is a popular financial platform best known for its feature-rich stock screener
+on the platform’s webpage, as shown in figure 3.8. The major downside of this plat-
+form is that it only provides data for companies listed on US exchanges. Because
+Finviz is popular among investors and often featured in finance training videos, it
+still makes sense to introduce the API to users who plan to invest only in the United
+States and appreciate the stock screener’s richness. However, we won’t use this API
+for samples in the book.Table 3.6 APIs and their packages
+Platform Packages
+Finviz Elite subscription costs $24.96 per month.
+EODHD Packages range from $0 to $199.00 per month.
+Alpha Vantage Packages range from $0 to $249.99 per month.
+OpenBB Pricing isn’t disclosed.
+Figure 3.8 Finviz stock screener home page showing various tickers
+
+70 CHAPTER  3Collecting data
+Finviz offers a paid subscription called Finviz Elite, which offers an API. You can set up
+an authentication token to parse the screener, as shown in figure 3.9.
+After generating a token, we can access stock data. In this example, we can use the fol-
+lowing code to access Finviz and export data to a CSV file. We use a REST API to col-
+lect information about the stock. It exports all data based on predefined filters,
+allowing us to collect fundamental data. Note that to execute the following code, you
+need to define a variable token that contains your access token. This token is required
+for multiple requests to collect data from Finviz:
+import requests
+URL = f"https://elite.finviz.com/export.ashx?[allYourFilters]&auth={token}"
+response = requests.get(URL)
+open("export.csv", "wb").write(response.content)
+The commercial Finviz API also lets users collect data for the portfolios they create on
+the platform. Figure 3.10 shows a sample portfolio in Finviz. A portfolio is a list of
+stocks a user tracks to which they can add the number of shares they own. With that,
+you can quickly run a personalized portfolio analysis if you’ve already tracked your
+portfolio on Finviz.
+ A unique ID identifies every user portfolio. Using the paid Finviz API, users can
+collect data via the following URL by passing the portfolio ID as a variable:
+https://elite.finviz.com/portfolio_export.ashx?
+pid={pid}&o=price&auth={token}
+Python Package Index (PyPI) lists alternative and free libraries that scrape Finviz data
+without using Finviz’s paid service. These libraries follow the same strategy as yfin-
+ance: They scrape data from the web and return data in Pandas DataFrames. These
+Figure 3.9 Finviz screen that explains how to use the API
+
+71 3.5 Commercial libraries
+libraries also share the same risks as yfinance. If the financial platform deploys anti-
+scraping methods, the libraries become unusable.
+NOTE Finviz users might observe that stocks of companies with a headquar-
+ters outside the United States are displayed, even though Finviz only supports
+US stock markets. For example, users may be able to explore a Danish company
+that produces weight loss drugs (Novo Nordisk), but they don’t see a large
+windmill producer from Denmark (Ørsted A/S). The reason is American
+Depositary Receipts (ADRs), which mirror a stock from a foreign exchange to
+the US exchange. However, this vehicle has downsides, including dividend
+custody fees and other risks.
+The paid Finviz API may be a suitable alternative for investors who primarily use US
+stock exchanges and want to avoid potential long-term risks associated with incompat-
+ibilities with open source libraries. Still, we must continue our search, as we need a
+library that covers a wide range of stock exchanges.
+3.5.2 EODHD
+Finviz and yfinance, the libraries we’ve explored so far, attract users with powerful UIs
+that provide stock screening functionality and add libraries to collect data as an addi-
+tional feature. EODHD, in contrast, is a platform where data provision is the primary
+business model.
+ EODHD offers a freemium model that provides historical data from the previous
+year. It’s limited to 20 API calls per day, which may be helpful to private investors who
+run analyses on their data infrequently. The paid subscription helps programmers
+build a product that expects many API calls from clients, as their pricing data includes
+features such as 100,000 API calls per day or 1,000 API requests per minute.
+Figure 3.10 Example portfolio with Finviz containing assets associated with climate change
+
+72 CHAPTER  3Collecting data
+ The first part of the following code is self-explanatory. We instantiate a client
+object using an API key as a parameter that identifies us:
+from eodhd import APIClient
+client = APIClient(api_key)
+The platform then determines whether we’re authorized to use specific features based
+on our subscription model (see the appendix for more information on API keys). The
+biggest challenge with the Finviz library is that it only supported US exchanges. Let’s
+confirm that we aren’t limited in such a way using EODHD. We run code to collect the
+number of exchanges and obtain 77 exchanges connected to this platform, as shown
+in table 3.7:
+client.get_exchanges()
+With 77 exchanges, we can build a product that caters to the international market.
+Let’s load some historical data from Rolls-Royce on the LSE and display the results in
+table 3.8.
+resp = client.get_eod_historical_stock_market_data(symbol = 'RR.LSE',
+ period='d', from_date = '2024-06-01', to_date = '2024-06-17', order='a')
+df = pd.DataFrame(resp)
+df Table 3.7 A query that returns 77 possible exchanges for EODHD
+Name Code OperatingMIC Country Currency CountryISO02 CountryISO03
+0 USA Stocks US XNAS, XNYS, 
+OTCMUS USD US US
+1 London Stock 
+ExchangeLSE XLON UK GBP GB GBR
+2 Toronto 
+ExchangeTO XTSE Canada CAD CA CAN
+3 TSX Venture 
+ExchangeV XTSX Canada CAD CA CAN
+4 NEO Exchange NEO NEOE Canada CAD CA CAN
+Source: Data is from the DataFrame.
+Table 3.8 EODHD showing the data for Rolls-Royce
+Date Open High Low Close Adjusted close Volume
+2024-06-03 459.30000000 468.10000000 458.60000000 460.90000000 460.90000000 51,917,078
+2024-06-04 460.20000000 462.70000000 448.00000000 448.00000000 448.00000000 31,952,811
+
+73 3.5 Commercial libraries
+Comparing the results of this DataFrame with the yfinance DataFrame reveals that
+both have a similar column structure. If we’re willing to pay for EODHD as a data pro-
+vider, we would eliminate these limitations and be able to switch from yfinance to
+EODHD without having to rewrite a lot of code, as the interfaces are similar.
+3.5.3 Alpha Vantage
+Like EODHD, Alpha Vantage’s primary business model is to provide financial data
+via an API. The provider offers a free package and advanced services through a paid
+subscription.
+ Let’s collect some time series data. In this example, we load data from Apple. As
+with EODHD, we need a key that authenticates us. We’ll get access to more data if we
+upgrade our key with a paid subscription:
+from alpha_vantage.timeseries import TimeSeries
+import pandas as pd
+symbol = 'AAPL'
+ts = TimeSeries(key)
+data, meta_data = ts.get_daily(symbol=symbol)
+df = pd.DataFrame(data)
+df
+The result is again a DataFrame, as shown in table 3.9. However, the columns and rows
+are displayed transposed by default in EODHD and yfinance.2024-06-05 450.70000000 458.00000000 448.80000000 453.30000000 453.30000000 19,116,760
+2024-06-06 458.00000000 463.10000000 450.50000000 458.20000000 458.20000000 19,410,820
+2024-06-07 458.20000000 462.30000000 451.00000000 456.90000000 456.90000000 15,420,780
+Source: London Stock Exchange
+Table 3.9 The results of querying data from Alpha Vantage (inverted compared to yfinance or EODHD)
+Type 2025-06-06 2025-06-05 2025-06-04 2025-06-03 2025-06-02 2025-05-30 2025-05-29 2025-05-28
+Open 203.0000 203.5000 202.9100 201.3500 200.2800 199.3700 203.5750 200.5900
+High 205.7000 204.7500 206.2400 203.7700 202.1300 201.9600 203.8100 202.7300
+Low 202.0500 200.1500 202.1000 200.9550 200.1200 196.7800 198.5100 199.9000
+Close 203.9200 200.6300 202.8200 203.2700 201.7000 200.8500 199.9500 200.4200
+Volume 46,607,693 55,221,235 43,603,985 46,381,567 35,423,294 70,819,942 51,477,938 45,339,678
+Source: yfinance Table 3.8 EODHD showing the data for Rolls-Royce  (continued)
+Date Open High Low Close Adjusted close Volume
+
+74 CHAPTER  3Collecting data
+L u c k i l y ,  t r a n s f o r m i n g  t o  t h e  s t y l e  o f  y f i n a n c e  a n d  E O D H D  r e q u i r e s  o n l y  o n e  c o m -
+mand, df.T , and the results are shown in table 3.10.
+There’s one hidden limitation. Many platforms return two different datasets for
+the closing price: the adjusted close and the close price. The adjusted close price
+returns data is adjusted for stock splits and dividend payouts. The good news is
+that we can obtain the adjusted close price using an alternative method. However,
+this method is part of a premium service. Calling the following method without a
+subscription would only return a message that tells us to subscribe to a premium
+service:
+data, meta_data = ts.get_daily_adjusted(symbol, outputsize='full')
+The free package includes another feature that may be of interest to programmers.
+The following code collects news sentiments through the REST API from Alpha Van-
+tage and stores them in a DataFrame. For this code example, we use the ticker SMR,
+which we used earlier to represent the stock of NuScale Power, a nuclear energy com-
+pany that builds Small Modular Reactors (SMRs). Figure 3.11 shows the output of the
+following query:
+import requests
+import pandas as pd
+ticker = 'SMR'
+url = f'https://www.alphavantage.co/query?
+function=NEWS_SENTIMENT&tickers={ticker}&apikey={key}'
+r = requests.get(url)
+data = r.json()['feed']
+df = pd.DataFrame.from_dict(data)
+dfTable 3.10 Data from Alpha Vantage after a transpose operation to match the structure of yfinance
+and EODHD
+Date Open High Low Close Volume
+2025-06-06 203.0000 205.7000 202.0500 203.9200 46,607,693
+2025-06-05 203.5000 203.5000 200.1500 200.6300 55,221,235
+2025-06-04 202.9100 206.2400 202.1000 202.8200 43,603,985
+Source: yfinance
+
+75 3.5 Commercial libraries
+3.5.4 OpenBB
+OpenBB integrates various asset classes beyond stocks. However, first, let’s demon-
+strate how to collect data using methods similar to those employed by other libraries.
+Using two lines, we collect technical data on a stock:
+from openbb import obb
+obb.equity.price.historical("NVDA").to_df().head()
+As shown in table 3.11, our output is like that of other libraries that load technical
+data for stocks.
+NOTE At the time of writing this book, the OpenBB library didn’t yet support
+the latest available Python version (3.13). Users who want to explore this
+library can use Python version 3.12.
+Let’s focus on this API’s differentiator. The following code shows how to integrate
+multiple data providers into this API. We can work with various providers in theory,
+which increases our possibilities by allowing us to switch from one provider to another
+without requiring any code changes:
+obb.equity.price.historical("NVDA", provider="yfinance").to_df().head()Table 3.11 Retrieving technical data through OpenBB
+Date Open High Low Close Volume
+2023-06-26 42.460999 42.76400 40.099998 40.632000 594,322,000
+2023-06-27 40.799000 41.93999 40.448002 41.875999 4,621,750,000
+2023-06-28 40.660000 41.845001 40.518002 41.117001 582,639,000
+2023-06-29 41.557999 41.599998 40.599998 40.821999 380,514,000
+2023-06-30 41.680000 42.549999 41.500999 42.301998 501,148,000
+Source: OpenBB
+Figure 3.11 The sentiment analysis results for the nuclear energy company NuScale
+
+76 CHAPTER  3Collecting data
+But this doesn’t end here. So far, we’ve been focused on stock information, but as we
+learned in chapter 1, the financial universe consists of many assets. Let’s look at the
+following self-explanatory snippets:
+obb.currency.price.historical("USDGBP").to_df().head()
+obb.fixedincome.government.treasury_rates(
+start_date="2024-01-02").to_df().dropna()
+obb.crypto.price.historical("SOLUSD").to_df().tail()
+Using this library, we also get access to other assets. OpenBB might be the best library
+for programmers who want to explore markets other than stocks; they could choose
+this library.
+3.6 Other libraries
+The Awesome Quant GitHub page at https:/ /github.com/wilsonfreitas/awesome-quant
+provides a comprehensive list of alternatives for collecting financial data. However,
+rewriting the code can be time-consuming if we choose libraries and later find out
+that they don’t meet our expectations.
+ One parameter to see if the library meets today’s standards is the day of its last
+update. The PyPi web page is a commonly used repository for Python libraries and
+provides this information. All we need to do is look at the library’s page, as shown with
+yfinance here: https:/ /pypi.org/project/yfinance/ . We can see regular releases in the
+PyPI release History page. 
+ Another source of information is a library’s GitHub repository, where the library’s
+source code is hosted. We can look for the dates of the most recent commits. Follow-
+ing is the link to the yfinance repository: https:/ /github.com/ranaroussi/yfinance .
+ One rule of thumb is to use a library that has been updated within the past year.
+New Python versions are being released, and financial platforms are changing their
+interfaces. At some point, a library may become incompatible if nobody is left to main-
+tain it. For that reason, we want libraries with multiple contributors. We should also
+compare libraries by the number of stars and forks and select more popular libraries,
+as this indicates a substantial likelihood of attracting new contributors.
+ We aim to filter the existing library repository to identify further possible limita-
+tions. Let’s set some further criteria:
+Some libraries require system-specific software and may only support specific
+operating systems. We want libraries that run on most platforms.
+Some APIs are designed specifically for stock exchanges in a single country. We
+look for libraries that support as many stock exchanges as possible.
+Although English is the default language for most projects, we may encounter
+projects that use a different documentation language. We want to exclude these
+projects.
+
+77 Summary
+For this book, we’ll focus as much as possible on yfinance. It’s the best-known API
+for investment analysis, and you’ll find tons of snippets and advice to extend the
+code you write.
+Summary
+We can categorize data into three groups: fundamental, technical, and non-
+financial.
+Data science notebooks are ideal for analyzing individual stocks, as their inter-
+active nature allows you to explore data and discover insights rapidly.
+Fundamental analysis involves examining financial reports and ratios.
+Technical analysis involves analyzing asset prices to inform sound investment
+decisions.
+Nonfinancial analysis encompasses all data unrelated to technical and fundamen-
+tal analysis and may, for instance, include sentiment analysis about a company.
+Different libraries offer different advantages and have other constraints. It’s
+good to know more than one library to load financial data.
+yfinance is the best library for beginners experimenting with financial data
+because it’s free and provides stock data from numerous exchanges (both US
+and non-US) for fundamental and technical analysis. 
+Using the yfinance library for professional financial products is risky because
+Yahoo doesn’t officially support it. Any changes to the Yahoo Finance platform
+can cause the library to break without warning.
+To build a commercial product using financial data, you need libraries that
+offer a paid subscription and provide service guarantees. EODHD, Finviz, Alpha
+Vantage, and OpenBB are candidates that could be explored further.
+Finviz provides an API on a paid subscription basis and supports only stocks
+listed on US exchanges. It can be a good option for investors who plan to invest
+only in the US market.
+EODHD is a commercial data provider that offers a free version with limited
+API calls, supporting many exchanges. If you have a limited number of daily
+calls, use the free EODHD version.
+Alpha Vantage is a commercial data provider with a limited free version. One
+challenge with the free API is that it doesn’t provide adjusted close prices.
+Alpha Vantage allows you to collect news sentiments through its library, making
+it unique among similar libraries.
+O p e n B B  i s  a  c o m m e r c i a l  d a t a  p r o v i d e r  t h a t  o f f e r s  a c c e s s  t o  a  w i d e  r a n g e  o f
+assets beyond stocks, including bonds, cryptocurrencies, and foreign exchange
+markets. Use this library if you’re interested in more generic investment strate-
+gies and aren’t limited to investing in stocks.
+
+78Growth portfolios
+This chapter explores the process of building an asset portfolio designed to outper-
+form the market. Finding these winners, or alphas as they are often called, is the
+holy grail of investing. A stock picker who consistently is just slightly more right
+than wrong may have already gained the Midas touch.
+ Many investors distinguish between gambling and investing when making
+decisions about trading assets. We’re excited about potential investment ideas
+that could make us wealthy. And as these dreams of joining the Warren Buffett
+club are overly pleasant, we tend to downplay doubts that threaten to undermine
+this endearing feeling of getting rich soon. Gambling begins when we rely more onThis chapter covers
+Using an investment thesis to predict growth 
+companies
+Creating a portfolio that reflects an investment 
+thesis
+Finding specific assets that reflect your thesis 
+for your portfolio
+Taking the required risks to pursue potential 
+gains
+
+79 4.1 Investment thesis
+feelings than on critical thinking when making investment decisions. With only a little
+research, we find suitable candidates for investments. The tricky part is conducting
+the required deep research to identify those candidates for an investment that truly
+yields a return.
+ I first learned how important a well-considered strategy can be at the age of 10 in
+chess club. As I had started playing chess earlier than my peers, I was more skilled at see-
+ing combinations, such as forks, to capture my opponents’ pieces, which allowed me to
+win most of my games. My chess teacher saw me moving around and waiting for my
+opponent to make a mistake. He took me aside and told me: “If you just rely on some-
+one else to make a mistake to win, you’ll lose against better players. You need a strategy
+to win a game. Even a bad plan is better than no plan.” He turned out to be right. Better
+players with a strategy roasted me on the chessboard. I quickly learned an indispensable
+principle of learning that can also be applied in investing: research, plan, execute,
+reflect, and adjust. With that strategy, learning from mistakes and coming out stronger is
+a necessary part of achieving long-term success. Let’s explore how we can invest with a
+plan. We begin with a case study for a specific domain, and then we extract the lessons
+learned from that case study to create a generic approach to researching investments.
+4.1 Investment thesis
+An investment thesis  is a researched theory about a stock’s predicted performance. We
+face many possible scenarios. Some share prices have performed poorly, and we con-
+sider them undervalued, betting on a turnaround. Other stocks may provide a solid
+income through steadily growing dividends, and we believe this trend will continue.
+And, of course, we might also bet against companies and short-sell assets that we con-
+sider overvalued. In this chapter, we aim to showcase one of these many possible sce-
+narios, focusing on companies poised for growth and expansion.
+ Creators of an investment thesis must be able to defend their reasoning and allow,
+or even better, invite others to challenge their ideas. The more unbiased experts who
+peer-review the thesis, the better. Let’s start this investigation with the idea that we’ll
+refine until we identify a group of assets to purchase. One essential aspect of buying
+assets is defining goals to understand from the start and having a guideline for hold-
+ing or selling the asset in the future.
+NOTE The chapter’s focus is to outline a process for finding stocks, not to
+promote a specific set of stocks for you to purchase. You may continue to con-
+duct your own extended research based on insights from this chapter. What
+remains crucial is that you only invest in businesses you understand.
+4.1.1 Starting with an idea
+Chapter 2, section 2.2, covering industry classification, outlines how businesses can
+vary significantly from one another. Different business models pose different chal-
+lenges, and if you don’t know what can go wrong in a specific domain, you risk a lot by
+investing in it.
+
+80 CHAPTER  4Growth portfolios
+ The Dunning-Kruger effect is a cognitive bias where people with low ability in a
+specific area tend to overestimate their competence, while those with high ability tend
+to underestimate theirs. When we encounter individuals who are new to a field we’ve
+already mastered, the consequences of that bias often become apparent to us. We
+often see the extent of misery when inexperienced persons take bold actions, and we
+frequently can predict where they fail and when. But how can we guarantee that we’re
+not victims of the Dunning-Kruger effect ourselves when we pick companies to invest
+in? The brutal answer is that we can never be 100% sure if we’re too confident. Unde-
+tected overconfidence is likely one of the primary root causes why so many people fail
+in their investment journey.
+ Still, we can reduce the chances of being overconfident by picking a field where
+there is evidence that we understand one thing or two, such as through a track record
+of work experience. That’s why I picked an industry I’ve worked in for a while.
+ Evolving an idea into a thesis is accomplished through iterative steps. We must
+gradually refine our thoughts and challenge them until we arrive at a refined concept.
+The path to a good thesis can be rocky. We sometimes must accept that we’re on the
+wrong path and need to start over. This process is similar to designing a product for a
+start-up: occasionally, you need to pivot, but eventually, you learn what the market
+needs. One advantage of an investor over a founder is that an investor doesn’t have to
+bring all the entrepreneurial skills to the table to launch products or services.
+ When it becomes clear that we can defend our theory about a profitable business
+through reasoning and receive feedback, we’re on to something. We can start calling
+our idea a thesis.
+Investment idea: Autonomous driving will pay off
+The market for autonomous driving is growing. Numerous statistics support this
+assertion: at some point in the future, self-driving vehicles will become the norm, not
+the exception. Waymo claims to deliver 250,000 driverless robotaxi rides a week
+(https://waymo.com/sustainability/ ). Various sources predict that this market will
+grow exponentially worldwide.
+Assuming that this market keeps growing, we can foresee the following effects:
+Fewer individuals will own cars. Instead, people will gradually switch to robo-
+taxis to get to their destinations.
+For logistics companies, trucks without drivers will expand their reach, as
+algorithms require no rest, unlike human drivers.
+As the demand for self-driving cars grows, so will the demand for the required
+hardware, such as sensors.
+A complete transition to autonomous driving will affect infrastructure. With
+robotaxis, the demand for parking slots in city centers will be minimized,
+allowing a considerable amount of space below concrete to be repurposed for
+other uses.
+
+81 4.1 Investment thesis
+4.1.2 Challenging the idea
+Conducting a strengths, weaknesses, opportunities, and threats (SWOT) analysis of
+this investment idea enables a more in-depth examination, leading to a more detailed
+exploration. We can use large language models (LLMs) to learn about them or
+engage in discussions with domain experts within our network. Many experts raise
+ethical questions about self-driving cars. Suppose an autonomous vehicle can’t pre-
+vent an accident. An algorithm must decide whether to drive into a meadow, where it
+will hit a person standing there, or hit a wall that will hurt the person in the car. A
+lengthy discussion about possible priorities, which go far beyond this simple example,
+and about other safety requirements, such as protection standards against hacking,
+can slow down or halt the adoption of self-driving vehicles. 
+Think like a science fiction author and imagine a world where autonomous driving is
+fully adopted. Robotaxis follow a ride-hailing business model similar to Uber’s. You
+order, you get in at your origin, leave the car at your destination, and the car picks up
+the next passenger. Owning a car will be like owning a horse today; it will merely be a
+status symbol. The moment autonomous driving is proven to be safer, expect insur-
+ance companies to insist on higher premiums if people still choose to drive them-
+selves, which may accelerate the adoption of autonomous driving.When people discuss autonomous driving, experts refer to it as level 5—full automa-
+tion. Under the term Advanced Driver-Assistance System (ADAS), we summarize
+many more technologies in greater detail that will eventually lead to full automation,
+such as parking sensors or collision warnings. Each category in ADAS may be a valu-
+able investment opportunity.
+Just as digitalization has created new tech giants that didn’t exist before, the field of
+autonomous driving can provide an environment for new start-ups to grow and
+become significant players. Other companies may lose business due to the emer-
+gence of autonomous driving.
+Sub-thesis: Ethics and security may slow down, but not halt
+A nation serious about its AI strategy can’t afford to prohibit the development of self-
+driving cars due to concerns over ethics and security. Any country that halts its research
+while others advance will quickly face a significant competitive disadvantage.
+Additional bureaucracy, due to ethical and security concerns, may still deter some
+contenders, and autocratic governments might have an advantage in enforcing inno-
+vation compared to democracies. This presents a dilemma for investors, who must
+weigh their preference for societies that value human rights against a nation’s sheer
+“ability to execute.”
+
+82 CHAPTER  4Growth portfolios
+ In such a world, we can envision the vast amount of concrete in parking spaces
+being pulverized into dust and replaced with fertile earth on which trees and gardens
+can grow. We can imagine start-ups creating a business model by buying cars and leas-
+ing them to companies that orchestrate rides, such as Uber. Of course, we can also
+consider all the companies that build hardware for these cars. Let’s group potential
+growth assets for autonomous driving:
+Ride-hailing services —Companies that offer ride-hailing services can benefit
+from cost reduction by replacing drivers with autonomous systems. 
+Car manufacturers with a level-5 system —Leaders in the field of autonomous driv-
+ing may increase sales if clients trust them more than their competitors. 
+Truck manufacturers with a level-5 system —Driverless trucks can be operated 24/7
+with only brief breaks for loading, unloading, and refueling.
+Appliance providers —Some companies offer complete autonomous driving sys-
+tems to car manufacturers, but they don’t manufacture cars themselves.
+Component providers —Some companies produce components for autonomous
+driving systems, encompassing both hardware and software at a high level.
+We also need to consider countries where companies reside, as they create the space
+for them to evolve. Without a doubt, the United States is the leader in the robotaxi
+field. However, we can’t exclude other countries with a firm bid on technologies
+enabling this transition, such as China, Israel, and Germany.
+One way to move forward is to explore car manufacturers that haven’t yet established
+a strong reputation in their robotaxi program but are performing better than is pub-
+licly known. However, we need access to recent insider knowledge of employees work-
+ing for these companies.
+ Let’s explore suppliers whose products enable the development of autonomous
+cars. A self-driving car relies on a combination of several key components to operate
+autonomously. Following is a list of various additional components an autonomous
+car needs:
+Sensors:
+–Light Detection and Ranging (LiDAR) —Measures distances using laser light to
+create a 3D map of the environment.Sub-thesis: Known brands are already valued highly
+Known brands working on solutions for robotaxis include Google (Waymo), Amazon
+(Zoox), and Tesla. Their capabilities to innovate are already reflected in their stock
+prices, so buying these shares means we’re not purchasing undervalued stocks.
+Although these companies may be excellent investment opportunities otherwise
+(Note: the author holds shares of two of these companies), we decide to focus on
+smaller, lesser-known companies that have more substantial growth potential.
+
+83 4.1 Investment thesis
+–Radar —Uses radio waves to detect objects and their speeds, especially in
+poor visibility conditions.
+–Cameras —Provide visual information about the surroundings for object rec-
+ognition and lane detection.
+–Ultrasonic  sensors —Detect objects close to the vehicle, which is helpful for
+parking and low-speed maneuvers.
+Processing unit:
+–Car processing units —Handle data from sensors, run machine learning mod-
+els, and perform complex calculations to make real-time decisions.
+Software:
+–Perception algorithms —Interpret sensor data to recognize objects, pedestrians,
+and road signs.
+–Localization software —Determines the car’s precise location using GPS and
+detailed maps.
+–Planning and decision-making algorithms —Determine the best course of action
+based on current and anticipated traffic situations.
+–Control systems —Manage the vehicle’s speed, steering, and braking based on
+the planned route.
+Connectivity:
+–Vehicle-to-everything (V2X) communication —Enables communication with other
+vehicles, infrastructure, and network services for enhanced situational aware-
+ness and coordination.
+Mapping:
+–High-definition maps —Provide detailed information about road geometry, traf-
+fic signals, and lane markings, which are crucial for accurate navigation.
+Power supply:
+–Battery and power management —Ensures all electronic components and sensors
+are adequately powered.
+Researching the potential change in demand for each of these components requires
+considerable effort. We need to understand the industry and assess its specific details.
+Some industries may depend heavily on raw materials and be vulnerable to shortages,
+while others may face a market with a high number of competitors.
+ If we were to write a book about investing in companies for autonomous driving,
+we could dedicate a chapter to each component in the supply chain and analyze it in
+detail, including individual SWOT analyses and a thorough technical study. Compar-
+ing serious investing with gambling—picking a potentially promising company with-
+out thorough research—highlights the significant effort required to make informed
+decisions. This book aims to outline a research process. Therefore, we need to nar-
+row our focus and skip detailed research on every component. Instead, we’ll illus-
+trate the process within a specific domain and select LiDAR systems as a likely
+candidate for research.
+
+84 CHAPTER  4Growth portfolios
+The methodology for identifying concrete assets to invest in becomes more appar-
+ent with each step, and we define what we’re looking for more precisely. However,
+we’re still proceeding. Let’s explore LiDAR further before selecting our first assets
+to investigate.
+4.1.3 Your investment thesis
+We’ve demonstrated how to explore ideas to arrive at a thesis. Given that autonomous
+driving is a game-changer, our theory is that the market for LiDAR systems will
+rebound. 
+ We can now begin with an in-depth analysis and collect as much information about
+the market as possible. You can use note-taking apps such as Notion and OneNote to
+structure your research. Some of us may collect all the notes in the data science note-
+books we use for analysis. Just keep in mind that a significant amount of research
+occurs outside of code environments.
+ We gradually need to pick investment candidates and keep researching them. With
+every research, here are the main questions:
+Can the company generate immense cash in the upcoming years, outperform-
+ing potential competitors?
+How well can the company protect these profits from copycats? (Buffett calls
+the ability of a company to wall itself from competitors an economic moat .)
+How large is the margin of safety to protect oneself against risks?
+Let’s explore this showcase further and examine the LiDAR market.Refined investment idea: LiDAR will rebound
+While investing in AI and car manufacturers such as Tesla has been booming, the
+share prices of companies that provide sensors and other types of hardware are
+undervalued. As the LiDAR market is capital-intensive, many investors may be hesi-
+tant, primarily due to the high interest rates of recent years. However, if the number
+of robotaxi drives increases, demand for hardware will rise, and these companies will
+see a corresponding rise in valuation.
+LiDAR may also have applications beyond autonomous driving. The world is facing sig-
+nificant demographic shifts, and the number of workers is expected to decline in the
+upcoming years. LiDAR systems are part of factory automation, reducing the demand
+for human workers. This reduction in worker demand is also highly beneficial in min-
+ing, as some areas are inaccessible to human workers.
+We see examples of many stocks that have successfully rebounded after unfavorable
+times, and LiDAR wouldn’t be the first industry to be resurrected. If the market for
+these sensors is down in 2025 and we expect demand to increase in the upcoming
+years, we might consider buying low today and selling high later. 
+
+85 4.2 LiDAR market
+4.2 LiDAR market
+The global LiDAR market was valued at approximately $2–$2.5 billion in 2023. With a
+compound annual growth rate (CAGR) of 20%–25%—the mean annual growth rate
+of an investment over a period longer than one year—it’s expected to reach $6 to $8
+billion within seven years. This growth rate appears promising, but further explora-
+tion is needed to determine whether to invest in this market. Let’s examine the key
+information that could influence our decision to invest in LiDAR:
+Technology differentiation —LiDAR technologies can be divided into several types,
+including time-of-flight, frequency-modulated continuous wave (FMCW), and
+solid-state LiDAR. I spoke with an autonomous driving expert who highlighted
+that moving parts in hardware components lead to wear and tear, which makes
+them more costly. He therefore sees an advantage in solid-state LiDAR systems,
+which are also smaller than other LiDAR systems.
+Cost efficiency and scalability —Different vendors offer systems with varying ranges,
+resolutions, and accuracies. Superior performance often comes at a cost, which
+is reflected in the total price of the system.
+Some manufacturers may achieve a satisfactory performance with less costly
+systems. Some of them may even attempt to find alternatives to expensive
+LiDAR systems by relying solely on cameras.
+Strategic partnerships —Some LiDAR manufacturers have partnered with automo-
+tive, robotics, or industrial automation players. New deals with prominent com-
+panies, such as Tesla and Ford, as well as tech giants Google and Amazon, could
+indicate that LiDAR companies will become increasingly valuable.
+Regulatory environment and market adoption —The LiDAR market covers autono-
+mous driving, drones, and smart city initiatives. In addition, architects and engi-
+neers (not to mention research scientists such as geologists, geographers, and
+archaeologists) use LiDAR heavily. Companies with products that meet evolving
+safety and regulatory standards (especially in automotive) will have an edge. To
+cover this topic, we must discuss geopolitical challenges. As Chinese companies,
+such as Huawei, have been banned by the United States, we must explore
+whether Chinese LiDAR makers might face similar challenges.
+Patent portfolio —Companies with a solid intellectual property portfolio in sensor
+design, signal processing, or AI integration may have a sustainable competitive
+advantage. This section will delve into considerable detail and may require a
+deep technical understanding of the components of LiDAR systems. We need
+to assess whether specific scanning technologies patented by companies pro-
+vide them with a competitive advantage.
+Competition —Smaller companies that innovate faster or disrupt traditional busi-
+ness models may offer higher growth potential. In one of the interviews, an
+expert expressed a strong opinion that he believes LiDAR start-ups lack the
+
+86 CHAPTER  4Growth portfolios
+power to compete against existing giants in the industry, which have been on
+the market for years.
+Financials and leadership —Strong balance sheets, low debt, and competent lead-
+ership, along with a clear road map for growth, are essential. However, given
+that LiDAR is capital-intensive, we must be vigilant for excessive cash burn rates
+that don’t generate clear revenue.
+4.2.1 Picking candidates
+It’s time to select our first investment candidates. Although they may not yet be the
+companies we invest in, we use them to learn more about what we’re looking for until
+we can make final decisions. After conducting web research and reading articles on
+various platforms, we selected four LiDAR manufacturers for an initial investigation. A
+GenAI chat also supported the results of this initial research.
+ An initial list of investment candidates is not finite. We can add new companies to
+this list later or remove some as needed. However, we must find a way to determine
+which assets are good investments, and we need to start somewhere. These are the
+four candidates, listed by stock ticker in brackets.
+Luminar Technologies (LAZR)
+Innoviz Technologies (INVZ)
+Ouster (OUST)
+Aeva Technologies (AEVA)
+We’re first interested in their market capitalization and earnings growth. The following
+market capitalization code reuses the method to collect ratios from earlier chapters:
+import yfinance as yf
+import pandas as pd
+def collect_ratios(tickers: list, ratios: list):Patience: A success factor
+One likely outcome of an investment research sprint is that you end up with inconclu-
+sive results. You may have spoken to many experts who contradict each other. You
+examine the data of specific companies; the numbers are satisfactory, but more is
+needed to convince you to invest a reasonable sum. Investors often also learn that
+the biggest enemy of the best investment opportunity is the abundance of good
+enough opportunities. If you purchase every asset you get excited about, you might
+end up with a vast portfolio of many small- to medium-sized holdings. While diversifi-
+cation itself is beneficial, losing track of what you’ve invested in and why is not.
+Occasionally, the best course of action is to document all the research and take no
+further action. Refrain from falling prey to the temptation of quick riches; instead,
+staying risk-aware and keeping a clear head are often the basis for long-term suc-
+cess. As a programmer, you know that you can rerun algorithms with new and better
+data at a later stage. So, why rush when you can proceed with confidence?
+
+87 4.2 LiDAR market
+    rows = []
+    
+    for ticker in tickers:
+        info = yf.Ticker(ticker).info
+        row = [ticker] + [info.get(ratio, None) for ratio in ratios]
+        rows.append(row)
+    return pd.DataFrame(rows, columns=["Ticker"] + ratios)
+objects = [“AEVA”, “LAZR”, “INVZ”, “OUST”]
+for o in objects:
+    ticker = yf.Ticker(o)
+    print(f"ticker {o}: {ticker.info['marketCap']}")
+Examining the results, we obtain the following market capitalization as of 2024: 
+LAZR: $449,100,640
+OUST: $308,347,328
+AEVA: $175,966,752
+INVZ: $136,608,288
+These numbers also indicate that these companies still need to become mid-cap
+stocks, which typically start with a valuation of $2 billion. The risk associated with a
+lower valuation is significantly higher, as the “too big to fail” clause may still be appli-
+cable for some companies. 
+ Let’s examine these companies’ earnings to see their performance over the past
+few years. The following code uses the Alpha Vantage library introduced in chapter 3
+to explore this information:
+from alpha_vantage.fundamentaldata import FundamentalData
+objects = [“AEVA”, “LAZR”, “INVZ”, “OUST”]
+fd = FundamentalData(key=key, output_format='pandas')
+for o in objects:
+    df_earnings = fd.get_earnings_annual(o)[0].set_index('fiscalDateEnding')
+    print(f"ticker {o}: {df_earnings}")
+We obtain the results shown in table 4.1 by ticker and reported earnings per share
+(EPS).
+Table 4.1 EPS score of four LiDAR producers
+AEVA LAZR INVZ OUST
+2024-06-30 -1.13 -0.37 -0.31 -1.08
+2023-12-31 -0.65 -0.86 -0.85 -7.68
+2022-12-31 -0.68 -0.78 -0.94 -0.74
+2021-12-31 -0.51 -0.56 -2.34 -0.83
+2020-12-31 -0.0185 -2.2127 -1.2487 -8.2332
+2019-12-31 0.05 0.0585 -2.4782 N/A
+
+88 CHAPTER  4Growth portfolios
+The numbers suggest that COVID-19 may have affected industries, as their EPS scores
+during the COVID years were lower than in other years. Nevertheless, the results show
+a general tendency toward negative earnings.
+ If you approach finance conservatively, you might object to investing in companies
+without profits. Personal finance teaches us that spending more than earning eventu-
+ally leads to high debts and misery. Entrepreneurs, however, understand that personal
+and corporate finance sometimes follow different rules. It takes some start-ups years
+to become profitable. When evaluating start-ups, investors focus on what a start-up is
+projected to earn. If the outlook is substantial enough, banks and investors will con-
+tinue to invest in these companies, even if they aren’t yet profitable.
+4.2.2 Price development
+Let’s examine how stock prices have developed in recent years, and we’ll get the same
+picture with all four of them (see figures 4.1, 4.2, 4.3, 4.4). They started somewhere,
+then there was hype about the stock, and they all fell. The obvious question, there-
+fore, is whether they can rebound.
+All four companies experienced a decline in share price. At the beginning of the
+decade, there was hype surrounding autonomous vehicles. Interestingly, share prices
+increased during the COVID-19 pandemic. Driverless cars may have sounded appeal-
+ing to many during times of social distancing. Additionally, it’s worth noting that
+LiDAR is used to automate factory work, which means a reduced dependency on
+human labor.
+LAZR
+600
+500
+400
+300
+200
+100
+0Price
+2020-01 2020-07 2021-01 2021-07 2022-01 2022-07 2023-01 2023-07 2024-01 2024-07
+DateClosing Price
+Figure 4.1 Price development of Luminar Technologies (LAZR)
+
+89 4.2 LiDAR market
+16
+14
+12
+10
+8
+6
+4
+2Price
+2020-07 2021-01 2021-07 2022-01 2022-07 2023-01 2023-07 2024-01 2024-07
+DateClosing PriceINVZ
+Figure 4.2 Price development of Innoviz Technologies Ltd (INVZ)
+160
+140
+120
+100
+80
+60
+40
+20
+0Price
+2021-01 2021-07 2022-01 2022-07 2023-01 2023-07 2024-01 2024-07
+DateClosing PriceOUST
+Figure 4.3 Price development of Ouster (OUST)
+
+90 CHAPTER  4Growth portfolios
+Following the COVID-19 pandemic, the shares declined. This decline can be attributed
+to the notion that the market was overhyped and that inflation fears, arising from the
+pandemic, particularly affected a capital-intensive industry with significant cash burn.
+Starting in 2022, the Fed increased its interest rate to combat inflation, as shown in
+figure 4.5. As it became more expensive to lend money, investors may have lost inter-
+est in capital-intensive LiDAR stocks.
+2020-01 2020-07 2021-01 2021-07 2022-01 2022-07 2023-01 2023-07 2024-01 2024-07
+Date100
+80
+60
+40
+20
+0PriceAEVA
+Closing Price
+Figure 4.4 Price development of Aeva Technologies (AEVA)
+PercentFederal Funds Eﬀective Rate
+Source: Board of Governors of the Federal Reserve System (US) via FRED®
+Shaded areas indicate U.S. recessions.2021-01 2021-07 2022-01 2022-07 2023-01 2023-07 2024-01 2024-07 2025-01 2025-07
+fred.stlouisfed.org6
+5
+4
+3
+2
+1
+0
+Figure 4.5 The interest rate at which depository institutions trade federal funds (Source: 
+https:/ /fred.stlouisfed.org/series/DFF )
+
+91 4.2 LiDAR market
+Let’s explore the highs and lows of all stocks in table 4.2 to gain a deeper understand-
+ing of their price movements.
+As these four companies are so far below their peak, let’s consider scenarios in which
+they get back on track. Let’s explore a scenario that sounds like a path to riches and
+will give us the necessary drive to keep researching.
+We must now determine the likelihood of these four companies returning to their for-
+mer levels. Investors had already been enthusiastic about the stock, and those who
+had invested after the IPO—when the stock went public—were already heavily disap-
+pointed. The question is whether it’s even possible to recoup the initial investment.
+Let’s examine the debt.
+4.2.3 Debt
+As LiDAR companies are capital-intensive, debt is a viable option to consider. If we call the
+method collect ratios with the parameters having the signature collect_ratios(objects,
+[“sector”,  “industry”,  “debtToEquity”]),  we obtain the results in table 4.3.
+ Table 4.2 Down from the all-time high
+Ticker High Low Down
+AEVA $100.00 $3.33 96.67%
+LAZR $41.80 $0.91 97.82%
+OUST $162.50 $6.36 96.09%
+INVZ $16.00 $0.79 95.06%
+Speculative scenario: LiDAR stocks rebounding
+Suppose we invested $40,000 equally among four assets, and all of these stocks
+return to their former heights. We would receive approximately 3,003 shares of AEVA,
+10,989 shares of LAZR, 1,572 shares of OUST, and 12,658 shares of INVZ. Multi-
+plying these by the high value would result in $1,217,675.75. An investment of
+$40,000 would make us millionaires. However, we must also note that if all four com-
+panies go bankrupt (obviously we don’t want that to happen), we may lose $40,000.
+Nevertheless, if three go bankrupt and only one returns to its former glory, we would
+still make a profit.
+We can formulate a speculative hypothesis: once federal interest rates decrease, the
+share prices of capital-intensive LiDAR companies are likely to rebound. Even if they
+don’t return to their former heights, we can still make a profit by buying low and sell-
+ing high.
+
+92 CHAPTER  4Growth portfolios
+Based on the financial data, AEVA and LAZR might be more troubled than the others.
+LAZR has a higher total debt than its market cap. Looking at the news, we also see that
+LAZR has announced a workforce reduction. Additionally, being listed among the
+most shorted stocks on Wall Street isn’t a positive sign ( https:/ /mng.bz/WwXd ). This
+doesn’t mean that these companies are on the verge of bankruptcy. According to the
+SEC filings, Austin Russell, the founder of Luminar, holds 104.5 million shares, which
+comprise approximately 35% of Luminar’s total outstanding shares. This high owner-
+ship could mean significant room for equity investments. Additionally, according to
+Crunchbase, the last equity investment in Luminar was made in December 2022. A
+viable business with growing potential offers ample investment opportunities. At the
+same time, it’s also clear that executives might want to wait before bringing in addi-
+tional investors if there’s room for the company to increase its valuation on its own.
+4.2.4 Management
+Many investors look at management to understand the potential. All companies are
+led by their founders. Austin Russel is the founder of Luminar. Omer David Keilaf
+cofounded and is the CEO of Innoviz. Cofounder Soroush Salehian leads Aeva, and
+Angus Pacala is the cofounder and CEO of Ouster.
+ We can continue to monitor the market; a leadership change could be a strong sig-
+nal in the market, but we can disregard this aspect for now. If founders leave these
+companies, it’s a warning sign. Investment decisions are often based on monitoring
+companies and reacting to events. For instance, if founders leave, it could be a signal
+to short-sell the company.
+4.2.5 Technology and partnership
+We can also explore these companies’ LiDAR systems to determine whether they offer
+better or worse performance:
+AEVA —FMCW
+LAZR —Hybrid solid-state (with emphasis on long-range 1550 nm lasers)
+INVZ —MEMS-Based Solid-State
+OUST —Digital Solid-State (VCSEL-based)Table 4.3 Debt-to-equity results for LiDAR companies
+Ticker sector industry debtToEquity
+AEVA Technology Software - Infrastructure 3.504
+LAZR Consumer Cyclical Auto Parts NaN
+OUST Consumer Cyclical Auto Parts 26.658
+INVZ Technology Electronic Components 39.549
+NaN = not a number.
+
+93 4.2 LiDAR market
+LLMs are great research assistants. You can ask them to rank companies and highlight
+their value propositions. ChatGPT returned the following ranking in response to a
+simple prompt to rank them:
+1Aeva (AEVA) for its unique FMCW technology and velocity measurement
+2Luminar (LAZR) for its long-range, cost-effective LiDAR solution
+3Innoviz (INVZ) for solid-state LiDAR and automotive partnerships
+4Ouster (OUST) for affordable digital LiDAR and scalability
+All companies have product road maps. For instance, Luminar Halo is designed for
+mainstream consumer vehicles. In addition, all the manufacturers have partnerships
+with existing car manufacturers. Luminar is deploying its LiDAR system in a Volvo car,
+a brand known for its maximum robustness. BMW uses Innoviz solid-state LiDAR sys-
+tems, and AEVA sells its products to Daimler Trucks. Ouster lists Zoox, the Amazon-
+owned autonomous vehicle company, as a client. Ouster might differentiate itself
+from the others in the market. The company aims for broader adoption of LiDAR,
+such as in smart cities.
+ Experts tend to disagree on the time that we’ll be fully autonomous. The pessimists
+still consider decades rather than a few years as realistic. When discussing full auto-
+mation, we highlight a scenario in which an autonomous car manages all possible
+scenarios. Imagine you’ve been using robotaxi rides for years, but then your ride unex-
+pectedly crashes because the system becomes confused by a specific combination of
+conditions. Considering all the details a vehicle might have to manage, it becomes
+clear that covering the edge cases is the real challenge.
+ You encounter scenarios where a car performs one functionality well (e.g., auto-
+mated parking) but needs time to master other cases (driving in historically grown cit-
+ies with all their narrow alleys and facing human drivers who don’t always follow
+rules). The term operational design domain  addresses this by placing automation within
+a specific context. Waymo doesn’t build cars for the consumer market. It provides taxi
+services in the city and doesn’t sell vehicles to individuals, as the car ownership busi-
+ness model is becoming obsolete. Eyeing another use case, the German Autobahn
+doesn’t have speed limits. Traveling at 200 mph or more from Berlin to Munich in an
+autonomous vehicle is one use case that residents of Germany would love to have. A
+use case that supports cars at this speed is uninteresting for the US market without
+regulatory changes in maximum speed limits. Therefore, companies targeting the
+German market may prioritize their capabilities to be fast and autonomous, while oth-
+ers focus on excelling in other areas, such as city driving.
+ Another consideration is limitations and poor capabilities. Lousy driving condi-
+tions, such as fog, can hinder even the best drivers. However, most sensors are supe-
+rior to the human eye, and autonomous cars are less limited by visual conditions.
+ You spend significant research time exploring companies in complex technical
+domains. To be effective, you must structure and continuously deepen your knowl-
+edge base. In technology, seemingly minor features—often overlooked without
+
+94 CHAPTER  4Growth portfolios
+domain-specific expertise—can be game changers. You don’t need to master every
+technical detail, but you must understand how components interact, know which
+questions to ask, and know whom to ask.
+4.2.6 Projected earnings
+Let’s examine the projected earnings for the four companies on the market. Their
+earnings per share and projected revenue growth, as of November 2024, are listed in
+table 4.4, based on data from the investment platform Seeking Alpha.
+Examining these projections, it would be irrational not to invest if they could be guar-
+anteed. Several details in these projections require validation. LAZR is expected to
+grow revenues by more than 10 times in three years; this sounds ambitious. Let’s see if
+we can gather different data from other sources.
+ We can explore whether we get similar data from Python using financial libraries.
+We can run this code, which fetches and interprets earnings estimates collected with
+the yfinance library:
+objects = [“AEVA”, “LAZR”, “INVZ”, “OUST”]
+for o in objects:
+    stock = yf.Ticker(o)
+    print(f"{o}: {stock.earnings_estimate}")
+The results of this query yield different outcomes. Table 4.5 displays the transcribed
+earnings estimates of Luminar, with the timespan on the left and expected average,
+low, and high results. The yearsAgoEps  column refers to the value in the last epoch.
+Examining the first row, yearsAgoEps  of -3 corresponds to the result of the quarter pre-
+ceding it.Table 4.4 Projected earnings in millions
+Ticker Dec 2024 Dec 2027 Growth
+AEVA 6.63 32 (in 2026) 382.65%
+INVZ 24.30 670 2660.49%
+LAZR 70.28 851 1110.8%
+OUST 111.00 311.80 180.9%
+Source: Seeking Alpha 
+Table 4.5 Earnings estimates of Luminar Technologies
+avg low high yearsAgoEps NrOfAnalysts growth
+0q -1.99971 -2.25 -1.71885 -3 4 0.3334
++1q -1.82250 -2.10 -1.50000 -2.85 4 0.3605
+
+95 4.3 Risks
+This data indicates that Luminar is still expected to post no profits. On the positive
+side, losses are expected to narrow significantly compared to prior periods. From last
+year’s EPS of –13.05, we expect an EPS of –9.94 for that year, representing a 24%
+improvement. The company is improving and burning less cash. If the trend doesn’t
+change, it’s a matter of time before a profit is achieved. However, as there’s no profit
+yet in sight, risk is involved.
+ Earnings of start-ups may be the most difficult items to project. To forecast the
+future, we often need to rely on past data. Ouster was founded in 2015, Luminar in
+2012, and Innoviz and Aeva in 2016. We can assume that these companies were wait-
+ing for autonomous driving to become mainstream so they could monetize the idea
+that, at some point, every car in the world would need “eyes.” Using the number of
+past earnings for these companies may not be a reliable source. One of the companies
+might land a big deal that suddenly becomes a game changer. This may be the time to
+stop and wait for market signals: a large contract with a major player, some informa-
+tion that the project is progressing well, or that the car is exceeding expectations.
+4.3 Risks
+Suppose we become obsessed with making millions by buying shares of undervalued
+LiDAR companies and selling them at high prices. We might lose objectivity—too
+many individuals who sank money into dreams ended up in nightmares.
+ Exploring risks may be even more important than analyzing potential benefits. If
+you miss a good investment opportunity, it might hurt your pride, but losing money
+can be even more devastating, especially if you later discover that a loss could have
+been prevented with better risk management.0y -9.94375 -10.20 -9.62 -13.05 4 0.2380
++1y -6.53799 -7.60 -5.85 -9.94 4 0.3425
+Analyzing other fields
+The purpose of this chapter is to outline the process of identifying growth companies.
+This research process often becomes far more extensive and iterative, with cycles of
+building up theses, learning from new events or insights, and refining knowledge to
+adjust the investment strategy.
+Select the domains you’re familiar with. If you’re knowledgeable in biotech, research
+companies working on mRNA vaccines. If you’re skeptical about this approach, con-
+sider weight loss drugs as a strong alternative to explore. Continue researching until
+you find the equivalent of a start-up’s unfair advantage ( https://mng.bz/8XEW ).Table 4.5 Earnings estimates of Luminar Technologies  (continued)
+avg low high yearsAgoEps NrOfAnalysts growth
+
+96 CHAPTER  4Growth portfolios
+ Hedge funds often split the roles of analysts between those who research risks and
+those who research returns. This creates checks and balances to prevent overly opti-
+mistic investments.
+ If we invest alone, we can switch viewpoints. One day, you let yourself get excited
+and explore all the good things that can happen. Another day, you switch roles and
+analyze the opportunity from a pessimist’s perspective. Seeing this opportunity from
+multiple angles will increase your chances of making the right decisions.
+ Let’s imagine we’re approached by an overly excited investor who claims that
+“LiDAR stocks will rebound once the federal interest rates go down.” Our job is now
+to explore reasons why this optimist might be wrong and what we need to analyze to
+reduce uncertainties.
+4.3.1 Falling into obsolescence
+Tesla Vision is a program that explores an autonomous driving future in which better
+computer vision algorithms replace LiDAR sensors. Many experts debate whether
+Elon Musk’s bet on a future without LiDAR systems is a good move. Many believe that
+level-5 autonomous driving without laser sensors that measure the distance to objects
+is impossible. However, what if Tesla’s strategy pays off?
+ LiDAR systems are costly components. If automakers can achieve a good enough
+level of performance without these sensors, they’ll likely eliminate them to make cars
+more affordable for their customers.
+ In the worst-case scenario, LiDAR companies focusing mainly on the automotive
+market could lose their very existence. Before investing seriously in LiDAR, a deeper
+understanding of LiDAR alternatives is helpful.
+4.3.2 Squashed by industry giants
+Waymo’s business model is to offer robotaxi rides to consumers. They don’t manufac-
+ture cars on their own. Let’s consider a scenario in which Waymo management
+decides to sell appliances to other car manufacturers, enabling them to reach level-5
+automation. Competing with Alphabet, which offers a comprehensive platform as one
+of the pioneering companies in the field of autonomous driving, might be challeng-
+ing. The bad news for those interested in investing in LiDAR start-ups is that Waymo
+builds its own hardware.
+ The four companies we investigated are start-ups that try to gain a larger market
+share with their hardware. Many existing larger corporations have been providing
+LiDAR systems to their automotive clients for years. One example is Valeo, a company
+headquartered in France. Suppose you are a car manufacturer who is deciding on new
+LiDAR systems for an upcoming model. You’ve tested the hardware of various suppli-
+ers. Let’s assume the hardware of both a new start-up and a large supplier you’ve been
+working with for many years scored equally. Would you pick the smaller supplier,
+whom you don’t know well yet, and take on more risk due to their small size?
+
+97 4.4 Ongoing analysis
+4.3.3 Globalization and conflicts
+Innoviz Technologies is headquartered in Israel. At the time of writing this chapter,
+Israel is involved in ongoing conflicts. Forecasting how existing conflicts evolve is
+beyond the scope of this book; however, we must acknowledge that companies head-
+quartered in a country facing conflict are at risk.
+ We’ve also seen trade wars between the United States and China. The United
+States has already banned Huawei, so why couldn’t the American government investi-
+gate banning Chinese LiDAR companies from the US market? Hesai Group, the lead-
+ing Chinese manufacturer, might face challenges in the US market. Looking at recent
+news, they had already been blacklisted at the Pentagon, which was reversed after the
+company sued ( https:/ /mng.bz/KwzE ).
+ In the late 1990s and early 2000s, Germany’s companies were among the leading
+producers of solar panels. More than 20 years later, China is responsible for over 80%
+of the world’s photovoltaics manufacturing capacity across the supply chain. Some
+experts argue that China’s economic model of state intervention can give Chinese
+companies an unfair advantage. To understand this risk better, we would have to
+explore scenarios in which state-controlled interventions affect the market and assess
+their likelihood.
+4.4 Ongoing analysis
+We can compare looking for investment opportunities to a hunter waiting for their
+prey. If they strike too soon or too late, they miss the target. Finding the right moment
+is also crucial when hunting for investments.
+ Like a real hunter, an investor also has limited shots. If you lock in your money too
+early in investment opportunities, you may lack the capital when a better opportunity
+arises. Therefore, an investment analysis might lead to a “let’s wait and see!” approach,
+keeping an eye out for a more favorable opportunity. In this section, we explore how
+to maintain continuous market screening.
+4.4.1 Media
+Investment platforms provide articles by analysts, for example, “LiDAR Quarterly
+Insights Q3 2024 Summary” at https:/ /mng.bz/jZDV . An investor can subscribe to
+newsletters to understand what other investors think. Additionally, platforms such as
+Reddit often feature subreddits dedicated to specific stocks, and you can follow
+companies on social media. High-quality content comes from reputable newspapers,
+such as The Wall Street Journal , The Financial Times , or Bloomberg . For domains such as
+LiDAR systems, there are notable magazines for experts who delve into the details
+about the technology.
+ One key challenge is to extract truthful content. LLMs might hallucinate, and
+content from a company’s social media or investor relations department may not
+
+98 CHAPTER  4Growth portfolios
+always be objective. A specific event for every public company is the earnings report
+assembly. No executive will ever say something like, “This quarter was horrible; we
+completely failed in everything we set out to do.” Instead, the art is to read between
+the lines. Sometimes, analysts need a solid domain understanding to interpret a CEO’s
+words correctly.
+4.4.2 Trend analysis
+Tr end s  can b e  fo r es e e n by  analyzin g G oo gl e  s ear che s  o r has ht ags  o n s o ci al m ed ia.
+Examining the LiDAR searches in figure 4.6, we observe that this topic has become
+increasingly popular over time.
+Let’s also explore the four companies we chose and examine how often they are
+searched on Google. We can experiment by adjusting stock tickers and changing
+names. After all, “ouster” also has a different meaning in English, and using the stock
+ticker OUST doesn’t help. Figure 4.7 shows the results of a Google Trends investiga-
+tion for the company names in 2024.
+ 
+Figure 4.6 LiDAR in Google Trends
+
+99 4.4 Ongoing analysis
+We can also use Python code to collect information on trends. One library to accom-
+plish this step is Pytrends. Let’s examine the following code, which collects historical
+trend data from Google:
+from pytrends.request import TrendReq
+import pandas as pd
+pytrend = TrendReq(hl='en-US', tz=360)
+keywords = [“Luminar Technologies”, “Ouster Inc”, 
+    “AEVA Technologies”, “Innoviz Technologies”]
+pytrend.build_payload(keywords, cat=0, timeframe='today 12-m', 
+    geo='', gprop='')
+interest_over_time_df = pytrend.interest_over_time()
+print(interest_over_time_df
+.head())
+interest_over_time_df.to_csv('google_trends_data.csv')
+Examining the results allows us to continue screening for trends and observe if any-
+thing changes. Table 4.6 shows the results.
+ 
+Figure 4.7 Google Trends on Ouster, Luminar, AEVA Technologies, and Innoviz
+
+100 CHAPTER  4Growth portfolios
+Trends indicate how often users search for a keyword, but we need to conduct a news
+sentiment analysis to examine the sentiments.
+4.4.3 News sentiment analysis
+We can collect news and comments from any form of media and analyze them with
+algorithms. The Alpha Vantage library, introduced in chapter 3, provides methods
+to collect reaggregated data. Let’s use the following code to examine the news senti-
+ment score:
+def collect_sentiments(ticker):
+    import requests
+    r = requests.get(f'https://www.alphavantage.co/query?
+       function=NEWS_SENTIMENT&tickers={ticker}&apikey={key}')
+    return pd.DataFrame.from_dict(r.json()['feed'])
+def summarize_sentiments(df, ticker):
+    from collections import Counter
+    ticker_sentiment = df['ticker_sentiment']
+    label_string = ""
+    score = 0
+    for record in ticker_sentiment:
+        if record[0]['ticker'] == ticker:
+            if label_string != "":
+                label_string += ","
+            label_string += record[0]['ticker_sentiment_label']
+            score += float(record[0]['ticker_sentiment_score'])
+    
+    print(score)
+    word_count = Counter(label_string.split(","))
+    word_count_df = pd.DataFrame(word_count.items(), 
+        columns=['Word', 'Count'])
+    print(word_count_df)
+Calling the method collect_sentiments  with the tickers of four start-ups will provide
+us with a sentiment score, and we categorize news results from November 2024 asTable 4.6 Trends in Google search for LiDAR companies
+Date Luminar Ouster AEVA Innoviz isPartial
+2024-10-13 33 5 3 3 True
+2024-10-06 43 5 4 3 False
+2024-09-29 42 2 2 2 False
+2024-09-22 48 0 0 0 False
+2024-09-15 39 0 0 0 False
+
+101 4.5 What is next
+bullish (BU), somewhat bullish (SW BU), neutral (NEU), somewhat bearish (SW BE),
+or bearish (BE) in table 4.7.
+The news tends to be positive. We still want to be cautious. What if most of the sources
+are from investors who plan to invest? Therefore, it’s helpful to continue analyzing
+trends, exploring shifts when they occur, and checking the sources carefully.
+4.4.4 Measuring success
+Whatever thesis you follow, always ask yourself how to measure success. Some break-
+throughs aren’t immediately visible in revenues or profits. The best sources are often
+insiders, such as company employees. Experts working on crucial projects are com-
+monly prohibited from disclosing their insights publicly.
+ In the reference example of autonomous driving, we can count the number of
+robotaxis on the street and monitor the media for upcoming deals and contracts. One
+way to assess whether you’ve done proper work in creating your investment thesis is to
+evaluate how easily you can find the metrics to measure its success. If you’re unsure
+what to look for, you should take more time to refine your thesis.
+4.5 What is next
+Many analysts who carefully read our LiDAR study may agree that there are still many
+details that require further research before a decision can be made. This exploration
+of LiDAR can be concluded in a “wait and see” scenario. Some bolder investors might
+choose to invest. One detail that every investor needs to decide for themselves is how
+much time they want to spend on analysis before making a decision. Even though
+LLMs can speed up the research process, thorough analysis may still take time.
+ We’ve outlined many risks. One day, we might discover that Tesla Vision is on the
+right track and that the market for LiDAR in the automotive sector is being disrupted.
+However, we could also find that Tesla’s approach without LiDAR is failing. Other
+market signals can influence the future of LiDAR stocks. While investigating start-ups,
+we found that one of them is likely to be acquired by a larger company, which would
+probably boost share prices.
+ The definition of an ideal company to invest in is one that is poised to generate
+substantial cash flow for several years while maintaining a strong economic moat. BasedTable 4.7 The sentiment score of selected LiDAR companies
+Ticker Score BU SW BU NEU SW BE BE
+INVZ 1.197801 0 6 16 1 0
+OUST 6.714778 10 10 4 0 0
+LAZR 4.497577 5 9 11 1 0
+AEVA 1.623819 1 5 22 1 0
+
+102 CHAPTER  4Growth portfolios
+on the existing analysis, we’ve identified candidates with a promising future. However,
+we must acknowledge that there’s still considerable uncertainty. The decision-making
+process depends significantly on the individual investor’s strategy:
+Some bold investors might see enough evidence to invest money.
+Cautious investors may spend more time researching the company. Some may
+conclude that the risks aren’t worth the potential gains and pick more conserva-
+tive choices.
+Some investors may also employ a mixed strategy. They start investing a small
+amount and keep researching.
+Summary
+Gambling is often guided by instinct, whereas investing is led by critical think-
+ing. Success isn’t guaranteed, but investors can continually reflect on the out-
+comes of past decisions and learn from them for the future.
+We tend to overestimate our skills in areas that are new to us. This tendency is
+perilous, as it can lead to taking unnecessary risks. Stick to what you know and
+invest in businesses that you understand.
+An investment thesis highlights why you believe an investment will be profit-
+able. It requires structured research that may take some time.Some speculative ideas to explore
+Lastly, if you don’t come up with ideas for researching investment areas, here are
+some ideas that could be interesting for you to explore:
+With the COVID-19 pandemic, we’ve witnessed a significant advancement in
+mRNA technology. Vaccine providers now have access to numerous resources
+for researching new applications of mRNA. What would happen if one of these
+providers were to discover a vaccine against cancer?
+Climate change is having an increasingly significant effect on the world. What
+measures are necessary to mitigate its effects, and which technologies could
+help mitigate it? Consider renewable energy or carbon sequestration.
+Obesity is affecting the health of many people in the world, and many con-
+sumers still believe in traditional beauty standards. What are the criteria that
+a weight loss drug must provide so it can become popular globally?
+Vegan products are often cheaper than meat. However, carnivores claim that
+meat alternatives still don’t taste like real meat. What if a food producer cre-
+ated a vegan product that tastes as good as meat?
+Every day, we face new threats in geopolitical challenges. Which solutions are
+needed to overcome these threats?
+While many AI companies are already highly valued, consider also those firms
+that indirectly contribute to the adoption of AI. Take energy as a reference.
+Data centers require a substantial amount of energy constantly. Which energy
+sources can provide that and ideally don’t emit too much carbon dioxide?
+
+103 Summary
+Peer reviews are invaluable for refining a thesis. Invite others to question your
+assumptions and test your reasoning.
+Investing in what you know is key to success. Violate this principle, and you may
+as well be throwing darts blindfolded. There are many different influences on a
+market, and understanding them often requires extensive experience. There-
+fore, it’s better to invest in something that you know well.
+Explore innovations such as autonomous driving to stay ahead of the market.
+To find investments, you must explore possible investments within that industry
+that solve a specific problem better than others.
+Investors and founders share the same challenge: they need to find a successful
+business idea. The investor, however, doesn’t need to operate the business.
+We need to consider potential risks, such as ethical risks or risks of obsoles-
+cence, as illustrated in the case study.
+One way to find good investments is to look for undervalued companies, which
+are often those that already receive little attention from investors. Therefore,
+we might look for players in a niche who can contribute a significant amount of
+unseen value.
+Try to find companies that will generate a significant amount of cash for an
+extended period with a new business model. If their business model can’t be
+easily copied or challenged by competitors, you have a candidate for a high-per-
+forming growth stock. Finding these companies takes work and patience.
+Seeing an opportunity’s potential isn’t enough; we must thoroughly challenge
+and assess ideas.
+Start-ups may take years to produce profits; however, if the business model is
+strong, we can benefit significantly from investing in a not-yet-profitable com-
+pany in an emerging market. Start-ups and small companies also might run into
+liquidity problems more easily than larger companies.
+Hardly anyone invests more time and energy into a company as a founder. It’s
+often a sign of strength if they remain part of the management team; we must
+be vigilant to learn about founders who are leaving.
+Technology might make a difference. However, we must also consider the cost
+factors and other aspects that may determine whether a product penetrates
+the market. There’s no guarantee that the best product will become the mar-
+ket leader.
+Missing an investment opportunity might hurt your pride; however, ignoring it
+may result in financial loss.
+Knowledge is profit. Always know what you’re buying.
+Be aware that every product might become obsolete. Keep an eye on the com-
+petition and the market.
+When betting on start-ups, you risk more to aim for higher returns. However,
+start-ups often must prevail against larger corporations in the markets.
+
+104 CHAPTER  4Growth portfolios
+Geopolitics will increasingly affect the performance of companies in the global
+market.
+In doubt, don’t invest, but keep your ears open for changes that allow you to
+revisit your analysis.
+An investor can analyze trends and news sentiments for investment areas.
+When possible, seek the advice or analysis of an expert in the domain you’re
+considering investing in.
+Be always skeptical. Hear all, but trust nothing until you have enough evidence.
+Investigate partnerships and connections with other industries, including
+potential partnerships that aren’t yet formal.
+Some investors look for companies where they believe their value is artificially
+or temporarily suppressed (value investing). Others look for companies that
+might disrupt markets with a game-changing product or service (growth invest-
+ing). Both approaches can overlap.
+When exploring companies to invest in, also study industry- and product-spe-
+cific risks. For instance, some companies may be capital-intensive and face risks
+when interest rates are high. Others may face the risk of a product-market fit
+mismatch.
+
+105Income portfolios
