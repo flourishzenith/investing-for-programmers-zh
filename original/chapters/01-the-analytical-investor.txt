@@ -1,0 +1,2317 @@
+# Chapter 1: The analytical investor
+
+Chapter 10Chapters 1+12
+Risk management
+Hedging
+Stress tests
+Human factor
+Nonﬁnancial risk
+Portfolio optimizationChapter 7Big data
+(earnings call reports,
+transcripts, web data,...)
+Financial platforms
+(Yahoo Finance,
+Finviz,...)Nonﬁnancial data
+platforms
+MLmodel
+LLMSecurities
+Data
+Platforms
+Machine LearningAPI APIAPI
+Decision-MakingGenAI
+
+Investing
+for Programmers
+STEFAN  PAPP
+MANNING
+SHELTER  ISLAND
+
+For online information and ordering of this and other Manning books, please visit
+www.manning.com . The publisher offers discounts on this book when ordered in quantity. 
+For more information, please contact
+Special Sales Department
+Manning Publications Co.
+20 Baldwin Road
+PO Box 761
+Shelter Island, NY 11964
+Email: orders@manning.com
+©2026 by Manning Publications Co. All rights reserved.
+No part of this publication may be reproduced, stored in a retrieval system, or transmitted, in 
+any form or by means electronic, mechanical, photocopying, or otherwise, without prior written 
+permission of the publisher.
+Many of the designations used by manufacturers and sellers to distinguish their products are 
+claimed as trademarks. Where those designations appear in the book, and Manning Publications 
+was aware of a trademark claim, the designations have been printed in initial caps or all caps.
+Recognizing the importance of preserving what has been written, it is Manning’s policy to have 
+the books we publish printed on acid-free paper, and we exert our best efforts to that end. 
+Recognizing also our responsibility to conserve the resources of our planet, Manning books
+are printed on paper that is at least 15 percent recycled and processed without the use of 
+elemental chlorine.
+The authors and publisher have made every effort to ensure that the information in this book 
+was correct at press time. The authors and publisher do not assume and hereby disclaim any 
+liability to any party for any loss, damage, or disruption caused by errors or omissions, whether 
+such errors or omissions result from negligence, accident, or any other cause, or from any usage 
+of the information herein.
+Manning Publications Co. Development editor: Connor O’Brien
+20 Baldwin Road Technical editor: Anirudha Singh Bhadoriya
+PO Box 761 Review editor: Angelina Lazukic ´
+Shelter Island, NY 11964 Production editor: Kathy Rossland
+Copy editor: Julie McNamee
+Proofreader: Jason Everett
+Technical proofreader: Ignacio Beltran Torres
+Typesetter: Dennis Dalinnik
+Cover designer: Marija Tudor
+ISBN: 9781633435803
+Printed in the United States of America
+
+ To all the entrepreneurs and innovators who dare to make a difference!
+
+ 
+
+vbrief contents
+1■The analytical investor 1
+2■Investment essentials 19
+3■Collecting data 52
+4■Growth portfolios 78
+5■Income portfolios 105
+6■Building an asset monitor 123
+7■Risk management 143
+8■AI for financial research 181
+9■AI agents 216
+10 ■Charts and technical analysis 239
+11 ■Algorithmic trading 273
+12 ■Private equity: Investing in start-ups 297
+13 ■The road goes ever on and on 321
+appendix ■Setting up the environment 330
+
+
+
+viicontents
+preface xiii
+acknowledgments xv
+about this book xvii
+about the author xx
+about the cover illustration xxi
+1 The analytical investor 1
+1.1 Your investment journey 2
+1.2 Assets 2
+Stocks 3■Bonds 4■Exchange-traded funds 4
+Other funds 5■Foreign exchange market 5■Crypto 5
+Derivatives 6■Private equity 6■Other assets 7
+Choosing assets 8
+1.3 Investment approaches 8
+Quantitative research 10■Qualitative research 11
+Algorithmic trading and asset monitors 12■Portfolios 
+and investing strategies 13
+1.4 Risks and rewards 15
+1.5 A programmer’s unfair advantage 16
+You think in systems and data 16■Your mindset is built for 
+the market 16■Define your parameters 17
+
+CONTENTS viii
+2 Investment essentials 19
+2.1 Accounting in a nutshell 20
+Income statement 21■Balance sheet 25■Free cash flow 26
+2.2 Industry classification 28
+Influences on GICS sectors 28■Sectors and economic cycles 30
+2.3 Capitalization 32
+2.4 Metrics and ratios 33
+Liquidity 34■Debt 36■Earnings 36■Valuation 37
+Profitability 40■Dividends 40■Ownership 44
+Sustainability 45
+2.5 External assessments 46
+Ratings 47■Target prices 48
+3 Collecting data 52
+3.1 Financial data 53
+3.2 Financial analysis platforms 54
+3.3 Data science notebooks 57
+3.4 yfinance 57
+Fundamental analysis 58■Technical analysis 61
+Limitations of yfinance 66
+3.5 Commercial libraries 67
+Finviz 69■EODHD 71■Alpha Vantage 73
+OpenBB 75
+3.6 Other libraries 76
+4 Growth portfolios 78
+4.1 Investment thesis 79
+Starting with an idea 79■Challenging the idea 81
+Your investment thesis 84
+4.2 LiDAR market 85
+Picking candidates 86■Price development 88■Debt 91
+Management 92■Technology and partnership 92
+Projected earnings 94
+4.3 Risks 95
+Falling into obsolescence 96■Squashed by industry giants 96
+Globalization and conflicts 97
+
+CONTENTS ix
+4.4 Ongoing analysis 97
+Media 97■Trend analysis 98■News sentiment 
+analysis 100■Measuring success 101
+4.5 What is next 101
+5 Income portfolios 105
+5.1 Dividends 106
+5.2 Bonds 112
+5.3 Crypto staking 117
+Ledgers and exchanges 117■Mining and staking 118
+Affordable staking options 119
+5.4 Early retirement 120
+6 Building an asset monitor 123
+6.1 Architecture 124
+6.2 The spreadsheet 126
+6.3 Extracting data 127
+Alpaca: A developer-first broker 128■Interactive Brokers: 
+A legacy powerhouse with a modern twist 129
+6.4 Enriching data 130
+6.5 Processing assets 131
+Stocks 131■Exchange-traded funds 135■Bonds 137
+Cryptocurrencies 138
+6.6 Outlook 141
+7 Risk management 143
+7.1 Ukemi 144
+Stop-loss 144■Risk classification 146■Risk 
+measurement 148
+7.2 Generating risk profiles for individual stocks 150
+Value at risk (VaR) 150■Correlation 153
+7.3 The human factor 156
+Negligence 157■Risk avoidance 157■Resilience 159
+7.4 Hedging 160
+Derivatives 160■Diversification 163■Pair trading 163
+Risk pairing 164
+
+CONTENTS x
+7.5 Nonfinancial risk 165
+Markets 166■Economic data 166■Assessing nonfinancial 
+risk 168
+7.6 Portfolio optimization 169
+Markowitz-efficient portfolio 169■Shiller P/E ratio 174
+Rebalancing 176
+8 AI for financial research 181
+8.1 From code to machine learning 182
+Unsupervised learning example 184■Supervised learning 
+example 187■Market challenges 192■Technical 
+challenges 195■Narrowing the scope 197
+8.2 From machine learning to generative AI 198
+Comparing LLMs 199■Complementing ML with 
+GenAI 200■Challenges 200■Final judgement 
+on ML and GenAI 200
+8.3 Practical use of GenAI 201
+Using LLMs as research assistants 201■Integrating LLMs 
+into code 203
+8.4 Prompt engineering 208
+An investor’s profile 208■Using prompts to find companies 
+to invest in 211
+9 AI agents 216
+9.1 Requirements 217
+Successful communication 217■Agentic design patterns 218
+9.2 Agentic workflows without frameworks 222
+Prompt repository 222■Export results 224
+9.3 Framework for AI agents 228
+From one-shot prompting to agents 229■Retrieval-augmented 
+generation 231
+10 Charts and technical analysis 239
+10.1 Charts 240
+Reading charts 246■Patterns 247■Interpreting a 
+chart 249■Alternative chart types 250
+
+CONTENTS xi
+10.2 Using charts to interpret price changes 253
+Candlesticks 254■Charts based on averages 257
+Ichimoku Cloud 264
+10.3 Visualization with Streamlit 267
+11 Algorithmic trading 273
+11.1 Nonfinancial data 274
+Big data by example 276
+11.2 Catalysts 278
+Mergers and acquisitions 278■Companies in distress 279
+Earnings calls 280■Disasters 281■Interest rate 
+changes 282
+11.3 Trading algorithms 282
+Backtesting 283■Complex trading signals 287
+11.4 Orders 289
+Exchanges vs. brokers 289■Order modifiers 291
+Executing orders 292
+12 Private equity: Investing in start-ups 297
+12.1 From idea to initial public offering 298
+The first minimum viable product (pre-seed) 298■Validating 
+the business model (seed) 301■Scaling a start-up: The shift 
+to institutional investment 303■Exits: The final 
+transition 304
+12.2 Investment vehicles 306
+Venture capital 308■Angel networks 309■Sovereign 
+wealth funds 311
+12.3 Assessing start-ups 312
+Valuation 312■Dilution 314■Scoring 316
+13 The road goes ever on and on 321
+13.1 Getting advice 322
+13.2 Stay curious 323
+13.3 Alpha hunter 323
+13.4 Nomadism 324
+13.5 Activist investing 325
+
+CONTENTS xii
+13.6 Measures of control 326
+Checks and balances 326■Gain distance 327■Programmer’s 
+journey 327■Playing it safe 328
+appendix Setting up the environment 330
+index 339
+
+xiiipreface
+Imagine this: a 50-year-old is approached by a genie with an intriguing offer. They can
+receive staggering wealth to never work again or be rejuvenated to age 20. The allure
+of reliving life with youth and wisdom is strong. But from a purely financial stand-
+point, which is the wiser choice?
+ I grew up believing everyone must work until their mid-60s to retire. Stopping
+work at 50 seemed like pure luck. Over time, investing became my passion. I’ve
+learned that starting early and making informed investment decisions can make finan-
+cial independence by 50 achievable, especially if you know how to code. Programming
+sharpens the skills needed for better investment choices.
+ I’ve always believed that work should serve a higher purpose, but meaningful
+work is often not the highest-paid. I wrote the book I wish I had at 20—to acceler-
+ate my path to financial freedom and independence from a paycheck. After read-
+ing it, all you’ll need is to find a genie who could send you back to age 20—armed
+with the knowledge to retire early. But even without the genie, what you learn here
+can transform how you invest, helping you move toward financial freedom with pur-
+pose and precision.
+ I also want to convince you that investing can be fun. I love using programming to
+analyze companies and form data-backed investment theses. There’s nothing quite
+like seeing a company you believed in multiply in value fivefold or more.
+ Of course, no path to wealth is guaranteed. You can pick the wrong horse. Picture
+the late 1990s: a friend tells you about a failing tech company whose ousted founder
+just returned and about a thriving American energy company riding the wave of
+
+PREFACE xiv
+deregulation. If you chose the second, you picked Enron over Apple, and lost your
+investment. Diversification helps mitigate such risks, but the larger lesson is this:
+hubris and impatience are dangerous. Mindset matters most.
+ In the early 2010s, I pivoted to big data. It wasn’t just about using more data but
+transforming entire businesses. I noticed some companies outsmarted others. If I
+invested in the smarter ones, I could ride their success. It was a natural progression:
+from using data to understand customer behavior to using data to predict which com-
+panies would thrive.
+ Through this journey, I’ve found four key traits for investment success: critical
+thinking, patience, dedication, and curiosity. Programmers excel at these, and I
+believe they can shine as investors.
+ Happy reading and coding! I wish you sharp insights and smarter investing.
+
+xvacknowledgments
+I want to thank the following individuals, in chronological order, for their invaluable
+contributions to this book.
+ When I first approached acquisition editor Jonathan Gennick with a proposal for a
+book that didn’t fit the typical mold at Manning, I knew approval wouldn’t come eas-
+ily. However, Jonathan believed in the project, and I’m convinced this book would
+have been impossible without his advocacy.
+ I am also profoundly grateful to Connor O’Brien, an exceptional development edi-
+tor. His unwavering support and insightful feedback were instrumental in shaping the
+quality of this work.
+ Technical editor Anirudha Bhadoriya provided an excellent review of the manu-
+script. His thoughtful questions and genuine engagement added valuable perspec-
+tives to the book. Anirudha is a staff software engineer specializing in distributed
+systems at Snowflake. He has been actively investing his own money in the equity mar-
+kets for more than 20 years, combining deep technical expertise with personal finan-
+cial acumen.
+ Many thanks to Julie McNamee for copy editing and Azra Dedic for the support
+with the visualizations. Their input significantly improved the fine details of this book
+ To all the reviewers—Amarjit Bhandal, Arun Kumar Rajamandrapu, Bin Li,
+Charles Lam, Chris Heneghan, Gary Bake, Ian Long, James Carella, Jeremy Chen,
+Juan Pablo Duque, Kevin Orr, Koushik Sundar, Marco Seguri, Nikhil Kassetty, Oscar
+Cao, Patrick Grütter, Pierre Boutquin, Piti Champeethong, Prateek Punj, Raghuram
+Katakam, Sahithi Donkina, Saketh Patibandla, Sneha Thangaraja, Sofiia Shvets,
+
+ACKNOWLEDGMENTS xvi
+Thomas Heiman, Vijay Pahuja, Vinicios Wentz, and William Dealtry—your sugges-
+tions helped make this a better book.
+ I want to thank all contributors through the Manning liveBook who provided feed-
+back on the book. I incorporated every piece of advice I received up to the production
+release, and I’ll also look at comments after the production release for new editions.
+ Finally, a special thanks to Warren Buffett. Though he does not know me, he has
+served as an enduring role model for the kind of investor I strive to become.
+
+xviiabout this book
+Investing for Programmers  introduces tools and techniques for analyzing investment
+opportunities using Python and modern analytical methods. This book does not offer
+financial advice but shows you how to explore financial assets and make more
+informed investment decisions.
+ After reading this book, you’ll be able to analyze financial assets with Python, build
+AI agents, and use LLMs to gain deeper insights into your investment options. Keep in
+mind that there are no guaranteed paths to wealth. This book may help you improve
+your odds of long-term financial success and increase your skills to gain insights for
+better decision-making. Be skeptical of anyone claiming risk-free riches.
+Who should read this book
+You should have basic programming skills. However, if you have only minimal experi-
+ence, you can still benefit from using large language models (LLMs) to help set up
+the environment and fill in any gaps in your Python knowledge.
+How this book is organized: A road map
+This book has 13 chapters. The book begins by teaching the basics, including inter-
+preting financial ratios and collecting data. As you progress, the topics become
+increasingly complex. You can always jump to later chapters if you’re experienced
+with the basics.
+Chapter 1 introduces you to the investment domain and how programmers can
+excel.
+
+ABOUT THIS BOOK xviii
+Chapter 2 teaches financial basics and introduces you to key metrics for
+exploration.
+Chapter 3 demonstrates collecting financial data using Python libraries, includ-
+ing Yahoo Finance and alternative libraries.
+Chapter 4 teaches you how to create an investment thesis to look for growth
+portfolios.
+Chapter 5 explains how to look for portfolios to create passive income.
+Chapter 6 demonstrates how to collect data from brokers and exchanges, cen-
+tralize all holdings in one place, and facilitate their analysis.
+Chapter 7 explains how to investigate risks and learn ways to hedge them. We
+look at Sharpe ratios and other methods.
+Chapter 8 introduces AI for investment analysis. We introduce machine learning
+use cases and explore the application of generative AI in investment research.
+Chapter 9 demonstrates how to use AI agents for more advanced use cases,
+enabling data exploration and the integration of additional data sources.
+Chapter 10 shows how to display charts and technical analysis. You learn how to
+create charts using Bollinger Bands and other frameworks.
+Chapter 11 explores algorithmic trading and the application of nonfinancial
+data in financial analysis.
+Chapter 12 explores private equity as a form of ownership in startups and how
+to make informed investment decisions.
+Chapter 13 summarizes what you learned and provides some final thoughts for
+the path ahead.
+About the code
+This book heavily uses source code, primarily in numbered listings throughout the
+chapters. The source code is formatted in a fixed-width  font  like  this  to distin-
+guish it from ordinary text. Sometimes, code is also bold to highlight changes from
+previous steps in the chapter, such as when a new feature is added to an existing line
+of code. 
+ In many cases, the source code has been reformatted, with line breaks and reworked
+indentation added to accommodate the available page space in the book. Additionally,
+comments in the source code have often been removed from the listing when the
+code is described in the text. Code annotations accompany many of the listings, high-
+lighting important concepts.
+ You can get executable code snippets from this book’s liveBook (online) version at
+https:/ /livebook.manning.com/book/investing-for-programmers . The source code
+for the examples in this book is available for download on the publisher’s website at
+www.manning.com/books/investing-for-programmers . The code is also available on
+GitHub at https:/ /github.com/StefanPapp/investing-for-programmers .
+
+ABOUT THIS BOOK xix
+liveBook discussion forum
+Purchase of Investing for Programmers  includes free access to liveBook, Manning’s online
+reading platform. Using liveBook’s exclusive discussion features, you can attach global
+comments to the book or specific sections or paragraphs. It’s a snap to make notes for
+yourself, ask and answer technical questions, and receive help from the author and
+other users. To access the forum, go to https:/ /livebook.manning.com/book/investing
+-for-programmers/discussion . 
+ Manning’s commitment to our readers is to provide a venue for meaningful dia-
+logue between individual readers and between readers and the author. It isn’t a com-
+mitment to a specific amount of participation by the author, whose contributions to
+the forum remain voluntary and unpaid. We suggest you ask the author some chal-
+lenging questions lest his interest stray! The forum and archives of previous discus-
+sions will be accessible on the publisher’s website as long as the book remains in print.
+
+xxabout the author
+STEFAN  PAPP is a trailblazer at the intersection of AI and invest-
+ment strategy. With a career that spans decades as a data engi-
+neer, architect, and consultant for top-tier clients, Stefan has
+mastered the art of using data to solve complex problems. His
+thought leadership is reflected in his published technical books
+and his role as a university educator, where he inspires the next
+generation of tech innovators.
+    As a seasoned investor with more than 20 years of experience
+in stocks, cryptocurrency, and bonds, Stefan brings a data-
+driven approach to portfolio optimization that few can repli-
+cate. By combining cutting-edge AI techniques, including generative AI, with deep
+market insights, he has consistently outperformed traditional investment strategies.
+ In this book, Stefan demystifies the application of programming skills to financial
+analysis, sharing practical tools and real-world examples from his journey. Readers will
+learn how to harness data, adapt evolving best practices, and use AI to uncover oppor-
+tunities, optimize research, and gain a decisive edge in the market.
+
+
+xxiabout the cover illustration
+The figure on the cover of Investing for Programmers , titled “Arméniennes à Erzeroum,”
+or “Armenian Girls from Erzurum,” is taken from The Nations. Album of Costumes From
+All Countries  by Alexandre Lacauchie, published in 1847. Each illustration is finely
+drawn and colored by hand.
+ In those days, it was easy to identify where people lived and what their trade or sta-
+tion in life was just by their dress. Manning celebrates the inventiveness and initiative
+of the computer business with book covers based on the rich diversity of regional cul-
+ture centuries ago, brought back to life by pictures from collections such as this one.
+
+ 
+
+1The analytical investor
+A tough work environment often marks the beginning of the journey to financial
+independence. Formal education rarely prepares people for the sometimes harsh
+realities of the workplace: the micromanaging boss, a difficult coworker, a cutthroat
+culture, or the client who secretly rewrites your code and blames you if things go
+wrong. At some point, many programmers dream of escaping—maybe as a sheep
+herder in a remote forest or the captain of a starship in galaxies far, far away.
+ Finding a new job often proves to be a temporary fix. Starting your own com-
+pany usually means trading a 40-hour week for an 80-hour one, with less pay and
+only a slim chance of long-term success. If the start-up fails, you can land right back
+where you started, only to find that the toxic former colleague who had teased you
+got promoted and is now your boss.
+ But what if the solution isn’t another job, but greater independence from any job
+through gradually building passive income? The timeline to financial freedom variesThis chapter covers
+An overview of securities and the market
+Investment strategies for managing risk and 
+maximizing gains
+Tools and techniques for the data-driven investor
+Programmers’ traits that can be an advantage
+
+2 CHAPTER  1The analytical investor
+depending on your circumstances—a family, a mortgage, or even just residing with
+Her Majesty, the cat—creating a different scenario for everyone. Freedom can begin
+with the first realization that some of your essential expenses are covered by passive
+income . . . forever. And if you keep going, the number of things you don’t have to
+work for to pay for increases. Knowing that you can leave a high-paying, soul-crushing
+job for a more fulfilling one, even if it pays less, is a powerful relief for a developer
+who has endured hell on earth.
+ This book serves as a step-by-step guide to achieving greater independence. It
+emphasizes rational thinking and patience; no miracles are guaranteed. Be wary of
+anyone claiming you can get rich in 24 hours. Following such advice often depends on
+luck, a good lawyer, or both.
+1.1 Your investment journey
+Diving into the financial world can feel like stepping onto the road, and if you don’t
+keep your feet, there’s no knowing where you might be swept off to. To avoid stray-
+ing off the beaten track, we need to understand the essentials of what we want to
+explore.
+ Sooner or later, financial planning becomes a necessity. Perhaps we saw our dream
+house, met the person we want to start a family with, heard the demands for more
+comfort from Her Majesty the cat, or wanted to achieve financial independence. Every
+journey begins the same way. You assess what you already have and explore and opti-
+mize your expenses to determine how much surplus money you can accumulate on
+average each month.
+ With your carefully estimated monthly surplus, friends might approach you with
+ideas on how to invest it. Some of your “expert advisors” may try to charm you with
+stocks and their alleged high returns . The conservative camp prefers bonds instead,
+reasoning that they offer lower risk. A third group of finance aficionados may suggest
+that you put everything into an index fund and refrain from thinking about your
+investments until you need the money.
+ Risk and return are the pillars of any investment strategy. However, simply estimat-
+ing potential outcomes under normal market conditions isn’t enough. Without a fun-
+damental understanding of what you’re investing in, it’s unwise to risk your capital
+based on a casual tip from a friend.
+ This book aims to guide you toward becoming a data-driven investor. You’ll learn
+both the basics of investing and, in parallel, how to make smarter decisions based on
+data, research, rational thinking, and analysis. 
+1.2 Assets
+To get started with investing, we must understand the basics of assets. In its simplest
+form, an asset is something we can purchase to monetize. We use the term securities  to
+refer to a group of assets in the financial domain, such as stocks and bonds. In gen-
+eral, assets are monetized in two ways:
+
+3 1.2 Assets
+Capital appreciation —For example, buy low and sell high.
+Passive income —For example, getting regular payments (interest payments on
+savings accounts or receiving rent from a tenant).
+Investors should begin by understanding their risk tolerance—the amount of poten-
+tial loss they can handle without stress—and their financial goals, which outline how
+much they hope to earn within a specific time frame. A third critical factor, often over-
+looked in books for professional investors but vital for individuals, is the time required
+to manage an investment strategy. If monitoring your portfolio consumes time you’d
+rather spend on other activities, it’s a clear signal that you need to rethink your
+approach. The more aware you are of your risk appetite, desired returns, and maxi-
+mum time commitment, the better prepared you are to develop an investment strat-
+egy that helps you meet your life goals.
+1.2.1 Stocks
+Stock represents ownership, also known as equity . When you buy stocks, you acquire a
+small part of a company. As of June 2025, Apple has 15,509,763,000 shares outstanding.
+Purchasing one share  of Apple means you own 0.000000006447552% of the company.
+ Supply and demand affect stock prices. Investors typically buy more shares of suc-
+cessful companies, which causes their share prices to rise. However, a stock’s value
+depends on more than just its company’s performance. The entire market is also sig-
+nificantly influenced by larger factors, including global politics and economic news.
+Some stocks offer income to investors through a small payment per share, known as a
+dividend . As of June 2025, Apple trades at about $213.55 per share, and the company
+pays a quarterly dividend of roughly $0.26 per share. These payments result in a divi-
+dend yield of approximately 0.49%, representing the return before taxes that an
+investor gains from dividends relative to the share’s price.
+ To put this into perspective, we can compare a company’s dividend yield to the
+yield on a 10-year US Treasury bond, which is often used as a benchmark for a “risk-
+free” return. As of June 2025, these bonds offer a yield of around 4.3%—considerably
+higher than Apple’s current dividend payout.
+ Considering the treasury yield, investing in Apple solely for its dividend income is a
+poor choice. Because inflation usually exceeds its ~0.5% yield, an investor would lose
+buying power if they don’t account for potential capital gains from the stock’s growth.Terminology
+Through a brokerage account, investors buy shares  (referring to a countable amount)
+of the company’s stock  (representing the total assets of a company. A portfolio  is a
+collection of securities  (stocks, bonds, options, etc.) that you own. If a position in your
+portfolio is higher than its purchase price, you have an unrealized gain until you sell
+it to realize the gain. The same logic applies to unrealized and realized losses.
+
+4 CHAPTER  1The analytical investor
+ If you’re passionate about identifying companies that can outperform the market,
+chapter 4 provides all the details you need to build an investment thesis and develop a
+growth portfolio in a structured way.
+1.2.2 Bonds
+A bond is an IOU. When you buy a bond, you lend money (the principal ) to an entity,
+such as a government or a company. In return, you receive periodic interest payments,
+known as coupons . With few exceptions, bonds have a maturity date—a specific date in
+the future when the issuer repays your original principal in full.
+ All bonds are equal, but some are more equal than others. Because many issuers
+exist, each bond has a different level of risk:
+Credit risk —Some issuers are more likely to default on their debt obligations. To
+help investors evaluate this risk for other issuers, credit rating agencies such as
+Moody’s and Standard & Poor’s (S&P’s) provide independent assessments.
+Yield —Typically, the more risk you accept, the greater your potential return
+or yield.
+When holding a bond, you can either wait until maturity to receive its full face value
+or sell it on the open market earlier. Choosing to sell before maturity means the price
+you receive will be determined by the market, which could result in a gain or a loss on
+your initial investment.
+NOTE The basic assumption behind considering US government bonds risk-
+free is the belief that the US government will always honor its debt obligations
+and won’t default. This convention has become standard practice in finance.
+However, describing such assets as extremely low risk would be more accurate
+because, theoretically, even the US government could default.
+Chapter 5 discusses how to build dependable passive income, offering a way to cover
+everyday expenses and boost your financial independence. It emphasizes practical
+methods, including a detailed comparison of bonds and dividend stocks as primary
+sources of income.
+1.2.3 Exchange-traded funds
+Savvy investors diversify their risk by not putting all their eggs in one basket. Investment
+companies help with this by bundling multiple securities into a single fund. Exchange-
+traded funds (ETFs) are a popular type of investment that trades on an exchange, mak-
+ing them easily accessible for purchase and sale through any online broker.
+ Buying an ETF is a simple way to diversify your investments. Instead of analyzing
+and purchasing hundreds of individual stocks, you can hold a small stake in carefully
+chosen assets with just one transaction. Most ETFs are passively managed , meaning they
+track a market index automatically, such as the S&P 500. Algorithms are used to rebal-
+ance the fund’s holdings, keeping it aligned with its index. In actively managed  ETFs, a
+portfolio manager selects specific investments to buy.
+
+5 1.2 Assets
+ ETFs aren’t free, and ETF issuers charge a small annual management fee (expense
+ratio). Still, they are highly cost-effective. For an individual, buying all the underlying
+stocks directly in separate transactions would cost more due to transaction fees.
+Because ETFs are collections of assets, all sections that discuss the underlying assets
+also include ETFs.
+1.2.4 Other funds
+Other common pooled funds are mutual funds and hedge funds. These funds are
+described here:
+Mutual funds —These funds are similar to ETFs in that they provide diversifica-
+tion and are highly regulated. The primary operational difference is that mutual
+funds only trade once a day at a price determined after the market closes, known
+as the net asset value (NAV).
+Hedge funds —These funds are typically less regulated, require a substantial min-
+imum investment, and are generally accessible only to wealthy investors.
+While ETFs and mutual funds target retail investors, hedge funds operate at a differ-
+ent level. They use more aggressive and complex strategies and are only available to
+accredited investors , which include high-net-worth individuals and institutions that meet
+specific wealth requirements.
+ Other funds are outside the scope of this book; however, we explore hedging tech-
+niques used by professional hedge funds in chapter 7. Investors can use these tech-
+niques to optimize their portfolios.
+1.2.5 Foreign exchange market
+Beyond owning equity or lending money, investors can also speculate on currency
+exchange rates in the foreign exchange  (forex) market . Every country has its currency,
+and the value of these currencies fluctuates against each other in pairs (e.g., the
+EUR/USD). For example, one day, the euro might strengthen against the US dollar,
+and the next day it might weaken. Forex traders analyze economic indicators and mar-
+ket trends to predict these movements, aiming to make a profit by buying a currency
+before it appreciates or selling it before it depreciates.
+ Currency risk is discussed in chapter 7. Additionally, all aspects of technical analy-
+sis, as outlined in chapter 10, apply to all assets, including forex.
+1.2.6 Crypto
+For many, cryptocurrency is a complex asset class that can be hard to understand. To
+clarify, it’s essential first to separate the underlying technology from its most well-
+known application:
+Blockchain —This is the core technology. Think of it as a secure, decentralized
+digital ledger—a growing list of records (blocks) linked and protected by
+
+6 CHAPTER  1The analytical investor
+cryptography. Although it’s best known for digital currency, blockchain tech-
+nology has uses in many other areas.
+Cryptocurrency —This refers to a digital asset built on blockchain technology.
+The primary value of cryptocurrency lies in its ability to facilitate peer-to-peer transac-
+tions without requiring a trusted third party. Unlike traditional financial systems,
+which rely on intermediaries such as banks, cryptocurrency networks enable direct
+transfers between individuals.
+ The technology that secures these networks also presents unique investment oppor-
+tunities. Chapter 5 explores one such method— staking —which allows you to earn
+rewards by helping validate transactions. It also offers a vital overview of the common
+risks and criticisms associated with this volatile asset class.
+1.2.7 Derivatives
+Think of a derivative as a contract whose value is derived  f r o m  a n  u n d e r l y i n g  a s s e t ,
+such as a stock or a commodity. It establishes rules for future transactions, helping you
+manage risk or speculate on price movements.
+ For most investors, options are the most useful derivatives. An  option  grants you the
+right, but not the obligation , to buy or sell an asset at a set price before a certain expira-
+tion date.
+ Think of it this way: you pay a small fee (the premium ) to get an API key. This key
+grants you access to a function—either buy()  or sell() —that you can execute under
+specific conditions. If the conditions aren’t met, you let the key expire. Your only loss
+is the premium you paid.
+A put option  gives the buyer the right, but not the obligation, to sell an asset at a
+set price (the strike price ). It’s a type of insurance.
+A call option  gives the buyer the right, but not the obligation, to buy an asset at a
+specified strike price. It’s a way to bet on a price increase with limited risk.
+You can also be on the other side of the transaction and sell (or, as it’s also called,
+write) options. You receive the premium as income, but you assume an obligation .
+ Selling a put option means you’re obligated to buy the stock at the strike price if
+the buyer chooses to exercise it. If the stock drops to zero, you’re still required to buy
+it at the high strike price, which could lead to a potentially disastrous outcome.
+ Options are powerful tools, but they’re complex instruments with significant risk.
+That’s why they are covered in chapter 7, which focuses on risk.
+1.2.8 Private equity
+After purchasing shares on an exchange, you become a shareholder of a publicly
+traded company. One advantage of being publicly traded is that it makes buying shares
+easy. Investors worldwide can become shareholders within seconds if they are logged
+in to their brokerage account and decide to buy shares.
+
+7 1.2 Assets
+ Start-ups present the most significant profit potential. They are ideal for investors
+willing to accept more risk in exchange for the opportunity to achieve wealth more
+quickly. Because private companies aren’t traded on public stock exchanges, you need
+to take a different approach:
+Direct investment —You can invest directly in companies. Start-ups that seek single
+private investors are usually in their earliest stages, typically pre-seed or seed stage.
+Angel or venture capital investments —These involve funds created to invest in start-
+ups. As a private investor, you can become a limited partner in such a fund. If
+the start-up achieves a successful exit, you can expect high multiple returns on
+your investment.
+Chapter 12 examines opportunities to invest in private equity and highlights the main
+differences between this type of investment and investing in stocks.
+1.2.9 Other assets
+Investing involves acquiring assets and monetizing them, either through capital gains
+or passive income . We might not always recognize every asset as such. For example, a
+patent can be valued and licensed for royalties, but not everyone considers it part of
+their assets.
+ Commodities are raw materials, such as gold, oil, and wheat, that investors can
+trade. Because their value is linked to real-world supply and demand, their prices
+often move independently of the stock and bond markets. While investors can gain
+exposure through futures contracts or ETFs, they should be aware that these markets
+can be very volatile. This volatility is caused by a variety of complex factors, including
+geopolitical events, weather conditions, and global economic growth.
+ Some investors view real estate as a safe investment, but it comes with challenges.
+For one, it’s a highly illiquid asset, meaning that selling a property can be a slow and
+tedious process. Additionally, landlords face the risk of difficult tenants who might
+damage the property or fail to pay rent.
+ An asset is considered non-fungible if it’s unique and can’t be easily replaced by
+another identical item. In contrast, fungible assets are interchangeable, which makes
+them a good starting point for new investors. This interchangeability allows them to
+be traded easily and efficiently. While you can still make a good living from non-fungi-
+ble assets, investing in securities simplifies your life for several reasons:
+Lower capital requirements —You can buy shares for just a few dollars, whereas
+non-fungible assets such as real estate or art may cost millions.
+Lower maintenance —Physical objects require secure storage, insurance, and pres-
+ervation, resulting in significant overhead and maintenance costs. Securities
+don’t have these drawbacks.
+Liquidity —Shares can be sold at any time, while owners of non-fungible items
+must find a buyer. Converting them into cash at a fair price can take months or
+even years.
+
+8 CHAPTER  1The analytical investor
+Scalability —Investors who find a well-performing company can keep purchasing
+shares, whereas investors of non-fungible assets can’t buy assets twice.
+For these reasons, this book concentrates on securities and other assets not included
+here.
+1.2.10 Choosing assets
+Before you begin exploring which assets to purchase, consider these four questions
+about your investment goals, and answer them as honestly as possible:
+How much money do I need to live a happy life?
+How much money do I have that I don’t need right now and can use for
+investments?
+How much risk am I willing to take for possible bigger gains?
+How much time am I willing to dedicate to the investment process itself, such as
+researching potential investments and monitoring my portfolios?
+Besides some universal principles of investing, such as investing only in businesses you
+understand, there is no one-size-fits-all strategy. Still, every investor can find an approach
+that best suits their expectations and goals. Now that we know the asset types, we can
+explore further and examine investment strategies that align with our needs.
+1.3 Investment approaches
+Having covered the fundamentals of financial assets, we’ll now focus on how to cre-
+ate value from them. We can classify methods of monetizing assets into three main
+categories:
+Gambling —A surprising number of people rely on gut feelings or perceived signs
+from the universe when deciding to buy or sell. Even experienced investors can
+fall victim to cognitive biases, such as noticing patterns in random events and
+believing “no coincidence” has led them to a life-changing investment.
+Investing —We’ll avoid gambling-like speculation to focus on more structured
+ways to build wealth. Disciplined investing views building wealth as a long-term
+goal. It depends on careful analysis and critical thinking, aiming to reduce
+impulsive decisions.
+Trading —While investing focuses on long-term success, trading centers on capi-
+talizing on short-term price fluctuations. Due to its higher frequency and
+shorter time horizons, trading carries more risk than long-term investing.
+Let’s explore some strategies that can help us become better traders or investors and,
+in turn, help us avoid gambling. Figure 1.1 illustrates the entire investment process
+and highlights all chapters where relevant topics are discussed in detail.
+ We use financial platforms and publicly available information to collect data on
+securities. We can generate more insights about the securities using various analytical
+
+9 1.3 Investment approaches
+methods, including machine learning and AI. We can then apply these new insights to
+our decision-making processes.Nonﬁnancial dataEquity
+Crypto
+AI Agent
+Asset monitorInference
+ChartsShares PrivateDebt
+Bonds
+Derivatives
+RAG DBForex CryptoCurrency
+ApplicationFunds (ETF, Mutual, Hedge, Venture)
+As a collection of assets
+Financial data
+Fundamentals Technical Sentiments ESG ratings
+Algorithmic tradingStrategy / investment
+thesisModel context
+protocol
+(MCP)
+Income portfolio
+Value portfolio
+Growth portfolioBuy
+Sell
+HoldNet worth
+Proﬁt/lossMoving averages
+Bollinger Bands
+Ichimoku loud CChapter 2
+Chapter 3
+Chapters 4+5 Chapter 11 Chapter 6Chapter 8 Chapter 9
+Chapter 10Chapters 1+12
+Risk management
+Hedging
+Stress tests
+Human factor
+Nonﬁnancial risk
+Portfolio optimizationChapter 7Big data
+(earnings call reports,
+transcripts, web data,...)
+Financial platforms
+(Yahoo Finance,
+Finviz,...)Nonﬁnancial data
+platforms
+ML model
+LLMSecurities
+Data
+Platforms
+Machine LearningAPI APIAPI
+Decision-MakingGenAI
+Figure 1.1 A survey of the tools and techniques covered in this book, including pointers to the chapters that 
+focus on the relevant domains
+
+10 CHAPTER  1The analytical investor
+1.3.1 Quantitative research
+Quantitative  refers to numbers, counts, and averages that provide information about
+what is happening. The goal is to gather as much financial data as possible across many
+companies and compare these “factors” that may influence the future development of
+share prices. You can analyze a company’s performance from multiple angles. Histori-
+cal data shows how performance has changed over time. You can compare the current
+performance of numerous companies.
+ Thanks to accounting standards, financial data is highly standardized. As we’ll see
+in this book, nonfinancial data can also be quantifiable and incorporated into invest-
+ment research.
+ In chapter 2, we highlight the financial data that could be especially relevant for
+quantitative analysis, such as revenues, profit margins, and price-to-earnings (P/E)
+ratios. Quantitative research begins with data collection and aggregation.
+ In chapter 3, we show how to gather data relevant to investment analysis. We can
+use Python libraries designed to provide financial data in a structured format. Alterna-
+tively, we can also scrape data from websites.
+ Having quantitative data allows us to use a machine learning algorithm to forecast
+future price movements based on historical data. Chapter 8 offers a detailed overview
+of how machine learning models are generated.
+ Technical analysis involves assessing assets by examining statistical trends from
+trading activity, such as price changes and volume. Technical analysts use historical
+price charts and various indicators to identify patterns and forecast potential future
+price movements. For example, figure 1.2 shows a price chart for NVIDIA, which a
+technical analyst would analyze to make informed trading decisions.
+NVDA
+140
+120
+100
+80
+60
+40
+20
+0Price
+2016 2017 2018 2019 2020 2021 2022 2023 2024 2025
+DateClosing Price
+Figure 1.2 The price development of NVIDIA from 2016 to 2025. Notice the sharp rise in recent years; this is a 
+typical example of the growth that attracts many traders and investors. Keep in mind that such growth rates are rare.
+
+11 1.3 Investment approaches
+While a line chart of share price development is one of the easier charts to create, we
+also have charts that calculate indicators to help with deciding when to buy or sell. In
+figure 1.3, we present a candlestick chart for NVIDIA for July 2025, which we created
+using the code introduced in chapter 10.
+1.3.2 Qualitative research
+Qualitative  data includes user feedback from a bug report—the context, feelings, and
+reasons that explain why the issue is happening. The financial aspects involve the
+strength of that company’s brand, the quality of its management, and the risk of a new
+competitor disrupting its market.
+ Some of the qualitative data can also be converted into quantitative data. Think of
+scraping data from earnings reports, conducting sentiment analysis on the transcripts,
+and comparing the scores of all earnings calls. A key part of analyzing qualitative data
+is the use of GenAI and AI agents, as summarized here:
+Generative AI (GenAI) —This is a newer type of AI that can produce new content
+and insights. In finance, GenAI is used to summarize large datasets (e.g., earn-
+ings reports and news articles), analyze market sentiment from social media,
+and even simulate market scenarios to stress-test investment strategies. We dis-
+cuss GenAI in chapter 8.
+AI agents —These are advanced AI systems designed to perform complex, mul-
+tistep tasks independently. An AI agent can be tasked with conducting thor-
+ough research on an asset by collecting data from the web, analyzing financial
+statements, assessing recent news, and generating a comprehensive report.
+This process automates the entire analytical workflow. We dedicate chapter 9
+to AI agents.
+Figure 1.3 Candlestick 
+charts help us evaluate stock 
+performance over multiple days. 
+Black (or red) shows that a 
+stock’s price decreased, while 
+white (or green) shows that it 
+increased during the day.
+
+12 CHAPTER  1The analytical investor
+To illustrate these concepts, chapter 4 will examine companies in the autonomous
+driving field as a case study for growth investing, while chapter 5 will focus on income
+investment strategies. Both chapters will highlight opportunities for programmers to
+gather data about various opportunities more efficiently and to develop better meth-
+ods for creating scorecards for investability.
+1.3.3 Algorithmic trading and asset monitors
+While an investor focuses on a company’s long-term health and intrinsic value, a
+trader mainly cares about an asset’s price movement and market conditions. This
+focus enables traders to employ strategies that are uncommon in traditional invest-
+ment portfolios. We can divide trading approaches into two main categories:
+Going long (long position) —This is a common strategy that involves buying an
+asset with the expectation that its price will rise. This method follows the tradi-
+tional “buy low, sell high” principle.
+Going short (short selling) —This strategy aims to profit from a decline in an asset’s
+price. A trader borrows an asset (e.g., shares of stock), sells it on the open mar-
+ket at the current price, and plans to repurchase it later at a lower cost.
+With this understanding, let’s examine several key categories of trading. These styles
+are characterized by their time frames, methods, and dependence on technology:
+Short-term trading —This is a broad category of trading that involves buying and
+selling assets over a short period, from minutes to weeks. A trader typically exe-
+cutes these trades manually, based on a predetermined strategy. The specific
+time frame often determines the name of the trading style:
+–Day trading —This style involves opening and closing all trading positions
+within the same trading day. A day trader seeks to profit from intraday price
+movements and avoids holding any positions overnight.
+–Swing trading —This strategy involves holding positions for more than a day
+but usually no longer than a few weeks. A swing trader aims to capture larger
+price swings or short-term trends that develop over several days.
+Automated trading (algorithmic trading) —Traders use algorithms to execute buy
+and sell orders based on predefined indicators such as price changes or trading
+volatility. Automation enforces disciplined execution of a strategy, removing
+emotion from the decision-making process. For example, a day trader could
+automate their specific plan. Chapter 11 explains how to identify potential alpha
+factors.
+High-frequency trading (HFT) —This is an advanced form of automated trading
+that operates at breakneck speeds with large volumes of orders. HFT firms use
+powerful computers and sophisticated algorithms to capitalize on minute, fleet-
+ing price differences or arbitrage opportunities, frequently executing trades in
+microseconds. Being faster than competitors is the primary focus of HFT, a field
+led by specialized quantitative firms.
+
+13 1.3 Investment approaches
+Effective asset management starts with a unified view of all holdings. Chapter 6 lays
+the groundwork for this by showing how to gather data from multiple brokers and
+exchanges into a single Google Sheet. We’ll use Python to connect to two global bro-
+kers, Interactive Brokers and Alpaca. If you aren’t comfortable connecting directly to
+brokers, you can use database tables to store their holdings instead.
+ Building on that, chapters 8 and 9 explore how to use AI-driven algorithms to ana-
+lyze stock performance and identify market trends. This then leads to chapter 11,
+which explains the principles of algorithmic trading—techniques that automatically
+execute trades when specific parameters or factors are met.
+ A key part of any such strategy is backtesting. Like unit testing in software develop-
+ment, backtesting assesses an algorithm by testing it against historical market data.
+This process illustrates how the strategy would have performed in the past, offering
+essential insights into its potential effectiveness before any capital is risked.
+1.3.4 Portfolios and investing strategies
+We can classify investment styles into three main categories: value, growth, and income
+investing. These categories sometimes overlap. One approach is called Growth at a Rea-
+sonable Price (GARP) , which combines value and growth investing. Let’s look at these
+three types of investing next.
+VALUE INVESTING
+A value investor seeks to identify companies trading below their intrinsic value. These
+opportunities often arise when the market overreacts to temporary setbacks, negative
+news, or poor earnings reports, overlooking a company’s long-term potential. To spot
+these deals, the investor carefully examines financial data, comparing key metrics and
+ratios to identify genuine undervaluation. Chapter 2 covers the basics of applying
+value investing.
+GROWTH  INVESTING
+A growth investor focuses on companies with the potential for rapid expansion, often
+innovators in emerging sectors such as quantum computing and autonomous driving.
+Success in these complex fields relies on a key principle popularized by legendary
+investor Peter Lynch: your personal or professional knowledge of a domain can give
+you a strong investment advantage.
+ He famously argued that an amateur with specialized insight can often outperform
+a professional without it. Chapter 4 is dedicated to this very idea, guiding you on how
+to use your unique expertise to identify and analyze growth opportunities.
+INCOME  INVESTING
+An income investor focuses on assets that provide a consistent stream of passive
+income. An income portfolio usually includes dividend-paying stocks, bonds that offer
+regular interest payments, or real estate investment trusts (REITs). Chapter 5 centers
+on income investments.
+
+14 CHAPTER  1The analytical investor
+ Table 1.1 compares these three strategies, enabling readers to identify the approach
+that best aligns with their risk profile, return goals, and time investment.
+Many individuals employ a hybrid approach, carefully combining various methods to
+achieve multiple financial goals. This approach may also include trading strategies in
+conjunction with the investment strategies mentioned earlier. Often, this blended
+method takes the form of a “core and satellite” portfolio:
+The core —This is the foundation of the portfolio, focused on long-term invest-
+ing. These assets are held with patience, allowing wealth to grow through com-
+pounding and enabling primary growth goals to develop over time.
+The satellites —Surrounding the core are more minor, more tactical divisions.
+Investors can design these satellites for various purposes:
+– A portion of the capital may be allocated for short-term trading to capitalize
+on market fluctuations actively.
+– Another portion can be invested in income-producing assets to generate a
+steady stream of passive income, adding stability and cash flow to the overall
+financial picture.
+– This balanced structure enables individuals to maintain a disciplined, long-
+term plan while also capitalizing on short-term opportunities and securing a
+steady income.Table 1.1  Comparing growth, value, and income investing
+Attribute Growth investing Value investing Income investing
+Primary goal Capital appreciation Capital appreciation Regular income
+Investor focus Future potential, 
+innovationUndervalued “bargains” Consistent cash payouts
+Typical company Young, innovative, rapidly 
+expandingMature, stable, temporar-
+ily unpopularEstablished, predictable, 
+high cash flow
+Dividends Low or none (profits are 
+reinvested)Often pays dividends High and stable divi-
+dends key
+Key metrics High revenue growth, 
+High P/ELow P/E, Low P/B* High dividend yield, 
+stable cash flow
+Risk profile High Low to moderate Low
+Time horizon Long-term Medium to long term Any, but often for immedi-
+ate needs
+* P/E = price-to-earnings; P/B = price-to-booking. 
+
+15 1.4 Risks and rewards
+1.4 Risks and rewards
+This book will also examine strategies that support investment and trading decisions.
+Hedging  is a risk management tactic used to offset potential losses in an investment. By
+taking an opposing position in a related asset, an investor can safeguard their portfo-
+lio from adverse price movements. Essentially, hedging is akin to buying insurance; it
+involves a tradeoff where you may sacrifice some potential gains to mitigate the risk of
+a significant loss. Chapter 7 covers risk management, including hedging strategies.
+ Figure 1.4 shows the returns of different assets. Should we simply choose the top
+performers and move forward?
+Past results don’t guarantee future outcomes. The market is unpredictable, and no set
+of tools, techniques, or strategies guarantees success. As explained in chapter 12, start-
+ups can return much more than other assets, but they are also the riskiest. As of June
+2025, Bitcoin is valued at around $118,000. While an investor buying now might bene-
+fit if the price increases from this point, they also face a realistic risk that it could drop
+sharply and lose a significant portion of its value.
+ Especially in recent years, it has become increasingly clear how fragile the stock
+market is and how social media can sometimes have a more significant effect on share
+prices than earnings reports. We’ve often seen the unpredictable actions of public fig-
+ures causing overnight gains to disappear, only to rebound later.
+ Warren Buffett once said, “Be fearful when others are greedy, and greedy when oth-
+ers are fearful.” This principle advises caution during a rising bull market, especially
+Stock (S&P 500)
+Bonds (US Aggregate)
+Cryptocurency (Bitcoin)Annual Returns of Stocks, Bonds, and Cryptocurrency (2018-2024)
+Figure 1.4 Comparison of returns of stocks, bonds, and cryptocurrency (generated by ChatGPT)
+
+16 CHAPTER  1The analytical investor
+when experienced investors begin to warn of underlying risks, such as high federal
+debt or economic instability. In such times, it’s wise to resist the temptation to invest
+aggressively.
+1.5 A programmer’s unfair advantage
+Forget stereotypes from pop culture and movies. Slick traders don’t run the modern
+market in boardrooms; it’s a complex system of data, logic, and algorithms. It’s an
+environment where you, as a programmer, have a natural and powerful advantage.
+The skills you use every day to build software are the same skills that can create wealth.
+1.5.1 You think in systems and data
+Your job is to turn raw data into logical decisions. Whether you’re debugging from a
+log file or analyzing performance metrics, you follow evidence, not emotion. Investing
+is the same. A company’s financial statements are just datasets waiting for analysis.
+Stock charts are patterns waiting to be recognized. While others rely on gut feelings,
+you can do the following:
+Perform fundamental analysis. Similar to debugging a program by inspecting its
+core components, you can assess a company’s financial health (income, balance
+sheets) to determine its intrinsic value.
+Use quantitative tools.  The skills needed to analyze data or run scripts are directly
+applicable to backtesting trading strategies and automating your research.
+Build a system.  Programming involves developing rule-based systems. This skill is
+essential for crafting a disciplined investment plan that steers clear of common
+biases, such as panic selling or chasing hype.
+1.5.2 Your mindset is built for the market
+Beyond technical skills, your mindset has been prepared for the realities of investing.
+Here are some mindset traits you can use to your advantage:
+Patience and discipline —You understand the frustration of a tough bug and the
+satisfaction that comes with finally fixing it. Successful investing is the highest
+form of delayed gratification, requiring the same resilience to see a strategy
+through to its conclusion.
+Abstract thinking —You’re comfortable with abstractions, from APIs to complex
+data structures. This helps in understanding intangible assets, such as stocks,
+bonds, and derivatives, more easily. You can see the system, not just its parts.
+Visionary thinking —You operate at the forefront of technology. You’re not just a
+user of emerging trends in AI, virtual reality (VR), or biotech—you’re often a
+creator. This domain knowledge provides you with a unique perspective on
+which companies are set to shape the future.
+
+17 Summary
+1.5.3 Define your parameters
+As a programmer, you can align your investment strategy with your life choices. Some
+programmers choose a career that offers a high income, allowing them to retire early
+with a solid financial plan.
+ Other programmers might choose workplace flexibility over a fixed location and
+become part of the growing community of digital nomads. Sometimes, the benefit
+isn’t more money but lower expenses and taxes.
+ The key to investment success is understanding your environment and goals. You
+shape your investment philosophy, just as you would define the specs for a project:
+How much risk can you handle? How much time will you dedicate? What are your eth-
+ical boundaries?
+ Answering these questions will help you develop a strong, personal strategy you
+can follow, turning your natural advantages as a programmer into real-world results.
+Note that this book doesn’t provide financial advice or recommend the purchase of
+specific assets. It guides you in using your existing analytical skills to analyze securities,
+ultimately supporting your decision-making process.
+Summary
+An investment is an asset or item acquired to generate income or appreciation.
+Assets aren’t restricted to financial products. Each asset follows different rules
+and principles to generate value. Nonfinancial assets can be complex for new
+investors to trade as they are non-fungible (not interchangeable).
+Unlike most other assets, financial assets are fungible, a feature that makes
+them significantly easier to trade.
+A share is a partial ownership of a publicly listed company. Therefore, every
+investor could purchase a majority in publicly traded companies. Stocks are
+usually purchased through stockbrokers.
+Private equity is ownership in privately held companies that aren’t available on a
+public stock exchange.
+Derivatives are investments that are created from an underlying asset. A stock
+option offers an investor the right to buy or sell a stock under predefined condi-
+tions. You can also trade options, which means you can acquire or sell the right
+to trade.
+Selling stock options can provide you with a small income, but you might face
+significant risks in some scenarios.
+Dividends are payments made by a company to its shareholders in proportion
+to the number of shares they hold. Not every company pays dividends. Coupon
+payments, in contrast, are payments received for bonds.
+Unlike stocks, bonds are associated with debt. Bondholders don’t own parts of
+the organization to which they lend money; instead, they receive interest pay-
+ments as compensation for their investment.
+
+18 CHAPTER  1The analytical investor
+ETFs are pooled investments that are mostly passively managed and contain
+multiple assets. Holding ETFs is generally considered less risky for investors
+than holding stocks.
+A hedge fund is a riskier investment vehicle that employs more advanced invest-
+ment strategies, typically sold to a limited number of accredited investors and
+institutions.
+Cryptocurrency is an asset that enables people to transfer value without requir-
+ing third-party involvement in transactions.
+Although some assets are called risk-free, no asset is entirely without risk.
+Programmers may possess a range of skills that enable them to make data-
+driven investment decisions.
+New investors benefit from defining investment goals before exploring invest-
+ment strategies, as each strategy requires a different level of investment, risk tol-
+erance, and time commitment.
+This book doesn’t give financial advice. It aims to teach best practices for using
+programming skills and AI to gain deeper insights and make more informed
+investment decisions.
+
+19Investment essentials
+In chapter 1, we claimed that programmers’ traits can often make these wizards of
+bits and bytes into outstanding investors. But traits (and brains) alone won’t do.
+Take the following statement that you might find in any financial analysis of a share
+price: “With a P/E ratio of over 25, this stock seems overvalued.” For someone new
+to investing, sentences like that or dialogs between investors in movies such as Wall
+Street  or The Big Short  might sound like a foreign language. In 2003, Eric Evans pub-
+lished his book, Domain-Driven Design , which contains principles for creating soft-
+ware in unfamiliar domains for software engineers. One cornerstone of these
+principles is the use of ubiquitous language. This principle asserts that each domain
+has developed its specialized language using terminology exclusive to domain
+experts. An essential part of software engineering is learning to understand and
+communicate effectively in this language. So, let’s start the next part of our journey
+by getting deeper into the domain language of investment.
+ Once we understand the domain language, we can easily interpret the previous
+P/E ratio statement. A share  is a share of ownership in a company. As a tradableThis chapter covers
+Core understanding of the investment domain
+Metrics that help us find profitable investments
+What to look for in financial reports
+
+20 CHAPTER  2Investment essentials
+asset, a share may trade at a price below or above its intrinsic value. To assess a stock’s
+valuation, we may investigate multiple metrics or ratios related to a company’s per-
+formance. The price-to-earnings (P/E) ratio is a key financial metric related to a
+company’s earnings.
+ Finance is a complex domain; if one universal strategy led to guaranteed incredi-
+ble riches in a short time, hedge funds wouldn’t compete for the best performance.
+However, intelligent value investors have demonstrated that finding undervalued
+stocks, when studying fundamentals, is possible. If you’re solely interested in the code,
+feel free to proceed to the next chapter, where we demonstrate how to collect the
+ratios and metrics introduced in this chapter using Python.
+2.1 Accounting in a nutshell
+Think of financial statements as a company’s source code. While they may seem cryp-
+tic at first, once you learn to read them, they reveal precisely how a business is per-
+forming. In this section, we explore the basics of reading the financial code because
+investing without understanding at least the basics of accounting is like trying to cre-
+ate a software application with zero programming skills.
+ Companies follow global accounting standards. If one company reports numbers
+in one way and another company in a different way, we would end up in chaos. One
+powerful entity can compel companies to report data in a standardized manner: the
+government, which requires these reports as a basis for taxation.
+NOTE Just as programmers can misjudge a colleague’s source code at a
+glance, investors can misinterpret financial statements. In both cases, context
+is crucial, and a seemingly simple number may be misleading without it.
+Admitting you were wrong is difficult, but making the initial mistake of judg-
+ing code or numbers too quickly is a costly one.
+Accounting standards haven’t existed since the beginning of stock exchanges. The
+prevailing economic philosophy of laissez-faire capitalism in the roaring twenties
+extended to corporate reporting. There were no federal laws compelling companies
+to disclose financial information to the public. While the New York Stock Exchange
+had some listing requirements, they weren’t rigorously enforced, and there was no
+uniform standard for the information that needed to be provided. The stock market
+crash of 1929, which led to the Great Depression and caused widespread pain, had
+multiple root causes. Missing accounting standards exacerbated the problem, and,
+not surprisingly, the Generally Accepted Accounting Principles (GAAP)  were established in
+response to the crash.
+ These accounting standards establish a stable baseline by mandating a consistent
+method for companies to report their financial information. Violating them can be
+costly, sometimes even threatening a company’s existence. In addition to GAAP, there’s
+a second standard, the International Financial Reporting Standards (IFRS),  which is used
+in the international market. These standards differ in detail, but these differences are
+
+21 2.1 Accounting in a nutshell
+irrelevant to a programmer’s book on investments. What counts is that all companies
+are required to report their findings in three documents that are the basis for all key
+financial metrics that investors discuss:
+Income statement —How much revenue a business makes and how much it spends
+Balance sheet —What assets a business owns and what it owes
+Cashflow statement —How much cash the business generates
+We can safely assume that every public company provides these three documents.
+Whether it’s Apple, Walmart, Coca-Cola, or a non-US company such as Rolls-Royce or
+Deutsche Bank, they similarly calculate revenue and expenses, although the numbers
+in the sheets might differ according to the business model. Every company reports all
+three statements quarterly.
+NOTE As this is a book for programmers, we keep the description of account-
+ing statements to a minimum; however, some basic knowledge is necessary to
+perform a financial analysis. Sites such as Investopedia ( www.investopedia
+.com/ ) can provide you with more detailed information on monetary terms.
+2.1.1 Income statement
+An income statement shows the company’s performance over a year or a quarter.
+Figure 2.1 also shows the relationship of the income statement to other statements.
+Income Statement
+Revenue
+-      Cost of Goods Sold
+Gross Proﬁt
+-      Operating Expenses
+Operating Income
+-      Income Tax
+Net IncomeCash Flow Statement
+Cash Flow Operating Activities
+Incl. Net Income
+Cash Flow from Investing
+Cash Flow from Financing
+Net Increase in cash
+Balance Sheet
+Assets Liabilities
+-      Current Assets -      Current Liabilities
+-      Long-Term Assets - Long-Term Liabilities
+Shareholder Equity (Asset − Liabilities)
+Figure 2.1 This illustrates a simplified relationship between the accounting statement and its 
+interconnection.
+
+22 CHAPTER  2Investment essentials
+Investors typically compare a given quarter with the same quarter from previous years,
+as many business conditions fluctuate on an annual cycle. Consider how much retail
+companies are affected by Christmas sales or the holiday season. Therefore, for some
+companies, Q4—the quarter of the Christmas season—might be decisive for their
+overall success.
+ The main components of an income statement are as follows:
+Revenue —Total income from sales or services
+Expenses —Costs incurred to generate revenues
+Net income —Revenue minus expenses, indicating profit or loss
+If I receive $1 today, it’s worth more than $1 I receive in a year. This concept is called
+the time value of money . I can invest this dollar today and earn interest on it. At a 5%
+annual interest rate, $1 becomes $1.05 in one year. Inflation also affects the time value
+of money, meaning I can buy less with one uninvested dollar in a year than I can today,
+as consumer prices tend to rise on average.
+ Imagine a company that consistently generates the same net income over 10 years.
+Over this period, the real value generated decreases each year. Investors typically
+expect a successful company to increase both revenue and net income over time.
+ Analyzing a company’s accounting statements over time helps in formulating
+hypotheses about its performance and operations. Let’s explore this using a simplified
+financial model of a fictional consulting firm, which is based on aggregated account-
+ing data. This model has the following characteristics, as shown in figure 2.2:
+Revenue is generated by selling services.
+Research and development (R&D) investments encompass training, personnel
+certification, and new skill development.
+Service costs are primarily the salaries of employees performing billable work.
+We continue to monitor the company’s financial statements over time and are inter-
+ested in seeing if these numbers change significantly. Let’s imagine after studying
+their latest income statement, we discover that R&D expenses increased enormously.
+The company finances this increase in research with foreign capital, as shown in fig-
+ure 2.3.
+ Just by looking at the increased R&D expenses without any further details, we can
+take a guess at what’s going on here to come up with theories and create a bullish
+(optimistic) and a bearish (pessimistic) hypothesis:
+Bullish hypothesis —They must have acquired new projects that will start soon for
+which they train new consultants, or they are preparing to sell new services to
+existing customers. The company will see a significant increase in its earnings
+soon. If investors panic due to additional foreign capital acquired by the com-
+pany to finance further research, causing the share price to drop, this company
+is a perfect buying opportunity.
+
+23 2.1 Accounting in a nutshell
+Revenue to Expenses Distribution
+Revenue (100%)R&D (10%)
+Services (70%)
+Other Expenses (20%)Income Expenses
+Figure 2.2 A simplified model of a consulting company that makes its money on selling services and 
+spends most of it on employee salaries
+Revenue to Expenses Distribution
+Revenue+Foreign Capital (100%)R&D (25%)
+Services (58.33%)
+Other Expenses (16.67%)Income Expenses
+Figure 2.3 Here, the R&D expenses have increased, and the additional expenses are covered with 
+foreign capital.
+
+24 CHAPTER  2Investment essentials
+Bearish hypothesis —The company had to attract foreign capital to continue operat-
+ing. Maybe they are in trouble. If their business goes bad, we might not see the
+effect right away on their accounting sheets. We need to monitor the next income
+statements to see if their income goes down and if they start cutting expenses. If
+they plan to roll out new services and fail, they will incur additional debt and may
+run into liquidity problems. It may be better not to invest in that company.
+Consider an alternative scenario in which the company reduces its spending on ser-
+vices and R&D, while the revenue is unaffected. Figure 2.4 outlines this scenario.
+This scenario suggests that the company may see little room for growth. Instead of try-
+ing to increase profits by selling more, they monetize existing revenues. Financial
+experts may examine the interest rate set by the Federal Reserve or the central bank
+to determine whether that company’s strategy is tied to an economic cycle. Many com-
+panies prefer to invest less when interest rates are high and the economy is in a reces-
+sion. But still, all we can do is create hypotheses about what’s happening:
+Bullish hypothesis —The company still provides the same number of services for
+existing clients for less expense costs, which indicates they do more work for the
+same money. Maybe the company became more efficient thanks to AI and auto-
+mated its processes. As it creates a surplus, the company might become a divi-
+dend-paying stock. This is an opportunity to generate passive income.Revenue to Expenses Distribution
+Revenue (100%)R&D (5%)
+Services (60%)
+Other Expenses (20%)
+Surplus (15%)Income Expenses
+Figure 2.4 Here, the company reduces spending on research and services.
+
+25 2.1 Accounting in a nutshell
+Bearish hypothesis —A company’s value increases if it grows. If the company cuts
+down on research, it will likely not grow. Having a surplus is fine, but if we don’t
+know what the company is planning to do, it’s better not to invest.
+This was a simplified model, used for demonstration purposes, for a type of company
+that is relatively easy to model. Consulting companies can be relatively straightforward,
+as expenses are often linked to income. Consultants work on client projects. The com-
+pany makes a profit by selling consultancy services at a higher price than their salary
+expenses. Other companies are far more challenging to model. For example, think of a
+conglomerate such as Alphabet, for which you need to consider subsidiaries (e.g.,
+Waymo) that operate in multiple domains from advertising to cloud computing.
+ Another challenge is that we reduced our model to a minimum of parameters for
+demonstration purposes. The reality is more complex. At the same time, if you ana-
+lyze concrete companies, you have more resources, such as media reports on the com-
+pany and interviews with analysts who know the company well. Data-driven investors
+can build models of companies and create their own priorities regarding what they
+consider to be essential for a company’s value. The essentials might vary from business
+to business as well.
+NOTE Companies in different industries operate on vastly different business
+models. A tech firm such as Apple spends enormous sums on R&D to create a
+few high-revenue products. In contrast, supermarket chain Walmart focuses
+on selling a high volume of products from many suppliers. For Walmart,
+innovation isn’t about creating new products, but about optimizing storage
+and supply chains while maintaining quality service. Therefore, comparing
+metrics such as R&D spending between Apple and Walmart would be mis-
+leading—it’s like comparing apples and oranges. An investor can achieve a
+far more insightful analysis by comparing companies within the same indus-
+try, such as evaluating Walmart against direct competitor Costco.
+The income statement reveals how much a company earns and how it allocates its
+expenses, which helps us evaluate a company’s strategy. To complete our tour of finan-
+cial statements and gain a comprehensive picture, we must now determine what the
+company already owns. We get this information from the balance sheet.
+2.1.2 Balance sheet
+The income sheet tells us what a company made in a period by listing the revenue
+generated and the expenses. The information that a company already owns or owes
+still needs to be added. The essence of a balance sheet can be reduced to this simple
+formula:
+Assets = Liabilities + Shareholders’ equity
+Assets  are what a company owns, liabilities  are what it owes, and shareholder equity  is the
+amount shareholders would get paid if all assets were liquidated and the debts were
+paid. A company may be in serious trouble when its liabilities exceed its assets.
+
+26 CHAPTER  2Investment essentials
+ Liquidity  is a metric that tells how easily an asset can be converted to cash. Imagine
+a manufacturing company that puts one of its factories, along with all of its machinery,
+up for sale. It may take some time to find a potential buyer. Other assets, such as
+inventory goods, may have better liquidity.
+NOTE Do you think like an economist? Consider everything you own—
+computers, cars, or clothing—would you list these items as nonliquid assets?
+Or do you count only your financial assets as part of your net value? Thinking
+as an economist, you might list all of your belongings as part of your wealth.
+Programmers often work on projects to reduce capital expenses (CapEx) for their cli-
+ents or employers. Cloud migration may be the best reference for such projects, as
+companies decide that they prefer renting over owning hardware with such a move.
+Some investors also claim that software companies are popular investments because
+they aren’t capital-intensive. Low CapEx is often considered low risk, as it requires less
+initial investment, even though operating expenses (OpEx) may be higher.
+NOTE Engineers sometimes perceive economic soundness differently than
+business administrators. Think of an on-premise platform that solves business
+problems with minimal OpEx. While engineers might view the investment as
+sound, if costs are reduced permanently and a return on investment is
+achieved over time, business administrators may be more cautious. Among
+other things, they might argue that higher up-front CapEx may lead to lower
+liquidity, and he raises the question of opportunity costs and the real total
+cost of ownership.
+The balance sheet might differ significantly between industries. Software companies
+may have almost no assets listed as inventory, whereas supermarket chains must
+maintain a large inventory to quickly supply customers with goods. Additionally,
+you’ll find inventory listed under current assets in companies such as NVIDIA,
+which sell hardware.
+ The balance sheet already indicated that having more liabilities than assets is an
+alarm signal. However, there’s another detail to analyze after we understand that the
+accounts payable and accounts receivable entries on a balance sheet indicate that we
+might have some incoming or outgoing money in our books, but not yet in our posses-
+sion. It’s possible that a company can’t pay its bills, even if its books show a positive bal-
+ance. A third financial statement—the cash flow statement—can give us more details
+on a company’s solvency.
+2.1.3 Free cash flow
+Obviously, we can’t pay bills with all forms of assets. Free cash flow (FCF)  is the amount
+of cash remaining after a company has covered its operational costs and CapEx.
+Here’s the simplified formula of FCF:
+Free cash flow = Operating cash flow – Capital expenditures
+
+27 2.1 Accounting in a nutshell
+Operating cash flow refers to the cash a company generates through its normal busi-
+ness operations. More than any other document, this statement reveals whether the
+company is financially stable, can afford new investments, and can pay its bills without
+incurring additional debt.
+Each accounting statement will still contain many unfamiliar terms if you don’t have a
+degree in business administration. Explaining each term in this book isn’t possible, so
+be sure to look up and research terms as you run across any you’re unsure of.
+ As a programmer, you’ve seen code written for web applications, data processing,
+or embedded systems, and each domain requires different best practices, depending
+on the resources available. This same principle applies to companies. Only some of
+the best practices are effective for certain companies. Companies are distinct, and
+understanding this difference is crucial if you want to invest in them.
+ 
+ Why cash flow matters
+Imagine Eugene owns a prestigious antique car business that purchases, renovates,
+and sells these vintage beauties to car enthusiasts. He has invested a lot of money
+in a garage and a small factory hall, where he also stores a vast inventory of rare
+replacement parts. You’re transported to a different era in the garage when you see
+all the Studebakers, Packards, and classic Chevy Impalas. 
+One day, Eugene looks at his books and realizes he has run out of cash. He had pre-
+viously found a treasure trove. A wealthy collector of old cars had passed away, and
+Eugene acquired a vast collection of rare old vehicles from the heirs at a significantly
+reduced price. Eugene knows that he can sell all those cars with a huge profit margin,
+but buying all these cars required him to use all of his cash reserves, and he must
+even take a loan from his local bank.
+Some salary and other payments are due soon, so he can only keep his business in
+operation by borrowing more money. His local bank, which had already given him the
+first loan, is hesitant to give him a second one and is inquiring about securities.
+Eugene’s cars and equipment might be worth millions; some clients might even owe
+him money. However, he can’t pay the plumber who fixes his restrooms in the shop
+by giving away a car or a client’s debt. Therefore, a vehicle in Eugene’s inventory isn’t
+a liquid asset.
+If Eugene proves that his business outlook is good, he’ll most likely get a loan from
+the bank. Still, this example suggests one idea we can explore with algorithms: the
+risk that a company may be insolvent.
+
+28 CHAPTER  2Investment essentials
+2.2 Industry classification
+Before discussing financial metrics and ratios, let’s examine the possible sectors and
+industries to understand potential differences in how companies generate revenues and
+allocate their expenditures. Figure 2.5 outlines a categorization of sectors according to
+the Global Industry Classification Standard (GICS) of S&P ( www.spglobal.com/spdji/
+en/landing/topic/gics/ ), a standard used to categorize companies based on their
+business models.
+NOTE GICS is one standard among multiple official industry classification
+standards. Investors, such as Peter Lynch, have created their own unofficial
+systems. Be sure to explore these standards independently, as they offer dif-
+ferent perspectives on companies that can help you better understand them.
+We use GICS in this book due to its widespread global use and recognition.
+GICS groups companies on four levels. The sector (e.g., Utilities) represents the high-
+est level, and subindustries are at the most detailed level. Different categorizations of
+businesses help to separate them by business models. Each business model may affect
+the financial metrics and ratios to watch. Governments regulate specific sectors more
+heavily, and changes in law have a greater effect on companies in these sectors than
+on others. Other sectors might be more affected by increased interest rates or eco-
+nomic cycles than others. 
+2.2.1 Influences on GICS sectors
+In this chapter, we aim to identify factors that can influence a company, enabling us to
+build models later. If we know, for instance, that a sector is influenced by interest
+rates, economic cycles, and raw material costs, we can try to build a machine learning
+(ML) model that predicts stock prices based on these input factors as features of the
+ML model. In table 2.1, we introduce the GICS sectors and the key factors that may
+influence the price of an asset in each sector.
+Energy Materials IndustrialsConsumer
+DiscretionaryConsumer
+StaplesHealth
+Care FinancialsInformation
+TechnologyCommunication
+Services UtilitiesReal
+Estate
+11 Sectors
+25 Industry
+Groups
+74 Industries
+163 Sub-
+Industries
+Figure 2.5 All sectors with icons based on the GICS standard used in many financial platforms (Source: 
+www.msci.com/our-solutions/indexes/gics )
+
+29 2.2 Industry classification
+Some categorizations of companies might be misleading. Many would consider Ama-
+zon, Tesla, and Google to be companies in the information technology sector. GICS
+categorizes Amazon and Tesla in the Consumer Discretionary sector, and Google in
+the Communication Services sector. Still, when looking up ratios, it makes sense to
+look up the company’s sector to add context.Table 2.1 GICS sectors and their influences
+Sector What it does Influenced by
+Utilities Companies that provide essential ser-
+vices such as electricity, water, and 
+natural gas Interest rates, energy prices, regulation, 
+and bond yields
+Consumer Sta-
+ples Companies that produce essential prod-
+ucts such as food, beverages, and 
+household items Interest rates, inflation, consumer confi-
+dence, and raw material costs
+Consumer 
+Discretionary Companies that produce nonessential 
+goods and services, including automo-
+biles, apparel, and leisure Consumer spending, unemployment 
+rates, and disposable income 
+Communication 
+Services Companies that provide communication 
+services, including telecom and media Government regulation, intense competi-
+tion, technology changes, general eco-
+nomic conditions, consumer and 
+business confidence, spending, and 
+changes in consumer and business pref-
+erences
+Real Estate Companies involved in the development, 
+management, and operation of real 
+properties Demographic changes, interest rates, 
+economic cycle, government policies, 
+housing demand, and economic growth
+Information 
+Technology Companies that produce software, hard-
+ware, or semiconductor equipment, and 
+companies that provide internet or 
+related services Innovation, cybersecurity threats, and 
+regulatory changes
+Energy Companies that play a role in extracting, 
+refining, or supplying consumable fuels Oil prices, geopolitical stability, and 
+renewable energy trends
+Health Care Companies that provide medical ser-
+vices, manufacture medical equipment, 
+or develop pharmaceuticals Pandemics, regulation, drug pricing, and 
+demographic changes
+Financials Companies that provide financial ser-
+vices, including banking, insurance, and 
+investment Interest rates, economic cycles, and reg-
+ulatory changes
+Industrials Companies that produce goods used in 
+construction and manufacturing, includ-
+ing machinery and equipmentManufacturing output, trade policies, and 
+commodity prices
+Materials Companies that provide raw materials 
+used in the manufacturing process, 
+including metals and chemicals Commodity prices, supply chain stability, 
+and environmental regulations
+
+30 CHAPTER  2Investment essentials
+2.2.2 Sectors and economic cycles
+In an economic crisis with unpleasant side effects, such as high unemployment rates
+or high inflation, it makes sense that some businesses are more affected than others.
+To demonstrate the effect of economic cycles on share prices, let’s pick four suspects—
+Microsoft, Coca-Cola, Walmart, and Ford—and check their share prices during the
+2008 financial crisis, when the housing market collapsed. For table 2.2, we used an
+interval from January 1, 2008, to January 1, 2010.
+Even if we only look at the numbers, it’s evident that Ford’s value declined far more
+steeply than Walmart’s, falling to just one-tenth of its previous value at its lowest point.
+A bar chart accentuates the changes even more clearly in figure 2.6.
+ This chart makes sense because Ford and Microsoft produce products that con-
+sumers can drop more easily. If resources are scarce, postponing the purchase of
+a new car may be a viable option, but choosing not to go to the supermarket, even in a
+crisis, isn’t possible; we still have to eat. Let’s examine how various sectors performed
+during the 2008 financial crisis.
+ One way to improve this exploration is to compare sector indices. A sector index is
+a collection of multiple companies within a single sector, which can also be referred to
+by their respective tickers. In figure 2.7, we look at XLK (Technology sector), XLP
+(Consumer Staples), and XLY (Consumer Discretionary). The graph shows what com-
+mon sense has already told us: companies producing goods for everyday needs are less
+affected by crises.Investing only in companies whose business you understand
+Warren Buffett recommends investing only in businesses that you understand. A
+supermarket chain such as Walmart is different from a tech company. If a tech com-
+pany launches a successful product, it may be reflected in its yearly results (think of
+the effect of the iPhone on Apple’s business). However, the best-selling product of a
+supermarket chain won’t have a visible effect on an accounting statement.
+Reading accounting statements of a company and understanding what they mean, as
+well as being able to interpret changes in numbers, may not make you an accountant,
+yet. However, being able to interpret the numbers and connect them to the com-
+pany’s business model provides a foundation for making wise investment decisions.
+Table 2.2 Highs and lows of selected share prices from 2008 to 2010
+Microsoft (MSFT) Coca-Cola (KO) Walmart (WMT) Ford (F)
+High 35.95 32.79 21.28 10.37
+Low 14.87 18.72 14.37 1.01
+Avg. 24.82 25.65 17.60 5.42
+
+31 2.2 Industry classification
+Comparison of High, Low, and Avg Values for Companies (Grayscale)
+Values
+Microsoft (MSFT) Coca-Cola (KO) Walmart (WMT) Ford (F)
+Company35.95
+14.8724.8232.79
+18.7225.65
+21.28
+14.3717.6
+10.37
+1.015.4235
+30
+25
+20
+15
+10
+5
+0High
+Low
+Avg
+Figure 2.6 Data from the table shown in a bar chart makes the drop in value of some companies more obvious.
+Figure 2.7 The effect of the 2008 housing market crisis on selected indices XLK (Technology), XLP (Consumer 
+Staples), and XLY (Consumer Discretionary)
+
+32 CHAPTER  2Investment essentials
+A company’s performance is fundamentally linked to the economic cycle, which con-
+sists of four stages: expansion, peak, contraction, and trough. During an economic
+expansion, rising employment and disposable income boost spending on nonessential
+goods. Conversely, during a contraction, consumers prioritize essentials and cut back
+on discretionary items. This dynamic reveals that some companies are highly cyclical ,
+with their success directly tied to the health of the economy. In contrast, others are
+noncyclical  or defensive , remaining stable during economic downturns. This sensitivity
+extends beyond business cycles, as other macroeconomic forces—such as government
+fiscal policy, interest rates, inflation, commodity prices, and currency exchange rates—
+also affect industries in vastly different ways. 
+2.3 Capitalization
+As we now understand that companies in different industries and sectors may react
+differently to market conditions, we might develop an “invest in too-big-to-fail compa-
+nies” investment hypothesis. While smaller companies might perish in a crisis and lose
+their invested money permanently, we can bet on big companies that will survive all
+crises and consistently grow over the years, on average.
+ Before we challenge this idea, let’s first define what larger  or smaller  means in this
+context. The number of employees at a company can be a misleading indicator of
+size. A more suitable metric for investors to consider is capitalization. In short, capital-
+ization  refers to the value that people are willing to pay for the company at the current
+time. Investors calculate a public company’s capitalization by multiplying the total
+amount of outstanding shares of a stock by the current stock price.
+ Although many companies with a small market capitalization (e.g., start-ups and
+small and midsize enterprises [SMEs]) are private and so not listed on stock exchanges,
+the difference between companies on the stock market can still be vast. We can group
+companies as follows (with some slight variations in different markets):
+Mega-cap —Market value of $200 billion or more
+Large-cap —Market value between $10 billion and $200 billion
+Mid-cap —Market value between $2 billion and $10 billion
+Small-cap —Market value between $250 million and $2 billion
+Micro-cap —Market value of less than $250 million
+A mega-cap company’s bankruptcy risk is lower than that of companies with a lower
+market capitalization. At the same time, finding tenbaggers —a term coined by Peter
+Lynch for an investment that returns 10 times its initial purchase price—is much
+more likely with a micro-cap stock. They have far more room to grow.
+NOTE Intrinsic value reflects an asset’s true worth, which can be estimated
+using various methods, such as discounted cash flow analysis or other funda-
+mental valuation techniques. Even with rigorous analysis, every intrinsic value
+estimate carries a degree of uncertainty. The greater the gap between an
+asset’s market capitalization and its estimated intrinsic value, the larger the
+potential investment opportunity.
+
+33 2.4 Metrics and ratios
+Mega-cap companies, such as NVIDIA, Apple, or Microsoft, differ significantly from
+those with a considerably lower market value. Investors who own shares in mega-cap
+companies may sit out crises, as the likelihood of bankruptcy is low. Companies with a
+viable business model will eventually return to their earlier, higher share prices. Share-
+holders of smaller companies may be more concerned about worst-case scenarios. The
+smaller the company, the higher the risk, but also the higher the chance for gains.
+Many experienced investors, for this reason, love to explore smaller companies and
+mitigate risks by conducting more thorough due diligence and in-depth research.
+ If we look back in time and examine the fate of companies with the highest market
+capitalization over the decades, we’ll see that some past winners have lost their signifi-
+cance or disappeared. Even Jeff Bezos claims that Amazon might fail at some point in
+the future ( https:/ /mng.bz/pZR0 ). Trusting that giants on the stock market will always
+survive might end up like betting during the Jurassic era that some large reptiles are
+too big to go extinct. Instead, the stock market is akin to the survival of the fittest, and
+it makes sense to investigate the fundamentals of companies.
+2.4 Metrics and ratios
+With knowledge of a company’s classification and capitalization, we have a basis to go
+on. We might pick companies in a sector we understand and choose companies to
+invest in. Now, we need to learn more about a company’s fitness. A metric  is a statement
+about a company’s performance. One example is the dividend yield, which indicates
+the amount of dividends per share. We get most metrics from the accounting state-
+ments. A ratio is a statement about a relationship between two independent  metrics. The
+price-to-earnings ratio (P/E) measures the share price relative to the earnings per
+share (EPS).
+ Understanding financial metrics is much like evaluating software quality. In soft-
+ware development, metrics such as code readability are essential; however, a cata-
+strophic score in one area—such as a high crash rate—demands immediate action
+from team leaders, regardless of how elegant the code may be. Similarly, in finance, a
+company might appear strong. Still, a critical red flag from a single ratio, such as an
+inability to pay its bills, signals serious trouble that forces management to take action.
+ Conversely, just as no single metric can guarantee a high-quality product, a few
+good financial ratios alone don’t confirm a company’s health or future success. A
+common investment mistake is to fixate on one impressive number while ignoring
+potential weaknesses elsewhere. The key in both fields is a holistic evaluation. By ana-
+lyzing multiple metrics and comparing them to those of industry peers, we can
+develop a strong and reliable indicator of a company’s overall performance.
+NOTE It’s impossible to cover all ratios used in the financial industry. There-
+fore, this subset of possible ratios might be interesting when assessing poten-
+tial investments. Web pages such as the Terms page from FullRatio ( https:/ /
+fullratio.com/terms ) give more context to what each ratio could mean for an
+industry.
+
+34 CHAPTER  2Investment essentials
+To assess a company’s overall status, we must consider multiple factors. As we’ll
+demonstrate in chapter 3, platforms with stock screeners, such as Finviz, provide an
+excellent overview of company data. Let’s examine some ratios for NVIDIA and
+Walmart in table 2.3. The Beta column refers to a measure of a stock’s volatility—or
+systematic risk—in relation to the overall market.
+We find some noteworthy differences in the numbers. Walmart’s revenue is signifi-
+cantly higher. However, the supermarket chain also has approximately 60 times the
+number of NVIDIA’s employees. Having lots of employees also means high expenses.
+A supermarket chain also needs to maintain a lot of infrastructure and inventory.
+However, as mentioned already in the section on sectors and economic cycles, during
+economic downturns, customers will still visit supermarkets to buy food.
+ In contrast, some individuals and companies will delay technology purchases if they
+don’t have sufficient funds. A low beta value of a stock—Walmart has a beta of 0.69, and
+NVIDIA has a beta of 2.12—reflects its resilience against market risks. We observe con-
+siderable differences in expected values across GICS sectors, as well as in other ratios.
+2.4.1 Liquidity
+In the simplest terms, liquidity  measures a company’s ability to pay bills. If you collect
+information on multiple companies in a DataFrame, you might find problematic out-
+liers. In this chapter, we explore two ratios: the current ratio and the quick ratio.
+ The current ratio  measures a company’s ability to pay its short-term liabilities with its
+assets. This is calculated by dividing the current assets by the current liabilities. We can
+collect both values from the balance sheet.
+ The quick ratio  is more stringent. It only considers assets, such as cash, marketable
+securities, and receivables, that the company can use to pay short-term debts today
+and omits assets such as inventory. The liquidity ratios as of June 8, 2025, for Walmart,
+Altria, NVIDIA, and Salesforce are shown in table 2.4.Table 2.3 Selected ratios of NVIDIA and Walmart
+Company Market cap Sales Employees P/E Beta
+NVIDIA 3457.97B 148.51B 36,000 45.65 2.12
+Walmart 779.85B 685.09B 2,100,000 41.81 0.69 
+Data from the Finviz platform on June 8, 2025 (for the latest data, go to https:/ /finviz.com/quote.ashx?t=NVDA&p=d  or 
+https:/ /finviz.com/quote.ashx?t=WMT&p=d )
+Table 2.4 Liquidity ratios for Walmart, Altria, NVIDIA, and Salesforce
+Company Sector Industry Current ratio Quick ratio
+Walmart (WMT) Consumer Defensive Discount Stores 0.780 0.185
+Atria (MO) Consumer Defensive Tobacco 0.571 0.468
+
+35 2.4 Metrics and ratios
+The table provides insights about sectors. Technology companies tend to have
+higher liquidity ratios, which can also be explained by their business models. If we
+consider discount stores such as Walmart, we can imagine the amount of capital
+these companies have in inventory or goods still to be sold. Nobody wants to go into
+a store and find only a minimum of products on the shelves, as supermarket chains
+want to improve their liquidity ratios and only buy new products once the old ones
+are out of stock.
+ Again, this statement shows that we can’t compare the ratios between different
+sectors. Table 2.5 is more interesting for a financial analysis, as it compares Walmart,
+Costco, Target, and Dollar Tree, which are peer companies. We can compare the
+companies based on these returns and have a basis for discussing which one is per-
+forming better.
+As we delve into the numbers at the micro level for the same sector, we need to take a
+deeper dive into them with a different mindset to make key decisions. Perhaps the
+insight from one category alone isn’t enough for an investment decision, but it can
+still influence that decision. An investor knowledgeable in discount stores might
+examine all of these numbers and deduce that Costco has a better ratio than Walmart. 
+NOTE Value investors know what makes businesses in the sectors they under-
+stand successful and look for confirmation in numbers. They often spend a
+considerable amount of time comparing metrics they have selected based on
+their understanding of the business. For value investors, sophisticated score-
+cards of carefully chosen metrics and ratios can be key decision-making factors.NVIDIA (NVDA) Technology Semiconductors 3.388 2.857
+Salesforce (CRM) Technology Software - Application 1.069 0.899
+Data collected from the yfinance library on June 8, 2025
+Table 2.5 Liquidity ratios for Walmart, Costco, Target, and Dollar Tree
+Company Sector Industry Current ratio Quick ratio
+Walmart (WMT) Consumer Defensive Discount Stores 0.780 0.185
+Costco (COST) Consumer Defensive Discount Stores 1.015 0.472
+Target (TGT) Consumer Defensive Discount Stores 0.935 0.152
+Dollar Tree (DLTR) Consumer Defensive Discount Stores 1.044 0.122
+Data collected using yfinance on June 8, 2025Table 2.4 Liquidity ratios for Walmart, Altria, NVIDIA, and Salesforce  (continued)
+Company Sector Industry Current ratio Quick ratio
+
+36 CHAPTER  2Investment essentials
+2.4.2 Debt
+In a financial sense, debt is all liabilities with interest-bearing obligations. The debt-to-
+equity (D/E) ratio is calculated by dividing a company’s total liabilities by its total
+shareholders’ equity. This ratio is a key indicator of a company’s financial leverage,
+showing the proportion of debt used to finance its assets compared to equity. A higher
+ratio indicates a greater reliance on debt financing, which can increase financial risk.
+Let’s look again at some examples in table 2.6.
+This chart highlights the need to look beyond surface-level metrics. While Apple’s
+debt-to-equity ratio seems 10 times worse than NVIDIA’s, the number reflects a delib-
+erate financial strategy, not necessarily poor health.
+ Apple strategically issues highly rated corporate bonds at very low interest rates to
+finance its research, development, and other growth initiatives. For investors, this debt
+isn’t a red flag if the interest rates are close to or below the rate of inflation. In that sce-
+nario, the company is using low-cost leverage as a powerful tool to fund growth, turning
+a seemingly poor ratio into a sign of sophisticated capital management.
+ The interest coverage ratio, not shown in the table but a key metric to explore in
+an analysis focused on debt, is a crucial indicator used to assess a company’s ability to
+pay the interest on its outstanding debt easily. It’s calculated by dividing a company’s
+Earnings Before Interest and Taxes (EBIT) by its interest expenses for a given period.
+A result below 1.0 is a universal red flag, indicating that the company’s current profits
+are insufficient to cover its interest obligations, which signals significant financial dis-
+tress regardless of the industry.
+2.4.3 Earnings
+We collect the raw earnings data from the income statements to calculate ratios. The
+earnings per share (EPS)  metric mentioned earlier serves as the basis for many key ratios.
+This metric measures the company’s profits for each outstanding share. The EPS is
+calculated with the following formula:
+(Profit – Preferred dividends) ÷ Shares outstanding
+In earnings calls, companies inform their shareholders about quarterly results. Com-
+panies retrospectively assess past earnings from previous quarters and estimate theirTable 2.6 Liquidity ratios for Apple, Walmart, and NVIDIA
+Company Sector Industry Debt-to-equity 
+Apple (AAPL) Technology Consumer Electronics 146.994 
+Walmart (WMT) Consumer Defensive Discount Stores 74.138
+NVIDIA (NVDA) Technology Semiconductors 12.267
+Data collected using yfinance on June 8, 2025
+
+37 2.4 Metrics and ratios
+earnings for the following quarters. Whether the numbers are above or below expec-
+tations can affect the stock price.
+ Free cash flow per share  is a profitability metric that measures the total amount of FCF
+generated by the company attributed to each share over one year. A good ratio of
+FCF underlines that a company can expand business operations, pay down debt, or
+return capital to shareholders. The formula follows: 
+Free cash flow per share = Free cash flow (FCF) ÷ Shares outstanding
+FCF is calculated by the following: 
+Operating cash flow – CapEx
+The earnings ratios are mostly interesting for valuation purposes, as earnings are
+often used as a basis to evaluate the company. So, it makes sense to continue there.
+2.4.4 Valuation
+Suppose a start-up claims to be valued at $100 million. What does this mean? A third
+party believes that $100 million could be a fair price for acquiring a specific start-up.
+However, if a potential buyer is willing to pay this amount, that’s another story. These
+valuations are often rough estimates based on data provided by the start-up. Compa-
+nies considering a purchase of that start-up may come up with entirely different num-
+bers after a more detailed assessment. In the worst case, buyers aren’t interested in
+buying the start-up at all, even close to its valuation.
+ Start-up valuation can be tricky. Proper valuation, such as with the discounted cash
+flow (DCF) method,  requires sound accounting practices over multiple years. This
+demand raises questions: Has the start-up reported enough years with all the thor-
+oughness necessary for a sound assessment? What if the third party doing the valua-
+tion benefits from giving a high rating? (They might attract other start-ups by giving
+high valuations in general.)
+ Start-up valuations are often rough estimates of a start-up’s worth, assuming every-
+thing goes as planned and there are no hidden problems. According to the efficient
+market theory, the share price on a stock exchange reflects all available market infor-
+mation, causing the valuation of public companies to be more accurate. We multiply
+the stock price by the number of shares outstanding and obtain the company’s market
+capitalization . Some investors challenge this assumption and try to use valuation met-
+rics to find undervalued companies. We can do the same: let’s learn valuation ratios
+quickly and complement our knowledge by comparing ratios using practice examples.
+ We observed that EPS is a crucial metric. If an EPS diverges strongly from the pre-
+vious report, it’s a strong buy or sell signal for investors.
+NOTE The exact formula for EPS also subtracts a metric of preferred divi-
+dends from the net income, which can be ignored for this example.
+
+38 CHAPTER  2Investment essentials
+We’ve defined EPS earlier. We calculate the price for $1 of earnings (price-to-earn-
+ings) by dividing the share price by EPS. The P/E ratio is essential for determining
+whether a stock is overvalued or undervalued.
+ If we take the time to explore the P/E ratios of multiple companies, we’ll soon
+learn that they vary significantly. If NVIDIA has a P/E ratio of 47.61 and Pfizer one of
+10.43, as of January 31, does this mean NVIDIA is overvalued, and Pfizer is underval-
+ued? The reality is not so simple. We need to compare the P/E ratio of a company
+with a baseline. One baseline could be the S&P 500 index. At the time of writing, the
+P/E ratio of the S&P 500 was around 30. However, this is still vague. The average P/E
+ratios vary by sector, so it may be more effective to compare a company’s P/E value
+with that of its peers. In this example, the sector median is 25.31, which indicates that
+NVIDIA is overvalued. But there’s still one problem. The P/E ratio doesn’t include
+projected growth. By dividing the P/E ratio by EPS growth, we get another standard
+ratio, the price/earnings-to-growth ratio (PEG). Let’s take a snapshot of NVIDIA’s val-
+uation as of June 8, 2025, shown in table 2.7. 
+Table 2.7 A snapshot of NVIDIA’s valuation
+Sector 
+relative gradeNVIDIASector 
+median% diff. to 
+sectorNVIDIA 
+5Y avg.% diff. to 
+5Y avg.
+P/E Non-GAAP (TTM) D 44.43 22.20 100.10 63.09 29.59
+P/E Non-GAAP (FWD) C- 33.14 22.64 46.38 47.38 30.05
+P/E GAAP (TTM) C- 45.71 28.17 62.22 83.84 45.49
+P/E GAAP (FWD) C 35.04 29.14 20.24 62.08 43.56
+PEG GAAP (TTM) B 0.56 0.91 -38,45 — NM
+PEG Non-GAAP (FWD) B+ 1.15 1.73 -33.48 1.80 36.21
+FWD, forward (future financial performance); TTM, trailing 12 months (most recent 12-month period); NM, nonmeaningful 
+value
+Data taken from Seeking Alpha on June 8, 2025 (for the latest data, go to https:/ /mng.bz/Gwm8 )
+Which story do you want to tell?
+In June 2024, NVIDIA became the most valuable company in the world, with a total
+valuation of over $3 trillion. The snapshot of NVIDIA shows that it’s up to us to decide
+which story to tell with the data.
+The P/E ratio, as of January 31, 2025, is calculated using a share price of $124.65,
+resulting in a P/E ratio of 47.61. The sector median is 25. In addition, NVIDIA’s P/E
+ratio is far above its peers. We could stop here and conclude that it’s unwise to buy
+shares in a company where you pay more than double for each earnings compared
+to similar companies.
+
+39 2.4 Metrics and ratios
+The price-to-sales  ratio reflects the price per $1 of sales. Sales figures are generally con-
+sidered relatively reliable, whereas other income statement items, such as earnings,
+can be manipulated by various accounting rules. For early-stage companies that aren’t
+yet profitable, sales growth, as represented by this metric, can be a good indicator of
+future success. The price-to-book  ratio is how much you pay for $1 of equity. It reflects
+the market’s valuation of the company’s net assets on its balance sheet and is particu-
+larly attractive for capital-intensive companies.
+ After this brief introduction to ratios, we can make them more meaningful by look-
+ing at some examples. For this, we select two technology companies (Apple and
+NVIDIA), one utility company (Sempra), a supermarket chain (Walmart), and a bev-
+erages company (Coca-Cola), as depicted in table 2.8. 
+Let’s try to interpret the numbers of two companies. NVIDIA has a high P/E ratio and
+a low PEG ratio. These numbers indicate that NVIDIA is still experiencing massive
+growth, and we expect continued earnings growth in the future.
+NOTE Investors might also consider whether outstanding PEG ratios are sus-
+tainable over multiple years. The holy grail of many investors is companies
+that show constant earnings growth over the years and whose further growth
+can’t be challenged by competitors.If we look at future earnings, things start to look more promising. NVIDIA had great
+past earnings, but future earnings look even better. The P/E GAAP (FWD) brings us
+closer to the sector peers. However, we can reason differently than before with the
+PEG GAAP (TTM) and PEG Non-GAAP (FWD). First, we must highlight that there has
+been a substantial increase in earnings. Projecting these earnings into the future
+gives us a ratio—PEG GAAP (TTM)—that beats the sector by 81.27%. We can rea-
+son that NVIDIA remains a bargain, considering its P/E ratios have consistently
+been higher than those of its peers in the past, and its share price has still
+increased significantly.
+Table 2.8 Earnings ratios for NVIDIA, Apple, Sempra, Walmart, and Coca-Cola
+Company Forward P/E Trailing P/E PEG ratio Price-to-sales Price-to-book Beta
+NVIDIA (NVDA) 34.40 45.72 1.76 23.27 41.22 2.122
+Apple (AAPL) 24.54 31.76 1.85 7.61 45.10 1.211
+Sempra (SRE) 14.95 16.89 2.03 3.76 1.63 0.656
+Walmart (WMT) 35.83 41.65 3.72 1.14 9.32 0.693
+Coca-Cola (KO) 24.02 28.65 4.41 6.55 11.72 0.46
+Data taken from Seeking Alpha on June 8, 2025 ( https:/ /seekingalpha.com )
+
+40 CHAPTER  2Investment essentials
+In contrast, Coca-Cola’s PEG ratio indicates lower growth potential. This maturity
+makes it a perfect candidate for a dividend-paying company, which we’ll explore in
+section 2.4.6.
+ As shown earlier in section 2.4.1 when discussing liquidity, comparing different
+sectors may help us see common knowledge reflected in numbers. Coca-Cola has
+been in existence since 1892; its soft drinks are already widely distributed worldwide.
+With that, it’s improbable that this company would face an existential crisis. It’s hard
+to imagine that a vast percentage of consumers who are used to drinking Coca-Cola
+would stop drinking it. NVIDIA is the market leader in a competitive market. In recent
+years, the company has gained success after success, and their growth continues as the
+market expands significantly (a trend not observed in the soft drinks market). At the
+same time, it’s more conceivable than with Coca-Cola that the semiconductor market
+could be disrupted by a competitor, making NVIDIA less resilient than Coca-Cola.
+Comparing NVIDIA with tech company AMD (trailing PE of 81.81 and PEG ratio of
+0.59) would be more interesting, as we could hypothesize that while AMD is overval-
+ued compared to NVIDIA, its growth potential is bigger.
+2.4.5 Profitability
+We calculate profitability  by subtracting expenses from earnings, and we can calculate
+profitability ratios. Having data about profit (or loss), we need to understand its rela-
+tionship to other parameters, such as assets or equity. In some cases, we may find that
+we make a profit, but compared to the amount of money invested, the investment can
+still be considered a questionable decision.
+ Return on assets (ROA)  is calculated by dividing net income by total assets. It reflects
+how effectively the company uses its assets to generate revenue. If Company A
+reported $10,000 of net income and owns $100,000 in assets, its ROA is 10%. Every $1
+of assets generates $0.10 cents in profits yearly. It takes 10 years to pay off all the asset
+investments.
+ Return on equity (ROE)  is calculated by dividing net income by shareholder equity. It
+indicates how effectively a company compensates its shareholders for their investment.
+If Company B reported $10,000 in net income and its shareholders have $2 million in
+equity, its ROE is 0.5%. For every $1 of equity that shareholders own, the company gen-
+erates $0.05 cents in annual profits.
+ We calculate the profit margin  by dividing the net income by the revenue. This met-
+ric often varies significantly across different industries. Supermarkets sell a lot, but
+their margin per sale is low. 
+2.4.6 Dividends
+Some new investors may wonder why some companies pay dividends at all. After all,
+companies would retain more profits without dividend payments, and more cash
+means having more opportunities to invest in the company’s growth.
+
+41 2.4 Metrics and ratios
+ Let’s think about Coca-Cola. Almost everyone is familiar with the brand and has
+tried its flagship product. Even with the highest imaginable marketing budget, the
+company couldn’t make the brand more widely known to the global population, and
+it’s challenging to convert those who don’t drink Coca-Cola already into customers.
+Even the most eloquent advertisement campaign won’t convert those who have tried it
+and who prefer other beverages to fans of Coke.
+ If the company didn’t spend its profits due to missing growth opportunities in a
+mature market, it would need to hoard them. Consequently, inflation would decrease
+these savings. Returning money to investors makes sense, especially because this plan
+makes the stock more attractive for investment strategies that rely on returning cash
+to their investors, such as retirement funds.
+Let’s explore the details of creating passive income with stocks. Passive income inves-
+tors buy X shares of a company with higher dividend yields, such as Coca-Cola, on day
+Y. For their stock ownership, they get dividends paid in intervals. Dividend payouts are
+a provided amount of money per share. This payout is taken from the share price. In
+other words, an investor who buys shares before a dividend payout to sell them again
+after the dividend payout won’t benefit from such a move.
+ Dividend stock investors may also benefit from capital appreciation. Examining
+many high-dividend-paying companies, we observe that they also tend to grow in share
+price. Let’s look at table 2.9 where we’ve highlighted some growth companies (those
+that invest their surplus more in growth) and value companies (those that prefer to
+pay dividends rather than invest in further scaling the company). We observe this in
+the payout ratio,  which is the percentage of profits distributed as dividends, and the
+dividend yield. Someone who buys Apple stock purely for dividend yield picked the
+wrong strategy to invest in Apple. The interest rate of treasury bonds, which reflectsWhat if a company starts using its money to invest?
+Companies can also use profits to invest in other companies. Coca-Cola is a good
+example of such a move, as it owned subsidiaries in the entertainment industry, such
+as Coca-Cola Telecommunications. If you’re from the UK, you’ll be familiar with sev-
+eral bank divisions, in addition to two of the largest supermarket chains—Tesco and
+Sainsbury’s—that both attempted to establish virtual network operators for mobile
+services.
+Companies with strong brand recognition and financial power have many opportuni-
+ties to enter new markets. Whether this strategy is good or not is debatable. Some
+may argue that it risks damaging the brand’s reputation and might be hindered by
+bureaucracy. Others may think that these companies already have established struc-
+tures and can use their capital to expand into other industries as a conglomerate.
+History shows that not all spin-offs of successful companies met their expectations,
+and they have good reasons to stick to their core business.
+
+42 CHAPTER  2Investment essentials
+the risk-free rate of capital, is mostly around 5%. Altria (MO) is the only stock in the
+table with a dividend yield above the interest rate of Treasury bonds, at 6.89%.
+Let’s say 10 years ago, someone bought stock in Coca-Cola. Did they benefit from this
+purchase? Or would it have been wiser to invest in a fixed-income asset, such as a trea-
+sury bond, at a rate of around 5%? In July 2025, Coca-Cola’s share price was $71.01. As
+of July 2015, the share price was $41.25. The stock price grew by more than 5% per
+year. Add this capital increase to the dividend, and you’ll see a higher yield than with
+safe treasury bonds, which don’t provide capital appreciation.
+ An individual who bought Coca-Cola stocks worth $100,000 in 2015 can sell them
+10 years later for more than $150,000. As of this writing, Coca-Cola pays $2.04 per
+share annually, representing a yield of 2.86%. If we calculated the yield with the price
+of 10 years ago, we would get 4.6%. 
+NOTE Companies try to increase annual payouts per share over time. As of
+June 2025, Coca-Cola pays $2.04 per share in annual dividends. The further
+back in time you go, the less money you would have received per share, while,
+on average, the share price was lower. It’s often a bad sign for investors if
+companies reduce annual payouts per share. Investors can interpret a reduc-
+tion as a sign that the company is under pressure and needs to allocate more
+resources to sustain its business.
+You calculate the dividend yield by dividing the dividend per share by the share
+price. Apple has an annual payout per share of 1.04, and the share price is $203.95
+(as of June 2025): 1.04 ÷ 203.95 yields a dividend of 0.51%. Many investors will con-
+clude that most tech stocks are growth-oriented companies that typically pay only a
+small dividend.Table 2.9 Dividends of Apple, Altria, Microsoft, NVIDIA, Sempra, Walmart, and Coca-Cola highlighting
+different payout strategies
+Company Yield 
+FWD %Payout 
+ratio % Div growth 
+5Y %Consecutive years 
+of growth Consecutive years of 
+dividend payments
+Apple (AAPL) 0.51 14.10 5.24 12 12
+Altria (MO) 6.89 77.54 4.00 55 55
+Microsoft (MSFT) 0.71 25.04 10.24 20 20
+NVIDIA (NVDA) 0.03 1.25 20.11 1 12
+Sempra (SRE) 3.36 53.18 4.88 14 26
+Walmart (WMT) 0.96 34.03 4.41 51 51
+Coca-Cola (KO) 2.86 67.99 4.20 62 62
+Data from Seeking Alpha on June 8, 2025 ( https:/ /seekingalpha.com )
+
+43 2.4 Metrics and ratios
+NOTE The height of a company’s dividend yield depends on the share price,
+and its value can be misleading. As of June 2025, AT&T offers a dividend yield
+of 3.95%, but it will only pay $1.11 per share. At the beginning of 2014, Apple
+had a share value of approximately $20, similar to AT&T in 2024. Anyone
+who purchased 1,000 Apple shares in 2014 for $20,000 not only increased the
+value of the shares by more than 10 times but also received a $1,000 dividend
+payment each year.
+We also add some high-paying dividend examples in table 2.10. Adding the sector and
+industry as parameters will help us identify specific industries with higher dividends.
+Each company sets its dividend policy according to what it thinks is in the best interest
+of its shareholders. Some asset types, such as real estate investment trusts (REITs) , are
+required by law to have high payout ratios. If a stock’s payout ratio is low, it’s a good
+sign because it can still experience significant growth. The longer a company increases
+its dividend payment per year, the more likely it is that this trend will continue.
+Another attractive attribute is the dividend growth rate. When researching dividend
+yield, it’s also important to consider historical growth.
+ Companies have different payment schedules (annual, semi-annual, quarterly,
+monthly). A few companies also pay dividends at irregular intervals. If you plan to use
+income from dividends for a specific purpose, such as paying for a summer vacation,
+carefully consider whether the dividend payment date aligns with your travel plans. 
+ One related aspect is stock buybacks. In a buyback, a company purchases its shares
+from the market, thereby reducing the number of outstanding shares. Although this
+action may sound illogical to a newcomer, remember that the fewer shares there are
+on the market, the more valuable the remaining shares will be. A stock buyback is,
+therefore, an alternative way to reward existing shareholders without distributingTable 2.10 Looking at a dividend scorecard from data collected via Python
+Company Sector Industry Dividend yield Payout ratio
+Microsoft (MSFT) Technology Software - Infrastructure 0.71 0.2442
+Walmart (WMT) Consumer Defensive Discount Stores 0.96 0.3665
+NVIDIA (NVDA) Technology Semiconductors 0.03 0.0129
+Sempra (SRE) Utilities Utilities - Diversified 3.36 0.4404
+Apple (AAPL) Technology Consumer Electronics 0.51 0.1558
+Altria (MO) Consumer Defensive Tobacco 6.89 0.6779
+VICI Properties (VICI) Real Estate REIT - Diversified 5.50 0.650
+Restaurant Brands 
+International (RBI.VI) Financial Services Banks - Regional 4.06 0.4297
+Data collected using yfinance
+
+44 CHAPTER  2Investment essentials
+cash. While dividend payments are a recurring commitment—some investors rely on
+companies to keep paying the same amount per year or slightly more each year as a
+dividend—buybacks aren’t, giving companies more flexibility.
+2.4.7 Ownership
+A company’s ownership structure isn’t static and provides key insights into its valua-
+tion. The total number of a company’s shares held by all of its shareholders is known
+as its outstanding shares. A related metric, the float, refines this number by excluding
+shares held by insiders and large institutions, representing the shares available for
+public trading.
+ Just as a central bank can influence a currency’s value by adjusting the money sup-
+ply, a public company can alter its share value by changing the number of outstanding
+shares. Following are two ways this is done:
+Issuing new shares —When a company issues additional stock, it increases the
+total supply, thereby diluting the ownership stake of existing shareholders.
+Repurchasing shares (buybacks) —Conversely, when a company repurchases its
+stock, it reduces the number of outstanding shares, thereby concentrating own-
+ership and potentially increasing the value of the remaining shares.
+Monitoring these changes is crucial for understanding the dynamics of a company’s
+equity.
+ Analyzing the trading activity of a company’s executives, often referred to as insider
+transactions , can provide valuable insights into their confidence in the business. It’s cru-
+cial to monitor whether key figures are buying or selling their own company’s shares.Dividend yields or coupon payments
+Some critics argue that using dividends to generate passive income is unwise, pre-
+ferring fixed-income assets, such as bonds, as a more reliable source of income.
+Many investors are unaware that the amount paid per share to shareholders is also
+deducted from the share price. If you own 10 shares of Apple and receive $0.251 per
+share in a quarterly payment, you’ll receive $2.51 in cash, excluding taxes. At the
+same time, the share price decreases by $0.251 on the payment date. This calcula-
+tion makes dividend payments appear to be a zero-sum game compared to bond cou-
+pon payments, where the amount received is guaranteed. If you receive 5% interest
+on bonds, the value of your bond position isn’t affected.
+Taxation can even result in theoretical losses  when dividends are paid. For instance,
+nonresident aliens may be subject to a withholding tax of up to 30%  on dividends
+from US companies. Based on the numbers just given, when the dividend is paid, the
+Apple share price would drop by $0.251. An investor subject to a 30% withholding tax
+would lose $0.753 that day. This example highlights the importance of consulting a
+tax advisor to understand how taxes can affect your investment returns.
+
+45 2.4 Metrics and ratios
+ Table 2.11, for example, details this activity for NVIDIA. The data indicates that
+over the past six months, more insiders have sold shares than have purchased them.
+As of this writing, NVIDIA’s stock rally is a well-known success story. This success can
+explain why many NVIDIA employees might have sold stocks. It might have been just
+an opportunity to reap some benefits of success, knowing that the share price might
+decrease. If more insiders sell shares than buy them, it can be a warning, but it’s not
+yet a single indicator of a problem.
+2.4.8 Sustainability
+Some investors think beyond potential profits and aim to back companies with solid
+social responsibility. Many ethically motivated investors exclude companies with poor
+environmental, social, and governance (ESG) ratings, as investing in a company can
+also be seen as supporting its practices.Table 2.11 Looking at insider trading
+Insider purchases last 6 months Shares Transactions
+Purchases 3,914,505.0 17
+Sales 2,564,508.0 14
+Net shares purchases (sold) 1,349,997.0 31
+Total insider shares held 1,057,007,872.0 <NA>
+% net shares purchases (sold) 0.001 <NA>
+% buy shares 0.004 <NA>
+% sell shares 0.002 <NA>
+Data from the yfinance library on June 8, 2025
+Stock-based compensation and dilution
+Many developers have received stock-based compensation (SBC) as part of their
+overall package. This incentive allows companies, especially tech firms and start-
+ups, to attract and retain talent and keep salary payments lower while reducing the
+burn rate , which indicates how fast an unprofitable company consumes its cash
+reserves.
+While SBC can be a wealth-building tool for employees, it can be a source of dilution
+as it increases the number of outstanding shares over time. More shares mean that
+each existing share represents a smaller slice of the company.
+The smaller the company, the more effect an SBC has. In chapter 12, we’ll examine
+private equity and start-ups because everyone investing in start-ups must be aware
+of the effect of SBC. 
+
+46 CHAPTER  2Investment essentials
+ Sustainability data, such as that available on Yahoo Finance, enables this analysis.
+These datasets include various metrics, such as flags indicating a company’s involve-
+ment in controversial industries, including gambling, animal testing, or tobacco. They
+also provide detailed scores across different ESG categories, which are typically rated on
+a scale of 0 to 100, where a lower score indicates better performance.
+ Table 2.12 shows these ESG ratings for NVIDIA. A key analytical step is to compare
+a company to its peers. In this case, the data reveals that NVIDIA’s ESG performance
+is better than the average for its peer group (other semiconductor companies), as
+shown by its lower overall score.
+We can also compare NVIDIA’s score with that of other companies on platforms like
+Sustainalytics ( www.sustainalytics.com/esg-ratings ). Investors who care about sustain-
+ability can also review the ESG reports that companies regularly publish ( https:/ /
+mng.bz/Dwag ). In these pages and reports, companies periodically share their views
+on ESG topics and how they address them.
+2.5 External assessments
+Investment firms, such as Goldman Sachs, Morgan Stanley, and JPMorgan Chase, exist
+because they can generate profits with the money of other people. Their analysts may
+incorporate many of the discussed ratios into algorithms to assess companies. Pro-
+grammers may notice a slight resemblance to open source at large software compa-
+nies when these investment firms share some of their insights with the public. They
+benefit when some of their work is publicly available, allowing them to upsell more
+professional services.Table 2.12 Selected sustainability ratings of NVIDIA
+Sustainability metrics esgScores
+totalEsg 12.46 
+environmentScore 2.73 
+socialScore 4.08
+governanceScore 5.65 
+peerEsgScorePerformance min: 8.87, avg: 23.06, max: 40.69
+peerGovernancePerformance min: 2.14, avg: 5.32, max: 9.27
+peerSocialPerformance min: 2.41, avg: 5.80, max: 10.28
+peerEnvironmentPerformance min: 2.6, avg: 7.89, max: 16.95
+Data collected from yfinance on June 8, 2025. Each score (E, S, G) is based on a rating from 0 to 100. The total ESG 
+score is the sum of all individual scores.
+
+47 2.5 External assessments
+ In this section, we examine some of the insights they offer us. In the next chapter,
+we’ll also demonstrate how to collect this data using Python libraries. The following
+list compares ratings and estimated target prices, two parameters commonly used in
+investment analysis:
+Ratings —Analysts from reputable investment firms evaluate companies and
+assign ratings based on their potential for investment. A relatively new trend is
+crowdsourced financial analysis, in which any investor, including those with
+minimal experience, can share their investment ideas on a platform.
+Estimated target prices —Based on available financial data, some analysts even esti-
+mate target prices for individual companies after one year using statistical anal-
+ysis and ML. However, as many future events are unforeseeable, these estimates
+are often highly inaccurate.
+2.5.1 Ratings
+Analysts give buy, hold, or sell recommendations to other investors. Table 2.13
+shows a list of ratings, which can be found on the investment platform Seeking Alpha
+(https:/ /seekingalpha.com/ ). This data was collected on June 8, 2025, and you can
+find updated information at the platform. This table shows aggregated ratings of the
+following:
+SA Analyst Rating —An aggregation of crowdsourced ratings by platform users
+Wall Street Rating —An aggregation of ratings by professional Wall Street analysts
+Quant Rating —A rating calculated by a Seeking Alpha algorithm
+The analysis of Wall Street analysts can also be queried using Python, which is a topic
+covered in the next chapter. Table 2.14 presents the results of data collection for
+NVIDIA on June 8, 2025.Table 2.13 Company ratings based on the Seeking Alpha platform
+Company SA analyst rating Wall Street rating Quant rating
+NVIDIA (NVDA) 3.83 4.56 3.38
+Pfizer (PFE) 3.18 3.56 3.40
+Aeva Technologies (AEVA) 2.50 4.40 4.99
+Innoviz (INVZ) — 4.25 3.35
+Ouster (OUST) 3.33 5.00 4.50
+Luminar Technologies (LAZR) 3.25 2.75 2.63
+Sumitomo Mitsui Financial Group (SMR) 2.60 4.00 3.47
+For the latest numbers, go to https:/ /seekingalpha.com/ .
+
+48 CHAPTER  2Investment essentials
+The result shows that the ratings decreased over time. Some investors will explore why
+analysts are gradually losing confidence. Still, the rating overall is excellent and could
+convince some investors to buy shares.
+2.5.2 Target prices
+Table 2.15 also provides 12-month analyst price targets, which are estimates of a
+stock’s future value. The data for Apple, for example, reflects an average high target
+of $300 and a low of $164. Analysts typically derive these figures using fundamental
+analysis, such as DCF models discussed earlier, although their specific methods are
+often proprietary.
+ However, investors must approach these targets with caution. Price targets are esti-
+mates, not guarantees, and they inherently assume stable market conditions while fail-
+ing to account for unpredictable events. As history has repeatedly shown, even the
+most astute analysts can be wrong. In the next chapter, we’ll demonstrate how to col-
+lect this type of data programmatically using Python.Table 2.14 Ratings for NVIDIA
+Period Strong buy Buy Hold Sell Strong sell
+0m 12 45 6 1 0
+–1m 12 44 6 1 0
+–2m 12 44 7 1 0
+–3m 11 27 5 0 0
+Data taken from the yfinance library on June 8, 2025
+Table 2.15 Target prices of selected companies
+Company Price ($)Mean 
+price ($)Median 
+price ($)High 
+price ($)Low 
+price ($)Recommended 
+mean Recommended 
+key No. of 
+analysts
+Apple 
+(AAPL) 203.92 228.85 232.5 300.0 170.62 2.1 Buy 40
+Microsoft 
+(MSFT)470.38 509.11 500.0 650.0 429.86 1.4 Strong buy 50
+NVIDIA 
+(NVDA) 141.72 172.02 175.0 220.0 100.0 1.44 Strong buy 55
+Salesforce 
+(CRM) 274.51 354.25 360.0 442.0 225.0 1.7 Buy 52
+Data taken from the yfinance library on June 8, 2025
+
+49 2.5 External assessments
+Analyst ratings are provided by reputable firms, including Goldman Sachs, Morgan
+Stanley, and JPMorgan Chase.
+ While target prices are useful, studying the history of rating changes can be even
+more insightful for understanding the evolution of market sentiment. Table 2.16
+shows an excerpt of this data for NVIDIA, transcribed from Yahoo Finance on
+June 8, 2025.
+Should we trust the judgment of professional analysts for our decision-making? Critics
+view the favorable ratings of junk bonds by investment firms in 2007 as a crucial root
+cause of the mortgage crisis. US taxpayers will also remember who had to bail out
+large investment firms after it was revealed they had been wrong in their assessments.
+There’s no silver bullet to get guaranteed high returns. Financial investment can be
+challenging for people who prefer to think in binary terms, such as right and wrong,
+or good and evil. Instead, good investors believe in probabilities.Table 2.16 Upgrades and downgrades of ratings of NVIDIA
+Action Analyst: rating Date
+Maintains Truist Securities: Buy to Buy 5/29/2025
+Maintains Raymond James: Strong Buy to Strong Buy 5/29/2025
+Maintains Piper Sandler: Overweight to Overweight 5/29/2025
+Maintains Mizuho: Outperform to Outperform 5/29/2025
+Data from June 8, 2025. Updated data is available at https:/ /finance.yahoo.com/quote/NVDA/analysis .
+Treating statements of experts as opinions, not as predictions
+At the beginning of 2024, influential newspapers, such as The Economist , predicted
+that stock prices would decline that year ( https://mng.bz/YZnQ ). However, looking at
+the share prices of some companies, the opposite happened.
+Even with all the data in the world, no analyst can predict the future, a fact best illus-
+trated by the recent history of high-growth stocks. Many investors deemed companies
+such as Tesla, NVIDIA, and Palantir to be overvalued and ripe for a major correction.
+Yet, instead of crashing, their share prices often defied these predictions, either con-
+tinuing their ascent or entering a prolonged period of consolidation.
+This highlights a fundamental principle of investing: success isn’t about being right
+every time, but about being right more often than wrong. Because certainty is impos-
+sible, investors rely on diversification to manage probabilities and build a portfolio
+that can thrive despite inevitable prediction errors.
+
+50 CHAPTER  2Investment essentials
+Summary
+The three accounting documents (income statement, balance sheet, and free
+cash flow [FCF]) follow accounting standards that help us compare companies.
+Industry classification standards group companies into different sectors (higher
+granularity) and industries (lower granularity) to facilitate classification and
+identify peers among companies.
+Investors may interpret ratios differently depending on the company’s sector
+and industry. They often select ratios for their assessment based on their indus-
+try knowledge.
+While it’s possible to compare companies across different industries, we
+obtain the most reliable results through comparisons of companies within the
+same industry.
+Some metrics help us determine a company’s status independently of its indus-
+try, especially those related to solvency, as the question of whether a company
+can pay its bills is a universal concern for all companies.
+Income statements provide insight into what companies earn during a period.
+The balance sheet provides insight into a company’s assets and liabilities. We
+can calculate shareholder equity by subtracting the total liabilities from the
+total assets.
+A FCF statement provides insight into a company’s liquidity and is often the
+basis for calculating liquidity ratios.
+Liquidity ratios are calculated mainly from the cash flow statement and reflect
+a company’s ability to pay bills with its assets. As some assets aren’t liquid,
+some companies may have a positive balance sheet but still be unable to pay
+their bills.
+Debt ratios provide insight into a company’s leverage by comparing its debt and
+assets. In some extreme cases, these ratios may indicate a pending bankruptcy.
+Earnings ratios measure the company’s profits per share, and we can use them
+in various ratio calculations, such as the price-to-earnings (P/E) ratio.
+Profitability ratios assess a business’s ability to generate earnings relative to its rev-
+enue, operating costs, balance sheet assets, or shareholders’ equity over time.
+Dividend ratios indicate a company’s commitment to return money to its share-
+holders in small amounts over various periods.
+Ownership metrics examine changes in a company’s ownership, including
+insider trading, and can be informative for valuing the company.
+Sustainability metrics evaluate a company’s commitment to causes beyond
+profit-making, encompassing environmental, social, and governance (ESG)
+considerations.
+We can collect analyst recommendations. However, following the recommenda-
+tions of third parties without due diligence is a risky approach.
+
+51 Summary
+Ratings are scorecards given by outside organizations to companies. They indi-
+cate the potential risks and gains of investing in those companies. Ratings might
+contradict each other and don’t guarantee that the companies’ share prices will
+rise or fall.
+Target prices are forecasts provided by accredited financial analysts of potential
+stock prices. These estimates are highly speculative.
+
+52Collecting data

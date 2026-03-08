@@ -1,0 +1,25 @@
+# Chapter 4: Fundamental analysis
+
+chapter 4 provides all the details you need to build an investment thesis and develop a
+growth portfolio in a structured way.
+1.2.2 Bonds
+A bond is an IOU. When you buy a bond, you lend money (the principal ) to an entity,
+such as a government or a company. In return, you receive periodic interest payments,
+known as coupons . With few exceptions, bonds have a maturity date—a specific date in
+the future when the issuer repays your original principal in full.
+ All bonds are equal, but some are more equal than others. Because many issuers
+exist, each bond has a different level of risk:
+Credit risk —Some issuers are more likely to default on their debt obligations. To
+help investors evaluate this risk for other issuers, credit rating agencies such as
+Moody’s and Standard & Poor’s (S&P’s) provide independent assessments.
+Yield —Typically, the more risk you accept, the greater your potential return
+or yield.
+When holding a bond, you can either wait until maturity to receive its full face value
+or sell it on the open market earlier. Choosing to sell before maturity means the price
+you receive will be determined by the market, which could result in a gain or a loss on
+your initial investment.
+NOTE The basic assumption behind considering US government bonds risk-
+free is the belief that the US government will always honor its debt obligations
+and won’t default. This convention has become standard practice in finance.
+However, describing such assets as extremely low risk would be more accurate
+because, theoretically, even the US government could default.

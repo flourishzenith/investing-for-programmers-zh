@@ -1,0 +1,543 @@
+# Chapter 3: Financial statements
+
+Chapter 3
+Chapters 4+5 Chapter 11 Chapter 6Chapter 8 Chapter 9
+Chapter 10Chapters 1+12
+Risk management
+Hedging
+Stress tests
+Human factor
+Nonﬁnancial risk
+Portfolio optimizationChapter 7Big data
+(earnings call reports,
+transcripts, web data,...)
+Financial platforms
+(Yahoo Finance,
+Finviz,...)Nonﬁnancial data
+platforms
+MLmodel
+LLMSecurities
+Data
+Platforms
+Machine LearningAPI APIAPI
+Decision-MakingGenAI
+
+Investing
+for Programmers
+STEFAN  PAPP
+MANNING
+SHELTER  ISLAND
+
+For online information and ordering of this and other Manning books, please visit
+www.manning.com . The publisher offers discounts on this book when ordered in quantity. 
+For more information, please contact
+Special Sales Department
+Manning Publications Co.
+20 Baldwin Road
+PO Box 761
+Shelter Island, NY 11964
+Email: orders@manning.com
+©2026 by Manning Publications Co. All rights reserved.
+No part of this publication may be reproduced, stored in a retrieval system, or transmitted, in 
+any form or by means electronic, mechanical, photocopying, or otherwise, without prior written 
+permission of the publisher.
+Many of the designations used by manufacturers and sellers to distinguish their products are 
+claimed as trademarks. Where those designations appear in the book, and Manning Publications 
+was aware of a trademark claim, the designations have been printed in initial caps or all caps.
+Recognizing the importance of preserving what has been written, it is Manning’s policy to have 
+the books we publish printed on acid-free paper, and we exert our best efforts to that end. 
+Recognizing also our responsibility to conserve the resources of our planet, Manning books
+are printed on paper that is at least 15 percent recycled and processed without the use of 
+elemental chlorine.
+The authors and publisher have made every effort to ensure that the information in this book 
+was correct at press time. The authors and publisher do not assume and hereby disclaim any 
+liability to any party for any loss, damage, or disruption caused by errors or omissions, whether 
+such errors or omissions result from negligence, accident, or any other cause, or from any usage 
+of the information herein.
+Manning Publications Co. Development editor: Connor O’Brien
+20 Baldwin Road Technical editor: Anirudha Singh Bhadoriya
+PO Box 761 Review editor: Angelina Lazukic ´
+Shelter Island, NY 11964 Production editor: Kathy Rossland
+Copy editor: Julie McNamee
+Proofreader: Jason Everett
+Technical proofreader: Ignacio Beltran Torres
+Typesetter: Dennis Dalinnik
+Cover designer: Marija Tudor
+ISBN: 9781633435803
+Printed in the United States of America
+
+ To all the entrepreneurs and innovators who dare to make a difference!
+
+ 
+
+vbrief contents
+1■The analytical investor 1
+2■Investment essentials 19
+3■Collecting data 52
+4■Growth portfolios 78
+5■Income portfolios 105
+6■Building an asset monitor 123
+7■Risk management 143
+8■AI for financial research 181
+9■AI agents 216
+10 ■Charts and technical analysis 239
+11 ■Algorithmic trading 273
+12 ■Private equity: Investing in start-ups 297
+13 ■The road goes ever on and on 321
+appendix ■Setting up the environment 330
+
+
+
+viicontents
+preface xiii
+acknowledgments xv
+about this book xvii
+about the author xx
+about the cover illustration xxi
+1 The analytical investor 1
+1.1 Your investment journey 2
+1.2 Assets 2
+Stocks 3■Bonds 4■Exchange-traded funds 4
+Other funds 5■Foreign exchange market 5■Crypto 5
+Derivatives 6■Private equity 6■Other assets 7
+Choosing assets 8
+1.3 Investment approaches 8
+Quantitative research 10■Qualitative research 11
+Algorithmic trading and asset monitors 12■Portfolios 
+and investing strategies 13
+1.4 Risks and rewards 15
+1.5 A programmer’s unfair advantage 16
+You think in systems and data 16■Your mindset is built for 
+the market 16■Define your parameters 17
+
+CONTENTS viii
+2 Investment essentials 19
+2.1 Accounting in a nutshell 20
+Income statement 21■Balance sheet 25■Free cash flow 26
+2.2 Industry classification 28
+Influences on GICS sectors 28■Sectors and economic cycles 30
+2.3 Capitalization 32
+2.4 Metrics and ratios 33
+Liquidity 34■Debt 36■Earnings 36■Valuation 37
+Profitability 40■Dividends 40■Ownership 44
+Sustainability 45
+2.5 External assessments 46
+Ratings 47■Target prices 48
+3 Collecting data 52
+3.1 Financial data 53
+3.2 Financial analysis platforms 54
+3.3 Data science notebooks 57
+3.4 yfinance 57
+Fundamental analysis 58■Technical analysis 61
+Limitations of yfinance 66
+3.5 Commercial libraries 67
+Finviz 69■EODHD 71■Alpha Vantage 73
+OpenBB 75
+3.6 Other libraries 76
+4 Growth portfolios 78
+4.1 Investment thesis 79
+Starting with an idea 79■Challenging the idea 81
+Your investment thesis 84
+4.2 LiDAR market 85
+Picking candidates 86■Price development 88■Debt 91
+Management 92■Technology and partnership 92
+Projected earnings 94
+4.3 Risks 95
+Falling into obsolescence 96■Squashed by industry giants 96
+Globalization and conflicts 97
+
+CONTENTS ix
+4.4 Ongoing analysis 97
+Media 97■Trend analysis 98■News sentiment 
+analysis 100■Measuring success 101
+4.5 What is next 101
+5 Income portfolios 105
+5.1 Dividends 106
+5.2 Bonds 112
+5.3 Crypto staking 117
+Ledgers and exchanges 117■Mining and staking 118
+Affordable staking options 119
+5.4 Early retirement 120
+6 Building an asset monitor 123
+6.1 Architecture 124
+6.2 The spreadsheet 126
+6.3 Extracting data 127
+Alpaca: A developer-first broker 128■Interactive Brokers: 
+A legacy powerhouse with a modern twist 129
+6.4 Enriching data 130
+6.5 Processing assets 131
+Stocks 131■Exchange-traded funds 135■Bonds 137
+Cryptocurrencies 138
+6.6 Outlook 141
+7 Risk management 143
+7.1 Ukemi 144
+Stop-loss 144■Risk classification 146■Risk 
+measurement 148
+7.2 Generating risk profiles for individual stocks 150
+Value at risk (VaR) 150■Correlation 153
+7.3 The human factor 156
+Negligence 157■Risk avoidance 157■Resilience 159
+7.4 Hedging 160
+Derivatives 160■Diversification 163■Pair trading 163
+Risk pairing 164
+
+CONTENTS x
+7.5 Nonfinancial risk 165
+Markets 166■Economic data 166■Assessing nonfinancial 
+risk 168
+7.6 Portfolio optimization 169
+Markowitz-efficient portfolio 169■Shiller P/E ratio 174
+Rebalancing 176
+8 AI for financial research 181
+8.1 From code to machine learning 182
+Unsupervised learning example 184■Supervised learning 
+example 187■Market challenges 192■Technical 
+challenges 195■Narrowing the scope 197
+8.2 From machine learning to generative AI 198
+Comparing LLMs 199■Complementing ML with 
+GenAI 200■Challenges 200■Final judgement 
+on ML and GenAI 200
+8.3 Practical use of GenAI 201
+Using LLMs as research assistants 201■Integrating LLMs 
+into code 203
+8.4 Prompt engineering 208
+An investor’s profile 208■Using prompts to find companies 
+to invest in 211
+9 AI agents 216
+9.1 Requirements 217
+Successful communication 217■Agentic design patterns 218
+9.2 Agentic workflows without frameworks 222
+Prompt repository 222■Export results 224
+9.3 Framework for AI agents 228
+From one-shot prompting to agents 229■Retrieval-augmented 
+generation 231
+10 Charts and technical analysis 239
+10.1 Charts 240
+Reading charts 246■Patterns 247■Interpreting a 
+chart 249■Alternative chart types 250
+
+CONTENTS xi
+10.2 Using charts to interpret price changes 253
+Candlesticks 254■Charts based on averages 257
+Ichimoku Cloud 264
+10.3 Visualization with Streamlit 267
+11 Algorithmic trading 273
+11.1 Nonfinancial data 274
+Big data by example 276
+11.2 Catalysts 278
+Mergers and acquisitions 278■Companies in distress 279
+Earnings calls 280■Disasters 281■Interest rate 
+changes 282
+11.3 Trading algorithms 282
+Backtesting 283■Complex trading signals 287
+11.4 Orders 289
+Exchanges vs. brokers 289■Order modifiers 291
+Executing orders 292
+12 Private equity: Investing in start-ups 297
+12.1 From idea to initial public offering 298
+The first minimum viable product (pre-seed) 298■Validating 
+the business model (seed) 301■Scaling a start-up: The shift 
+to institutional investment 303■Exits: The final 
+transition 304
+12.2 Investment vehicles 306
+Venture capital 308■Angel networks 309■Sovereign 
+wealth funds 311
+12.3 Assessing start-ups 312
+Valuation 312■Dilution 314■Scoring 316
+13 The road goes ever on and on 321
+13.1 Getting advice 322
+13.2 Stay curious 323
+13.3 Alpha hunter 323
+13.4 Nomadism 324
+13.5 Activist investing 325
+
+CONTENTS xii
+13.6 Measures of control 326
+Checks and balances 326■Gain distance 327■Programmer’s 
+journey 327■Playing it safe 328
+appendix Setting up the environment 330
+index 339
+
+xiiipreface
+Imagine this: a 50-year-old is approached by a genie with an intriguing offer. They can
+receive staggering wealth to never work again or be rejuvenated to age 20. The allure
+of reliving life with youth and wisdom is strong. But from a purely financial stand-
+point, which is the wiser choice?
+ I grew up believing everyone must work until their mid-60s to retire. Stopping
+work at 50 seemed like pure luck. Over time, investing became my passion. I’ve
+learned that starting early and making informed investment decisions can make finan-
+cial independence by 50 achievable, especially if you know how to code. Programming
+sharpens the skills needed for better investment choices.
+ I’ve always believed that work should serve a higher purpose, but meaningful
+work is often not the highest-paid. I wrote the book I wish I had at 20—to acceler-
+ate my path to financial freedom and independence from a paycheck. After read-
+ing it, all you’ll need is to find a genie who could send you back to age 20—armed
+with the knowledge to retire early. But even without the genie, what you learn here
+can transform how you invest, helping you move toward financial freedom with pur-
+pose and precision.
+ I also want to convince you that investing can be fun. I love using programming to
+analyze companies and form data-backed investment theses. There’s nothing quite
+like seeing a company you believed in multiply in value fivefold or more.
+ Of course, no path to wealth is guaranteed. You can pick the wrong horse. Picture
+the late 1990s: a friend tells you about a failing tech company whose ousted founder
+just returned and about a thriving American energy company riding the wave of
+
+PREFACE xiv
+deregulation. If you chose the second, you picked Enron over Apple, and lost your
+investment. Diversification helps mitigate such risks, but the larger lesson is this:
+hubris and impatience are dangerous. Mindset matters most.
+ In the early 2010s, I pivoted to big data. It wasn’t just about using more data but
+transforming entire businesses. I noticed some companies outsmarted others. If I
+invested in the smarter ones, I could ride their success. It was a natural progression:
+from using data to understand customer behavior to using data to predict which com-
+panies would thrive.
+ Through this journey, I’ve found four key traits for investment success: critical
+thinking, patience, dedication, and curiosity. Programmers excel at these, and I
+believe they can shine as investors.
+ Happy reading and coding! I wish you sharp insights and smarter investing.
+
+xvacknowledgments
+I want to thank the following individuals, in chronological order, for their invaluable
+contributions to this book.
+ When I first approached acquisition editor Jonathan Gennick with a proposal for a
+book that didn’t fit the typical mold at Manning, I knew approval wouldn’t come eas-
+ily. However, Jonathan believed in the project, and I’m convinced this book would
+have been impossible without his advocacy.
+ I am also profoundly grateful to Connor O’Brien, an exceptional development edi-
+tor. His unwavering support and insightful feedback were instrumental in shaping the
+quality of this work.
+ Technical editor Anirudha Bhadoriya provided an excellent review of the manu-
+script. His thoughtful questions and genuine engagement added valuable perspec-
+tives to the book. Anirudha is a staff software engineer specializing in distributed
+systems at Snowflake. He has been actively investing his own money in the equity mar-
+kets for more than 20 years, combining deep technical expertise with personal finan-
+cial acumen.
+ Many thanks to Julie McNamee for copy editing and Azra Dedic for the support
+with the visualizations. Their input significantly improved the fine details of this book
+ To all the reviewers—Amarjit Bhandal, Arun Kumar Rajamandrapu, Bin Li,
+Charles Lam, Chris Heneghan, Gary Bake, Ian Long, James Carella, Jeremy Chen,
+Juan Pablo Duque, Kevin Orr, Koushik Sundar, Marco Seguri, Nikhil Kassetty, Oscar
+Cao, Patrick Grütter, Pierre Boutquin, Piti Champeethong, Prateek Punj, Raghuram
+Katakam, Sahithi Donkina, Saketh Patibandla, Sneha Thangaraja, Sofiia Shvets,
+
+ACKNOWLEDGMENTS xvi
+Thomas Heiman, Vijay Pahuja, Vinicios Wentz, and William Dealtry—your sugges-
+tions helped make this a better book.
+ I want to thank all contributors through the Manning liveBook who provided feed-
+back on the book. I incorporated every piece of advice I received up to the production
+release, and I’ll also look at comments after the production release for new editions.
+ Finally, a special thanks to Warren Buffett. Though he does not know me, he has
+served as an enduring role model for the kind of investor I strive to become.
+
+xviiabout this book
+Investing for Programmers  introduces tools and techniques for analyzing investment
+opportunities using Python and modern analytical methods. This book does not offer
+financial advice but shows you how to explore financial assets and make more
+informed investment decisions.
+ After reading this book, you’ll be able to analyze financial assets with Python, build
+AI agents, and use LLMs to gain deeper insights into your investment options. Keep in
+mind that there are no guaranteed paths to wealth. This book may help you improve
+your odds of long-term financial success and increase your skills to gain insights for
+better decision-making. Be skeptical of anyone claiming risk-free riches.
+Who should read this book
+You should have basic programming skills. However, if you have only minimal experi-
+ence, you can still benefit from using large language models (LLMs) to help set up
+the environment and fill in any gaps in your Python knowledge.
+How this book is organized: A road map
+This book has 13 chapters. The book begins by teaching the basics, including inter-
+preting financial ratios and collecting data. As you progress, the topics become
+increasingly complex. You can always jump to later chapters if you’re experienced
+with the basics.
+Chapter 1 introduces you to the investment domain and how programmers can
+excel.
+
+ABOUT THIS BOOK xviii
+Chapter 2 teaches financial basics and introduces you to key metrics for
+exploration.
+Chapter 3 demonstrates collecting financial data using Python libraries, includ-
+ing Yahoo Finance and alternative libraries.
+Chapter 4 teaches you how to create an investment thesis to look for growth
+portfolios.
+Chapter 5 explains how to look for portfolios to create passive income.
+Chapter 6 demonstrates how to collect data from brokers and exchanges, cen-
+tralize all holdings in one place, and facilitate their analysis.
+Chapter 7 explains how to investigate risks and learn ways to hedge them. We
+look at Sharpe ratios and other methods.
+Chapter 8 introduces AI for investment analysis. We introduce machine learning
+use cases and explore the application of generative AI in investment research.
+Chapter 9 demonstrates how to use AI agents for more advanced use cases,
+enabling data exploration and the integration of additional data sources.
+Chapter 10 shows how to display charts and technical analysis. You learn how to
+create charts using Bollinger Bands and other frameworks.
+Chapter 11 explores algorithmic trading and the application of nonfinancial
+data in financial analysis.
+Chapter 12 explores private equity as a form of ownership in startups and how
+to make informed investment decisions.
+Chapter 13 summarizes what you learned and provides some final thoughts for
+the path ahead.
+About the code
+This book heavily uses source code, primarily in numbered listings throughout the
+chapters. The source code is formatted in a fixed-width  font  like  this  to distin-
+guish it from ordinary text. Sometimes, code is also bold to highlight changes from
+previous steps in the chapter, such as when a new feature is added to an existing line
+of code. 
+ In many cases, the source code has been reformatted, with line breaks and reworked
+indentation added to accommodate the available page space in the book. Additionally,
+comments in the source code have often been removed from the listing when the
+code is described in the text. Code annotations accompany many of the listings, high-
+lighting important concepts.
+ You can get executable code snippets from this book’s liveBook (online) version at
+https:/ /livebook.manning.com/book/investing-for-programmers . The source code
+for the examples in this book is available for download on the publisher’s website at
+www.manning.com/books/investing-for-programmers . The code is also available on
+GitHub at https:/ /github.com/StefanPapp/investing-for-programmers .
+
+ABOUT THIS BOOK xix
+liveBook discussion forum
+Purchase of Investing for Programmers  includes free access to liveBook, Manning’s online
+reading platform. Using liveBook’s exclusive discussion features, you can attach global
+comments to the book or specific sections or paragraphs. It’s a snap to make notes for
+yourself, ask and answer technical questions, and receive help from the author and
+other users. To access the forum, go to https:/ /livebook.manning.com/book/investing
+-for-programmers/discussion . 
+ Manning’s commitment to our readers is to provide a venue for meaningful dia-
+logue between individual readers and between readers and the author. It isn’t a com-
+mitment to a specific amount of participation by the author, whose contributions to
+the forum remain voluntary and unpaid. We suggest you ask the author some chal-
+lenging questions lest his interest stray! The forum and archives of previous discus-
+sions will be accessible on the publisher’s website as long as the book remains in print.
+
+xxabout the author
+STEFAN  PAPP is a trailblazer at the intersection of AI and invest-
+ment strategy. With a career that spans decades as a data engi-
+neer, architect, and consultant for top-tier clients, Stefan has
+mastered the art of using data to solve complex problems. His
+thought leadership is reflected in his published technical books
+and his role as a university educator, where he inspires the next
+generation of tech innovators.
+    As a seasoned investor with more than 20 years of experience
+in stocks, cryptocurrency, and bonds, Stefan brings a data-
+driven approach to portfolio optimization that few can repli-
+cate. By combining cutting-edge AI techniques, including generative AI, with deep
+market insights, he has consistently outperformed traditional investment strategies.
+ In this book, Stefan demystifies the application of programming skills to financial
+analysis, sharing practical tools and real-world examples from his journey. Readers will
+learn how to harness data, adapt evolving best practices, and use AI to uncover oppor-
+tunities, optimize research, and gain a decisive edge in the market.
+
+
+xxiabout the cover illustration
+The figure on the cover of Investing for Programmers , titled “Arméniennes à Erzeroum,”
+or “Armenian Girls from Erzurum,” is taken from The Nations. Album of Costumes From
+All Countries  by Alexandre Lacauchie, published in 1847. Each illustration is finely
+drawn and colored by hand.
+ In those days, it was easy to identify where people lived and what their trade or sta-
+tion in life was just by their dress. Manning celebrates the inventiveness and initiative
+of the computer business with book covers based on the rich diversity of regional cul-
+ture centuries ago, brought back to life by pictures from collections such as this one.
+
+ 
+
+1The analytical investor
+A tough work environment often marks the beginning of the journey to financial
+independence. Formal education rarely prepares people for the sometimes harsh
+realities of the workplace: the micromanaging boss, a difficult coworker, a cutthroat
+culture, or the client who secretly rewrites your code and blames you if things go
+wrong. At some point, many programmers dream of escaping—maybe as a sheep
+herder in a remote forest or the captain of a starship in galaxies far, far away.
+ Finding a new job often proves to be a temporary fix. Starting your own com-
+pany usually means trading a 40-hour week for an 80-hour one, with less pay and
+only a slim chance of long-term success. If the start-up fails, you can land right back
+where you started, only to find that the toxic former colleague who had teased you
+got promoted and is now your boss.
+ But what if the solution isn’t another job, but greater independence from any job
+through gradually building passive income? The timeline to financial freedom variesThis chapter covers
+An overview of securities and the market
+Investment strategies for managing risk and 
+maximizing gains
+Tools and techniques for the data-driven investor
+Programmers’ traits that can be an advantage
+
+2 CHAPTER  1The analytical investor
+depending on your circumstances—a family, a mortgage, or even just residing with
+Her Majesty, the cat—creating a different scenario for everyone. Freedom can begin
+with the first realization that some of your essential expenses are covered by passive
+income . . . forever. And if you keep going, the number of things you don’t have to
+work for to pay for increases. Knowing that you can leave a high-paying, soul-crushing
+job for a more fulfilling one, even if it pays less, is a powerful relief for a developer
+who has endured hell on earth.
+ This book serves as a step-by-step guide to achieving greater independence. It
+emphasizes rational thinking and patience; no miracles are guaranteed. Be wary of
+anyone claiming you can get rich in 24 hours. Following such advice often depends on
+luck, a good lawyer, or both.
+1.1 Your investment journey
+Diving into the financial world can feel like stepping onto the road, and if you don’t
+keep your feet, there’s no knowing where you might be swept off to. To avoid stray-
+ing off the beaten track, we need to understand the essentials of what we want to
+explore.
+ Sooner or later, financial planning becomes a necessity. Perhaps we saw our dream
+house, met the person we want to start a family with, heard the demands for more
+comfort from Her Majesty the cat, or wanted to achieve financial independence. Every
+journey begins the same way. You assess what you already have and explore and opti-
+mize your expenses to determine how much surplus money you can accumulate on
+average each month.
+ With your carefully estimated monthly surplus, friends might approach you with
+ideas on how to invest it. Some of your “expert advisors” may try to charm you with
+stocks and their alleged high returns . The conservative camp prefers bonds instead,
+reasoning that they offer lower risk. A third group of finance aficionados may suggest
+that you put everything into an index fund and refrain from thinking about your
+investments until you need the money.
+ Risk and return are the pillars of any investment strategy. However, simply estimat-
+ing potential outcomes under normal market conditions isn’t enough. Without a fun-
+damental understanding of what you’re investing in, it’s unwise to risk your capital
+based on a casual tip from a friend.
+ This book aims to guide you toward becoming a data-driven investor. You’ll learn
+both the basics of investing and, in parallel, how to make smarter decisions based on
+data, research, rational thinking, and analysis. 
+1.2 Assets
+To get started with investing, we must understand the basics of assets. In its simplest
+form, an asset is something we can purchase to monetize. We use the term securities  to
+refer to a group of assets in the financial domain, such as stocks and bonds. In gen-
+eral, assets are monetized in two ways:
+
+3 1.2 Assets
+Capital appreciation —For example, buy low and sell high.
+Passive income —For example, getting regular payments (interest payments on
+savings accounts or receiving rent from a tenant).
+Investors should begin by understanding their risk tolerance—the amount of poten-
+tial loss they can handle without stress—and their financial goals, which outline how
+much they hope to earn within a specific time frame. A third critical factor, often over-
+looked in books for professional investors but vital for individuals, is the time required
+to manage an investment strategy. If monitoring your portfolio consumes time you’d
+rather spend on other activities, it’s a clear signal that you need to rethink your
+approach. The more aware you are of your risk appetite, desired returns, and maxi-
+mum time commitment, the better prepared you are to develop an investment strat-
+egy that helps you meet your life goals.
+1.2.1 Stocks
+Stock represents ownership, also known as equity . When you buy stocks, you acquire a
+small part of a company. As of June 2025, Apple has 15,509,763,000 shares outstanding.
+Purchasing one share  of Apple means you own 0.000000006447552% of the company.
+ Supply and demand affect stock prices. Investors typically buy more shares of suc-
+cessful companies, which causes their share prices to rise. However, a stock’s value
+depends on more than just its company’s performance. The entire market is also sig-
+nificantly influenced by larger factors, including global politics and economic news.
+Some stocks offer income to investors through a small payment per share, known as a
+dividend . As of June 2025, Apple trades at about $213.55 per share, and the company
+pays a quarterly dividend of roughly $0.26 per share. These payments result in a divi-
+dend yield of approximately 0.49%, representing the return before taxes that an
+investor gains from dividends relative to the share’s price.
+ To put this into perspective, we can compare a company’s dividend yield to the
+yield on a 10-year US Treasury bond, which is often used as a benchmark for a “risk-
+free” return. As of June 2025, these bonds offer a yield of around 4.3%—considerably
+higher than Apple’s current dividend payout.
+ Considering the treasury yield, investing in Apple solely for its dividend income is a
+poor choice. Because inflation usually exceeds its ~0.5% yield, an investor would lose
+buying power if they don’t account for potential capital gains from the stock’s growth.Terminology
+Through a brokerage account, investors buy shares  (referring to a countable amount)
+of the company’s stock  (representing the total assets of a company. A portfolio  is a
+collection of securities  (stocks, bonds, options, etc.) that you own. If a position in your
+portfolio is higher than its purchase price, you have an unrealized gain until you sell
+it to realize the gain. The same logic applies to unrealized and realized losses.
+
+4 CHAPTER  1The analytical investor
+ If you’re passionate about identifying companies that can outperform the market,
