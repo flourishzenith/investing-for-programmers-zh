@@ -14,9 +14,23 @@
 
 | 章节 | 英文 | 中文 | 状态 |
 |------|------|------|------|
-| 待提取 | ❌ | ❌ | ⏳ 待开始 |
+| 前言 | ✅ | ✅ | ✅ 已完成 |
+| 第1章 | The analytical investor | 分析型投资者 | 🚧 翻译中 |
+| 第2章 | Investment essentials | 投资基础 | ⏳ 待开始 |
+| 第3章 | Collecting data | 数据收集 | ⏳ 待开始 |
+| 第4章 | Growth portfolios | 增长型投资组合 | ⏳ 待开始 |
+| 第5章 | Income portfolios | 收入型投资组合 | ⏳ 待开始 |
+| 第6章 | Building an asset monitor | 构建资产监控器 | ⏳ 待开始 |
+| 第7章 | Risk management | 风险管理 | ⏳ 待开始 |
+| 第8章 | AI for financial research | AI 金融研究 | ⏳ 待开始 |
+| 第9章 | AI agents | AI 智能体 | ⏳ 待开始 |
+| 第10章 | Charts and technical analysis | 图表与技术分析 | ⏳ 待开始 |
+| 第11章 | Algorithmic trading | 算法交易 | ⏳ 待开始 |
+| 第12章 | Private equity | 私募股权 | ⏳ 待开始 |
+| 第13章 | The road goes ever on | 漫漫前路 | ⏳ 待开始 |
+| 附录 | Appendix | 附录 | ⏳ 待开始 |
 
-**总体进度**: 0%
+**总体进度**: 1/14 (7%)
 
 ## 📖 原书信息
 
